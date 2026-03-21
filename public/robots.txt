@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bororunners.co.uk
+
+# Sitemaps
+Sitemap: https://bororunners.co.uk/sitemap.xml
