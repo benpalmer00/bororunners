@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
-import EventCard from "@/components/events/EventCard";
+import EventsGrid from "@/components/events/EventsGrid";
+import { sanityFetch } from "@/sanity/lib/client";
+import { allEventsWithSignUpQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Events & Races",
@@ -10,25 +12,76 @@ export const metadata: Metadata = {
     "Upcoming races and events for Bororunners Running Club. From local 5ks to the Great North Run — we run them all together across Teesside and beyond.",
 };
 
-const upcomingEvents = [
-  { title: "Teesside Landmarks", date: "Sunday, 6th April 2025", location: "Teesside" },
-  { title: "Redcar Coast 5k", date: "Wednesday, 23rd April 2025, 7:15pm", location: "Redcar" },
-  { title: "NYMAC Relays", date: "Thursday, 29th May 2025, 7pm", location: "North Yorkshire" },
-  { title: "Ali Brownlee 5k", date: "Sunday, 1st June 2025", location: "TBC" },
-  { title: "Superhero Saturday", date: "Saturday, 21st June 2025, 9am", location: "Destination Boro" },
-  { title: "Durham City Run Festival", date: "17th–19th July 2025", location: "Durham" },
-  { title: "Parkrunathon", date: "Saturday, 19th July 2025", location: "Various Parkruns" },
-  { title: "Darlington 10k", date: "Sunday, 3rd August 2025, 10am", location: "Darlington" },
-  { title: "Branches & Bays 10k", date: "Sunday, 17th August 2025, 10am", location: "TBC" },
-  { title: "Middlesbrough 10k", date: "Sunday, 31st August 2025, 9am", location: "Middlesbrough" },
-  { title: "Great North Run", date: "Sunday, 7th September 2025, 10am", location: "Newcastle to South Shields" },
-  { title: "Redcar Running Festival", date: "Sunday, 21st September 2025", location: "Redcar" },
-  { title: "Scarborough 10k", date: "Sunday, 19th October 2025, 9:45am", location: "Scarborough" },
-  { title: "Saturn Run", date: "Sunday, 9th November 2025, 9:30am", location: "TBC" },
-  { title: "Christmas Parkrun", date: "December 2025, 9am", location: "Albert Park" },
+type SanityEvent = {
+  _id: string;
+  title: string;
+  date: string;
+  location: string;
+  description?: string;
+  entryUrl?: string;
+  signUpEnabled?: boolean;
+  isPast?: boolean;
+};
+
+const fallbackEvents = [
+  // Past — Late 2025
+  { _id: "1", title: "Nightmare on 6.66 Street", date: "Sunday, 2nd November 2025", location: "TBC", signUpEnabled: false, isPast: true },
+  { _id: "2", title: "Marton Willy Relays", date: "Sunday, 9th November 2025", location: "Marton", signUpEnabled: false, isPast: true },
+  { _id: "3", title: "Leeds Abbey Dash", date: "Sunday, 30th November 2025", location: "Leeds", signUpEnabled: false, isPast: true },
+  { _id: "4", title: "Aintree Half Marathon", date: "Sunday, 14th December 2025", location: "Aintree", signUpEnabled: false, isPast: true },
+  { _id: "5", title: "HMP Kirklevington 5k", date: "Sunday, 14th December 2025", location: "Kirklevington", signUpEnabled: false, isPast: true },
+  // Past — Early 2026
+  { _id: "6", title: "Hardmoors 15/30", date: "Saturday, 3rd January 2026", location: "North York Moors", signUpEnabled: false, isPast: true },
+  { _id: "7", title: "Brass Monkey Half Marathon", date: "Sunday, 18th January 2026", location: "York", signUpEnabled: false, isPast: true },
+  { _id: "8", title: "Boro Brassic Half Marathon", date: "Sunday, 18th January 2026", location: "Middlesbrough", signUpEnabled: false, isPast: true },
+  { _id: "9", title: "Hardmoors 26.2 / Saltburn 10K", date: "Sunday, 1st February 2026", location: "Saltburn", signUpEnabled: false, isPast: true },
+  { _id: "10", title: "DB Foodbank Run", date: "Saturday, 7th February 2026", location: "TBC", signUpEnabled: false, isPast: true },
+  { _id: "11", title: "Boro Half Marathon", date: "Sunday, 1st March 2026", location: "Middlesbrough", signUpEnabled: false, isPast: true },
+  // Upcoming
+  { _id: "12", title: "Superhero Run", date: "March 2026", location: "Middlesbrough", signUpEnabled: true },
+  { _id: "13", title: "London Landmarks", date: "Sunday, 12th April 2026", location: "London", signUpEnabled: true },
+  { _id: "14", title: "Teesside Landmarks", date: "Sunday, 12th April 2026", location: "Teesside", signUpEnabled: true },
+  { _id: "15", title: "Manchester Marathon", date: "Sunday, 19th April 2026", location: "Manchester", signUpEnabled: true },
+  { _id: "16", title: "Spring Coast 5k", date: "Wednesday, 22nd April 2026 (EST.)", location: "TBC", signUpEnabled: true },
+  { _id: "17", title: "London Marathon", date: "Sunday, 26th April 2026", location: "London", signUpEnabled: true },
+  { _id: "18", title: "Boro Runners Sports Day", date: "May 2026 (EST.)", location: "TBC", signUpEnabled: true },
+  { _id: "19", title: "Edinburgh Half Marathon", date: "Sunday, 24th May 2026", location: "Edinburgh", signUpEnabled: true },
+  { _id: "20", title: "Edinburgh Marathon", date: "Sunday, 24th May 2026", location: "Edinburgh", signUpEnabled: true },
+  { _id: "21", title: "NYMAC Relays", date: "Thursday, 28th May 2026 (EST.)", location: "North Yorkshire", signUpEnabled: true },
+  { _id: "22", title: "Parkrunathon", date: "June 2026 (EST.)", location: "Various Parkruns", signUpEnabled: true },
+  { _id: "23", title: "Summer Coast 5k", date: "Wednesday, 15th July 2026 (EST.)", location: "TBC", signUpEnabled: true },
+  { _id: "24", title: "Planned Club Event", date: "July 2026 (EST.)", location: "TBC", signUpEnabled: true },
+  { _id: "25", title: "Newcastle Frontrunners LGBTQ 5k", date: "July 2026 (EST.)", location: "Newcastle", signUpEnabled: true },
+  { _id: "26", title: "York 10K", date: "Sunday, 2nd August 2026", location: "York", signUpEnabled: true },
+  { _id: "27", title: "NYMAC Relays", date: "Thursday, 27th August 2026 (EST.)", location: "North Yorkshire", signUpEnabled: true },
+  { _id: "28", title: "Boro 5k", date: "Sunday, 30th August 2026", location: "Middlesbrough", signUpEnabled: true },
+  { _id: "29", title: "Boro 10k", date: "Sunday, 30th August 2026", location: "Middlesbrough", signUpEnabled: true },
+  { _id: "30", title: "Great North Run", date: "Sunday, 13th September 2026", location: "Newcastle to South Shields", signUpEnabled: true },
+  { _id: "31", title: "Berlin Marathon", date: "Sunday, 27th September 2026", location: "Berlin", signUpEnabled: true },
+  { _id: "32", title: "Manchester Half Marathon", date: "Sunday, 4th October 2026", location: "Manchester", signUpEnabled: true },
+  { _id: "33", title: "York 10 Mile", date: "Sunday, 18th October 2026", location: "York", signUpEnabled: true },
 ];
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  let events: SanityEvent[] = fallbackEvents;
+
+  const sanityEvents = await sanityFetch<SanityEvent[]>(allEventsWithSignUpQuery);
+  if (sanityEvents && sanityEvents.length > 0) {
+    events = sanityEvents.map((e) => ({
+      ...e,
+      date: e.date
+        ? new Date(e.date).toLocaleDateString("en-GB", {
+            weekday: "long",
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+          })
+        : "TBC",
+    }));
+  }
+
   return (
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
@@ -56,17 +109,11 @@ export default function EventsPage() {
       <section className="section-padding">
         <div className="container-wide mx-auto">
           <SectionHeading
-            title="Racing Calendar 2025"
-            subtitle="Our full racing calendar for the year. We always stay to cheer the last runner home."
+            title="Racing Calendar"
+            subtitle="Our racing calendar for the year. We always stay to cheer the last runner home."
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {upcomingEvents.map((event, i) => (
-              <AnimatedSection key={event.title} delay={i * 0.05}>
-                <EventCard {...event} />
-              </AnimatedSection>
-            ))}
-          </div>
+          <EventsGrid events={events} />
         </div>
       </section>
 

@@ -25,7 +25,7 @@ export default function JoinCTA() {
             Whether you&apos;re a complete beginner or chasing a PB, there&apos;s a place for you at Bororunners.
             Join Teesside&apos;s most inclusive running community.
           </p>
-          <Button href="/join" variant="secondary" size="lg" className="bg-white text-brand-red hover:bg-gray-100">
+          <Button href="/join" variant="white" size="lg">
             Join Today
           </Button>
         </motion.div>

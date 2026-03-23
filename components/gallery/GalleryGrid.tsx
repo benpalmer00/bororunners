@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import GalleryLightbox from "./GalleryLightbox";
 
-type GalleryImage = {
+export type GalleryImage = {
   src: string;
   alt: string;
   category: string;
@@ -13,7 +13,7 @@ type GalleryImage = {
 
 const categories = ["All", "Parkrun", "Race Day", "Club Night", "Social", "Training"];
 
-const images: GalleryImage[] = [
+const fallbackImages: GalleryImage[] = [
   { src: "/images/photos/hero-1.jpg", alt: "Bororunners group run", category: "Club Night" },
   { src: "/images/photos/hero-2.jpg", alt: "Bororunners running together", category: "Club Night" },
   { src: "/images/photos/hero-3.jpg", alt: "Bororunners group photo", category: "Social" },
@@ -30,11 +30,16 @@ const images: GalleryImage[] = [
   { src: "/images/photos/celebration-1.jpg", alt: "Celebration at Bororunners", category: "Social" },
 ];
 
-export default function GalleryGrid() {
+type GalleryGridProps = {
+  images?: GalleryImage[];
+};
+
+export default function GalleryGrid({ images }: GalleryGridProps) {
+  const data = images && images.length > 0 ? images : fallbackImages;
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState(-1);
 
-  const filtered = activeCategory === "All" ? images : images.filter((img) => img.category === activeCategory);
+  const filtered = activeCategory === "All" ? data : data.filter((img) => img.category === activeCategory);
 
   return (
     <>

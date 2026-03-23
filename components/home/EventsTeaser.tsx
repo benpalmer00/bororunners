@@ -5,7 +5,13 @@ import SectionHeading from "../ui/SectionHeading";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 
-const upcomingEvents = [
+type EventItem = {
+  title: string;
+  date: string;
+  location: string;
+};
+
+const fallbackEvents: EventItem[] = [
   {
     title: "Teesside Landmarks",
     date: "Sunday, 6th April 2025",
@@ -23,7 +29,13 @@ const upcomingEvents = [
   },
 ];
 
-export default function EventsTeaser() {
+type EventsTeaserProps = {
+  events?: EventItem[];
+};
+
+export default function EventsTeaser({ events }: EventsTeaserProps) {
+  const data = events && events.length > 0 ? events : fallbackEvents;
+
   return (
     <section className="section-padding">
       <div className="container-wide mx-auto">
@@ -33,7 +45,7 @@ export default function EventsTeaser() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {upcomingEvents.map((event, i) => (
+          {data.slice(0, 3).map((event, i) => (
             <AnimatedSection key={event.title} delay={i * 0.1}>
               <Card className="h-full">
                 <div className="p-6">

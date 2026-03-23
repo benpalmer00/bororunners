@@ -1,9 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { ClockIcon } from "@sanity/icons";
 
 export default defineType({
   name: "session",
-  title: "Session",
+  title: "Weekly Session",
   type: "document",
+  icon: ClockIcon,
   fields: [
     defineField({ name: "title", title: "Title", type: "string", validation: (r) => r.required() }),
     defineField({

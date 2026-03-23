@@ -5,7 +5,12 @@ import AnimatedSection from "../ui/AnimatedSection";
 import SectionHeading from "../ui/SectionHeading";
 import Button from "../ui/Button";
 
-const galleryImages = [
+type GalleryImage = {
+  src: string;
+  alt: string;
+};
+
+const fallbackImages: GalleryImage[] = [
   { src: "/images/photos/race-day-1.jpg", alt: "Bororunners at a race day event" },
   { src: "/images/photos/group-1.jpg", alt: "Bororunners group photo" },
   { src: "/images/photos/parkrun-1.jpg", alt: "Bororunners at parkrun" },
@@ -14,7 +19,13 @@ const galleryImages = [
   { src: "/images/photos/celebration-1.jpg", alt: "Bororunners celebrating together" },
 ];
 
-export default function GalleryTeaser() {
+type GalleryTeaserProps = {
+  images?: GalleryImage[];
+};
+
+export default function GalleryTeaser({ images }: GalleryTeaserProps) {
+  const data = images && images.length > 0 ? images : fallbackImages;
+
   return (
     <section className="section-padding">
       <div className="container-wide mx-auto">
@@ -24,7 +35,7 @@ export default function GalleryTeaser() {
         />
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
-          {galleryImages.map((img, i) => (
+          {data.slice(0, 6).map((img, i) => (
             <AnimatedSection key={img.src} delay={i * 0.08}>
               <div className="relative aspect-square overflow-hidden rounded-lg group cursor-pointer">
                 <Image

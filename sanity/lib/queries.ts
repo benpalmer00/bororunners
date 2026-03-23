@@ -29,6 +29,32 @@ export const currentRunnerOfTheMonthQuery = groq`*[_type == "runnerOfTheMonth" &
 
 export const allRunnersOfTheMonthQuery = groq`*[_type == "runnerOfTheMonth"] | order(_createdAt desc)`;
 
-export const merchandiseQuery = groq`*[_type == "merchandiseItem" && isAvailable == true]`;
+export const merchandiseQuery = groq`*[_type == "merchandiseItem" && isAvailable == true]{
+  _id,
+  name,
+  photo,
+  description,
+  price,
+  sizes,
+  url,
+  isAvailable
+}`;
 
 export const sponsorsQuery = groq`*[_type == "sponsor"] | order(order asc)`;
+
+export const timetableByMonthQuery = groq`*[_type == "timetableEvent" && month == $month] | order(sortDate asc)`;
+
+export const latestTimetableMonthQuery = groq`*[_type == "timetableEvent"] | order(sortDate desc)[0].month`;
+
+export const allEventsWithSignUpQuery = groq`*[_type == "event"] | order(isPast asc, date asc){
+  _id,
+  title,
+  date,
+  location,
+  description,
+  entryUrl,
+  facebookEventUrl,
+  featuredImage,
+  signUpEnabled,
+  isPast
+}`;

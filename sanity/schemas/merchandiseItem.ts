@@ -1,9 +1,11 @@
 import { defineField, defineType } from "sanity";
+import { TagIcon } from "@sanity/icons";
 
 export default defineType({
   name: "merchandiseItem",
   title: "Merchandise Item",
   type: "document",
+  icon: TagIcon,
   fields: [
     defineField({ name: "name", title: "Name", type: "string", validation: (r) => r.required() }),
     defineField({
@@ -22,6 +24,7 @@ export default defineType({
       of: [{ type: "string" }],
       options: { layout: "tags" },
     }),
+    defineField({ name: "url", title: "Product URL (Sprinters Sportswear)", type: "url" }),
     defineField({ name: "isAvailable", title: "Available", type: "boolean", initialValue: true }),
   ],
   preview: {

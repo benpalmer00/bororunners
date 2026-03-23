@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SponsorCard from "@/components/sponsors/SponsorCard";
+import { sanityFetch, urlFor } from "@/sanity/lib/client";
+import { sponsorsQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Sponsors & Partners",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
     "Bororunners Running Club sponsors and partners. Supporting Teesside's fastest growing running club.",
 };
 
-const sponsors = [
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SanitySponsor = any;
+
+const fallbackSponsors = [
   {
     name: "Sprinters Sportswear",
     logo: "/images/sponsors/sprinters-sportswear.png",
@@ -46,7 +50,19 @@ const sponsors = [
   },
 ];
 
-export default function SponsorsPage() {
+export default async function SponsorsPage() {
+  const sanitySponsors = await sanityFetch<SanitySponsor[]>(sponsorsQuery);
+
+  const sponsors = sanitySponsors && sanitySponsors.length > 0
+    ? sanitySponsors.map((s: SanitySponsor) => ({
+        name: s.name,
+        logo: s.logo ? urlFor(s.logo).width(320).height(160).url() : "",
+        description: s.description || "",
+        memberDiscount: s.memberDiscount,
+        websiteUrl: s.websiteUrl || "#",
+      }))
+    : fallbackSponsors;
+
   return (
     <>
       <section className="section-padding pt-24 md:pt-32">
@@ -59,36 +75,12 @@ export default function SponsorsPage() {
           </AnimatedSection>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {sponsors.map((sponsor, i) => (
+            {sponsors.map((sponsor: { name: string; logo: string; description: string; memberDiscount?: string; websiteUrl: string }, i: number) => (
               <AnimatedSection key={sponsor.name} delay={i * 0.1}>
                 <SponsorCard {...sponsor} />
               </AnimatedSection>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-brand-gray-50">
-        <div className="container-narrow mx-auto text-center">
-          <AnimatedSection>
-            <div className="relative w-48 h-48 mx-auto mb-6">
-              <Image
-                src="/images/sponsors/england-athletics.jpeg"
-                alt="England Athletics Certificate of Affiliation — Boro Runners (7693694)"
-                fill
-                className="object-contain"
-                sizes="192px"
-              />
-            </div>
-            <h3 className="font-display text-2xl font-bold uppercase text-brand-black mb-2">
-              England Athletics Affiliated
-            </h3>
-            <p className="text-brand-gray-600 max-w-xl mx-auto">
-              Bororunners is an England Athletics affiliated club (No. 7693694). This ensures all members
-              have insurance cover, access to affiliated race discounts, and the highest coaching and
-              welfare standards.
-            </p>
-          </AnimatedSection>
         </div>
       </section>
 

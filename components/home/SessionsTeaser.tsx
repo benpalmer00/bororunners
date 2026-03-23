@@ -5,7 +5,16 @@ import SectionHeading from "../ui/SectionHeading";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
 
-const sessions = [
+type Session = {
+  day: string;
+  time: string;
+  location: string;
+  level: string;
+  description: string;
+  hasWaitingList?: boolean;
+};
+
+const fallbackSessions: Session[] = [
   {
     day: "Monday",
     time: "6:10pm",
@@ -37,7 +46,13 @@ const sessions = [
   },
 ];
 
-export default function SessionsTeaser() {
+type SessionsTeaserProps = {
+  sessions?: Session[];
+};
+
+export default function SessionsTeaser({ sessions }: SessionsTeaserProps) {
+  const data = sessions && sessions.length > 0 ? sessions : fallbackSessions;
+
   return (
     <section className="section-padding bg-brand-gray-50">
       <div className="container-wide mx-auto">
@@ -47,7 +62,7 @@ export default function SessionsTeaser() {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {sessions.map((session, i) => (
+          {data.map((session, i) => (
             <AnimatedSection key={session.day} delay={i * 0.1}>
               <Card className="h-full">
                 <div className="p-6">

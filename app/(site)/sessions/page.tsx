@@ -4,6 +4,8 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
+import { sanityFetch } from "@/sanity/lib/client";
+import { latestTimetableMonthQuery, timetableByMonthQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Sessions",
@@ -55,7 +57,50 @@ const sessions = [
   },
 ];
 
-export default function SessionsPage() {
+type TimetableRow = {
+  date: string;
+  location: string;
+  time: string;
+  workout: string;
+  isHighlight?: boolean;
+};
+
+// Hardcoded fallback in case Sanity has no timetable data yet
+const fallbackTimetable: TimetableRow[] = [
+  { date: "Mon 2nd March", location: "Club Meal", time: "6:30pm", workout: "Social — Club Meal" },
+  { date: "Wed 4th March", location: "TIE", time: "6:10pm", workout: "4,4,3,3,2,2, 4 x 1 minute @ progressive 10k" },
+  { date: "Thu 5th March", location: "TIE", time: "6:10pm", workout: "4,4,3,3,2,2, 4 x 1 minute @ progressive 10k" },
+  { date: "Fri 6th March", location: "Flatts Lane", time: "9:15am", workout: "4 x 1k @ 5k effort & 4 x 80m Hill Sprints" },
+  { date: "Mon 9th March", location: "St Mary's Church", time: "6:10pm", workout: "2-5 x 1200's @ 10k pace w/ 3 mins rest" },
+  { date: "Wed 11th March", location: "LJ Track", time: "6:00pm", workout: "6-14 x 400's @ MP w/ 90s recovery" },
+  { date: "Thu 12th March", location: "TIE", time: "6:10pm", workout: "6-14 x 400's @ MP w/ 90s recovery" },
+  { date: "Fri 13th March", location: "Stewart Park", time: "9:15am", workout: "2-5 mile Tempo" },
+  { date: "Mon 16th March", location: "TIE", time: "6:10pm", workout: "4-10 x 600's @ slightly faster than 5k pace w/ floats recovery" },
+  { date: "Wed 18th March", location: "Nunthorpe Academy", time: "6:10pm", workout: "2-5 sets x 400,200,100m Hill Efforts w/ floats" },
+  { date: "Thu 19th March", location: "Coulby Manor Way", time: "6:10pm", workout: "2-6 mile Tempo Run" },
+  { date: "Fri 20th March", location: "Pinchinthorpe", time: "9:15am", workout: "2-5 x 1k's @ 5k effort THEN 2-6 x 60m Hill Sprints" },
+  { date: "Mon 23rd March", location: "Coulby Manor Way", time: "6:10pm", workout: "4-7 x 1k @ 5k pace w/ 2 minutes rest" },
+  { date: "Wed 25th March", location: "LJ Track", time: "6:00pm", workout: "2-3 x 1k @ 5k pace, 2-3 x 600's, 2-4 x 400's" },
+  { date: "Thu 26th March", location: "TIE", time: "6:10pm", workout: "8,8,4,4,2,2,1,1 mins w/ float recoveries" },
+  { date: "Fri 27th March", location: "Great Ayton", time: "9:15am", workout: "2-5 mile Tempo Run" },
+  { date: "Sat 28th March", location: "Superhero Run", time: "TBC", workout: "Superhero Run — Special Event!", isHighlight: true },
+];
+const fallbackMonth = "March 2026";
+
+export default async function SessionsPage() {
+  // Fetch timetable from Sanity, fall back to hardcoded data
+  let timetableMonth: string = fallbackMonth;
+  let timetable: TimetableRow[] = fallbackTimetable;
+
+  const month = await sanityFetch<string>(latestTimetableMonthQuery);
+  if (month) {
+    const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month });
+    if (rows && rows.length > 0) {
+      timetableMonth = month;
+      timetable = rows;
+    }
+  }
+
   return (
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
@@ -92,6 +137,50 @@ export default function SessionsPage() {
               </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section-padding bg-brand-black">
+        <div className="container-wide mx-auto">
+          <SectionHeading
+            title={`${timetableMonth} Timetable`}
+            subtitle="This month's full session schedule with locations and workouts."
+            light
+          />
+
+          <AnimatedSection>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-brand-gray-700">
+                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Date</th>
+                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Location</th>
+                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Time</th>
+                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Workout</th>
+                  </tr>
+                </thead>
+                <tbody className="text-gray-300">
+                  {timetable.map((row, i) => (
+                    <tr
+                      key={i}
+                      className={`border-b border-brand-gray-800 ${
+                        row.isHighlight
+                          ? "bg-brand-red/20 text-white font-bold"
+                          : i % 2 === 0
+                          ? "bg-brand-gray-900/30"
+                          : ""
+                      }`}
+                    >
+                      <td className="py-3 px-4 font-semibold text-white whitespace-nowrap">{row.date}</td>
+                      <td className="py-3 px-4">{row.location}</td>
+                      <td className="py-3 px-4">{row.time}</td>
+                      <td className="py-3 px-4">{row.workout}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
 
