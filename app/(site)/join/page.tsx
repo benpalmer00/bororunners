@@ -197,7 +197,7 @@ export default function JoinPage() {
             No experience needed. No sign-up required for your first session. Just turn up, say hello, and run with us.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Button href="/sessions" className="bg-white text-brand-red hover:bg-gray-100">
+            <Button href="/sessions" variant="white">
               View Sessions
             </Button>
             <Button href="/contact" variant="outline" className="border-white text-white hover:bg-white hover:text-brand-red">

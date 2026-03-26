@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
       <Image
-        src="/images/photos/hero-1.jpg"
+        src="/images/photos/Hero.jpg"
         alt="Bororunners Running Club members running together in Teesside"
         fill
         className="object-cover"

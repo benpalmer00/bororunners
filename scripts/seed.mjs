@@ -23,10 +23,10 @@ async function seed() {
   // 2. Weekly Sessions
   console.log("Creating Weekly Sessions...");
   const sessions = [
-    { _id: "session-monday", day: "Monday", time: "6:10pm", location: "Various (see timetable)", level: "All abilities", description: "Structured interval and speed sessions across Middlesbrough. Locations rotate weekly — check the monthly timetable for details.", isActive: true, order: 1, hasWaitingList: false },
-    { _id: "session-wednesday", day: "Wednesday", time: "6:10pm", location: "Various (see timetable)", level: "All abilities", description: "Midweek sessions including track nights at LJ Track, hill reps, and tempo runs. A great way to build speed and strength.", isActive: true, order: 2, hasWaitingList: false },
-    { _id: "session-thursday", day: "Thursday", time: "6:10pm", location: "TIE / Various", level: "All abilities", description: "Popular structured session — intervals, tempo, and speed work. This session has a waiting list due to high demand.", isActive: true, order: 3, hasWaitingList: true },
-    { _id: "session-friday", day: "Friday", time: "9:15am", location: "Various (see timetable)", level: "All abilities", description: "Morning sessions at scenic locations across Teesside. A mix of tempo runs, hill sprints, and 1k repeats.", isActive: true, order: 4, hasWaitingList: false },
+    { _id: "session-monday", title: "Monday Evening Session", day: "Monday", time: "6:10pm", location: "Rotating locations across Teesside", meetingPoint: "Varies weekly — check WhatsApp group", abilityLevel: "All Abilities", description: "Interval and tempo training with multiple pace groups. Sessions include 600m-1200m reps, hill sprints, and progressive tempo runs. Every session has dedicated run leaders to guide pace and keep things sociable.", isActive: true, order: 1, hasWaitingList: false },
+    { _id: "session-wednesday", title: "Wednesday Track Session", day: "Wednesday", time: "6:00pm", location: "Track venues (LJ Track, Guisborough, Nunthorpe)", meetingPoint: "At the track entrance", abilityLevel: "All Abilities", description: "Track-based speed work including 400m reps, 800m intervals, and speed endurance sets. Multiple ability groups with tailored distances and recovery times. Great for building speed and confidence.", isActive: true, order: 2, hasWaitingList: false },
+    { _id: "session-thursday", title: "Thursday Evening Session", day: "Thursday", time: "6:10pm", location: "Rotating locations (TIE, Coulby Manor Way, Southern Cross)", meetingPoint: "Varies weekly — check WhatsApp group", abilityLevel: "All Abilities", description: "Structured training covering tempo runs, intervals, and endurance work. This session is extremely popular and currently operates a waiting list due to high demand.", isActive: true, order: 3, hasWaitingList: true },
+    { _id: "session-friday", title: "Friday Morning Session", day: "Friday", time: "9:15am", location: "Parks and trails (Stewart Park, Pinchinthorpe, Flatts Lane, Great Ayton)", meetingPoint: "Car park at the session location", abilityLevel: "All Abilities", description: "Morning sessions at scenic locations across Teesside. A mix of tempo runs, hill sprints, and 1k repeats. A brilliant way to start the weekend surrounded by beautiful countryside.", isActive: true, order: 4, hasWaitingList: false },
   ];
   for (const session of sessions) {
     await client.createOrReplace({ _type: "session", ...session });
@@ -122,6 +122,84 @@ async function seed() {
     });
   }
   console.log(`  ✓ ${events.length} Racing Calendar Events\n`);
+
+  // 5. Team Members
+  console.log("Creating Team Members...");
+  const teamMembers = [
+    // Chairman
+    { _id: "team-ben-palmer", name: "Ben Palmer", role: "Chairman & Head Coach", category: "chairman", order: 1 },
+    // Officers
+    { _id: "team-jack-mcgarrity", name: "Jack McGarrity", role: "Club Coach", category: "officer", order: 2 },
+    { _id: "team-lindsey-scott", name: "Lindsey Scott", role: "Club Secretary", category: "officer", order: 3 },
+    { _id: "team-adelle-almond", name: "Adelle Almond", role: "Club Treasurer", category: "officer", order: 4 },
+    { _id: "team-katie-lomas", name: "Katie Lomas", role: "Club Ambassador", category: "officer", order: 5 },
+    { _id: "team-rachel-cowperthwaite", name: "Rachel Cowperthwaite", role: "Membership Secretary", category: "officer", order: 6 },
+    // Welfare & Support
+    { _id: "team-elaine-watson", name: "Elaine Watson", role: "Welfare Officer & DBS Verifier", category: "support", order: 7 },
+    { _id: "team-robyn-cairney", name: "Robyn Cairney", role: "Mental Health Champion", category: "support", order: 8 },
+    { _id: "team-kirsty-beattie", name: "Kirsty Beattie", role: "Mental Health Champion", category: "support", order: 9 },
+    { _id: "team-daniel-kelly", name: "Daniel Kelly", role: "Welfare Officer", category: "support", order: 10 },
+    { _id: "team-mike-mccann", name: "Mike McCann", role: "Welfare Officer", category: "support", order: 11 },
+    { _id: "team-karen-lavender", name: "Karen Lavender", role: "Welfare Officer", category: "support", order: 12 },
+    { _id: "team-david-jukes", name: "David Jukes", role: "Events & Charity", category: "support", order: 13 },
+    { _id: "team-badger", name: "Badger", role: "Club Mascot", category: "support", order: 14 },
+    // Run Leaders
+    { _id: "team-rl-ben", name: "Ben Palmer", role: "Run Leader", category: "runLeader", order: 15 },
+    { _id: "team-rl-lindsey", name: "Lindsey Scott", role: "Run Leader", category: "runLeader", order: 16 },
+    { _id: "team-rl-mandy", name: "Mandy Lorraine", role: "Run Leader", category: "runLeader", order: 17 },
+    { _id: "team-rl-katie", name: "Katie Lomas", role: "Run Leader", category: "runLeader", order: 18 },
+    { _id: "team-rl-paul", name: "Paul Bowman", role: "Run Leader", category: "runLeader", order: 19 },
+    { _id: "team-rl-kirk", name: "Kirk Sansom", role: "Run Leader", category: "runLeader", order: 20 },
+    { _id: "team-rl-robyn", name: "Robyn Cairney", role: "Run Leader", category: "runLeader", order: 21 },
+    { _id: "team-rl-kirsty", name: "Kirsty Beattie", role: "Run Leader", category: "runLeader", order: 22 },
+    { _id: "team-rl-danielle", name: "Danielle Laverick", role: "Run Leader", category: "runLeader", order: 23 },
+  ];
+  for (const member of teamMembers) {
+    await client.createOrReplace({ _type: "teamMember", ...member });
+  }
+  console.log(`  ✓ ${teamMembers.length} Team Members\n`);
+
+  // 6. Sponsors
+  console.log("Creating Sponsors...");
+  const sponsors = [
+    { _id: "sponsor-sprinters", name: "Sprinters Sportswear", description: "Our official kit supplier. Sprinters Sportswear provide all Bororunners club merchandise, from race vests to hoodies.", memberDiscount: "Bororunners member discounts available — ask at any session for details.", websiteUrl: "https://www.sprinterssportswear.co.uk", order: 1 },
+    { _id: "sponsor-lets-run", name: "Let's Run", description: "Local running shop supporting the North East running community with expert advice, gait analysis, and a great range of running shoes and gear.", memberDiscount: "Bororunners member discount available in store.", order: 2 },
+    { _id: "sponsor-high5", name: "HIGH5 Sports Nutrition", description: "Sports nutrition partner providing energy gels, drinks, and recovery products. Trusted by runners and athletes worldwide.", websiteUrl: "https://highfive.co.uk", order: 3 },
+    { _id: "sponsor-bimble-bolt", name: "Bimble & Bolt", description: "Local Teesside business supporting the Bororunners community. A proud partner of the club.", order: 4 },
+    { _id: "sponsor-sportsshoes", name: "SportsShoes.com", description: "Online retailer for running shoes and sportswear. Wide range of trail and road shoes from all major brands at competitive prices.", memberDiscount: "Exclusive Bororunners discount code — ask a committee member.", websiteUrl: "https://www.sportsshoes.com", order: 5 },
+  ];
+  for (const sponsor of sponsors) {
+    await client.createOrReplace({ _type: "sponsor", ...sponsor });
+  }
+  console.log(`  ✓ ${sponsors.length} Sponsors\n`);
+
+  // 7. Merchandise
+  console.log("Creating Merchandise...");
+  const merchandise = [
+    { _id: "merch-1", name: "Boro Runners Boro Drinkers T-Shirt (Unisex)", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-unisex/", isAvailable: true },
+    { _id: "merch-2", name: "Boro Runners Boro Drinkers T-Shirt (Female Fit)", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-female-fit/", isAvailable: true },
+    { _id: "merch-3", name: "Boro Runners Snow Star Beanie", price: 7.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-snow-star-beanie/", isAvailable: true },
+    { _id: "merch-4", name: "Boro Runners Thinsulate Bobble Hat", price: 8.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-thinsulate-bobble-hat/", isAvailable: true },
+    { _id: "merch-5", name: "Boro Runners Tracksuit Hoodless Top", price: 23.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-tracksuit-hoodless-top/", isAvailable: true },
+    { _id: "merch-6", name: "Boro Runners Tracksuit Pants", price: 23.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-tracksuit-pants/", isAvailable: true },
+    { _id: "merch-7", name: "Boro Runners Zipped Hoodie", price: 25.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-zipped-hoodie/", isAvailable: true },
+    { _id: "merch-8", name: "Boro Runners Unisex Vest", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-unisex-vest/", isAvailable: true },
+    { _id: "merch-9", name: "Boro Runners Backpack", price: 17.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-backpack/", isAvailable: true },
+    { _id: "merch-10", name: "Boro Runners Core DWL Jacket", price: 30.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-core-dwl-dri-warm-lite-jacket/", isAvailable: true },
+    { _id: "merch-11", name: "Boro Runners Ladies Fit T-Shirt", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-ladies-fit-t-shirt/", isAvailable: true },
+    { _id: "merch-12", name: "Boro Runners Ladies Fit Vest", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-ladies-fit-vest/", isAvailable: true },
+    { _id: "merch-13", name: "Boro Runners Long Sleeve Reflective (Ladies Fit)", price: 16.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-long-sleeve-top-reflective-ladies-fit/", isAvailable: true },
+    { _id: "merch-14", name: "Boro Runners Long Sleeve Reflective (Unisex)", price: 16.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-long-sleeved-top-reflective-unisex/", isAvailable: true },
+    { _id: "merch-15", name: "Boro Runners Long Sleeve Top (Unisex)", price: 15.50, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-long-sleeved-top-unisex/", isAvailable: true },
+    { _id: "merch-16", name: "Boro Runners Reflective T-Shirt (Ladies Fit)", price: 14.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-reflective-t-shirt-ladies-fit/", isAvailable: true },
+    { _id: "merch-17", name: "Boro Runners Reflective T-Shirt (Unisex)", price: 14.00, url: "https://www.sprinterssportswear.co.uk/product/bororunners-reflective-t-shirt-unisex/", isAvailable: true },
+    { _id: "merch-18", name: "Boro Runners Unisex Hoodie", price: 23.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-unisex-hoodie/", isAvailable: true },
+    { _id: "merch-19", name: "Boro Runners Unisex T-Shirt", price: 13.00, url: "https://www.sprinterssportswear.co.uk/product/boro-runners-unisex-t-shirt/", isAvailable: true },
+  ];
+  for (const item of merchandise) {
+    await client.createOrReplace({ _type: "merchandiseItem", ...item });
+  }
+  console.log(`  ✓ ${merchandise.length} Merchandise Items\n`);
 
   console.log("Done! Refresh your Studio to see the data.");
 }
