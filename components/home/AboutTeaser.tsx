@@ -4,7 +4,7 @@ import Image from "next/image";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
 
-export default function AboutTeaser() {
+export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
   return (
     <section className="section-padding">
       <div className="container-wide mx-auto">
@@ -12,7 +12,7 @@ export default function AboutTeaser() {
           <AnimatedSection>
             <div className="relative">
               <Image
-                src="/images/photos/group-2.jpg"
+                src={aboutImage || "/images/photos/group-2.jpg"}
                 alt="Bororunners members celebrating together after a run"
                 width={600}
                 height={400}
@@ -35,7 +35,7 @@ export default function AboutTeaser() {
             <p className="text-brand-gray-600 mb-4 leading-relaxed">
               Bororunners started with eight people and a simple idea — that running should be for everyone.
               Founded in 2022 by Ben Palmer, the club has grown to over 272 members and won England Athletics
-              Club of the Year, all by putting community first.
+              Club Committee of the Year, all by putting community first.
             </p>
             <p className="text-brand-gray-600 mb-6 leading-relaxed">
               We welcome runners of all abilities. Every session has dedicated run leaders, and at every race,

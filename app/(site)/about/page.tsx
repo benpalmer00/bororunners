@@ -3,11 +3,12 @@ import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
+import { getPageImage } from "@/lib/getPageImage";
 
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Bororunners Running Club — from 8 founding members in 2022 to 272 registered runners and England Athletics Club of the Year 2024. Teesside's most inclusive running club.",
+    "Learn about Bororunners Running Club — from 8 founding members in 2022 to 272 registered runners and England Athletics Club Committee of the Year 2024. Teesside's most inclusive running club.",
 };
 
 const milestones = [
@@ -28,8 +29,8 @@ const milestones = [
   },
   {
     date: "2024",
-    title: "Club of the Year",
-    description: "Bororunners won the England Athletics Regional Volunteer Awards — Community Project of the Year 2024. Ben Palmer received the individual volunteer award.",
+    title: "Club Committee of the Year",
+    description: "Bororunners won the England Athletics Club Committee of the Year 2024. Ben Palmer received the individual volunteer award.",
   },
   {
     date: "2025",
@@ -68,13 +69,18 @@ const values = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [aboutHero, aboutStory] = await Promise.all([
+    getPageImage("aboutHeroImage", "/images/photos/hero-3.jpg"),
+    getPageImage("aboutStoryImage", "/images/photos/club-night-1.jpg", 800, 1000),
+  ]);
+
   return (
     <>
       {/* Hero */}
       <section className="relative h-[50vh] min-h-[400px] flex items-center">
         <Image
-          src="/images/photos/hero-3.jpg"
+          src={aboutHero}
           alt="Bororunners Running Club group photo"
           fill
           className="object-cover"
@@ -88,7 +94,7 @@ export default function AboutPage() {
               Our Story
             </h1>
             <p className="text-xl text-gray-300 mt-4 max-w-xl">
-              From 8 runners in Stewart&apos;s Park to 272 members and England Athletics Club of the Year.
+              From 8 runners in Stewart&apos;s Park to 272 members and England Athletics Club Committee of the Year.
             </p>
           </AnimatedSection>
         </div>
@@ -125,7 +131,7 @@ export default function AboutPage() {
               </div>
               <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/photos/club-night-1.jpg"
+                  src={aboutStory}
                   alt="Ben Palmer coaching at a Bororunners session"
                   fill
                   className="object-cover"
@@ -197,7 +203,7 @@ export default function AboutPage() {
           <p className="text-red-100 text-lg mb-8 max-w-xl mx-auto">
             Join 272 members who&apos;ve found their running home. All abilities, all welcome.
           </p>
-          <Button href="/join" className="bg-white text-brand-red hover:bg-gray-100">
+          <Button href="/join" variant="white">
             Join Bororunners
           </Button>
         </AnimatedSection>

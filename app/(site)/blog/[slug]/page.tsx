@@ -10,12 +10,12 @@ type Props = {
 
 const posts: Record<string, { title: string; date: string; author: string; image: string; content: string[] }> = {
   "club-of-the-year-2024": {
-    title: "England Athletics Club of the Year 2024",
+    title: "England Athletics Club Committee of the Year 2024",
     date: "December 2024",
     author: "Bororunners",
     image: "/images/photos/celebration-1.jpg",
     content: [
-      "We are incredibly proud to announce that Bororunners has been named the England Athletics Regional Volunteer Awards Community Project of the Year 2024.",
+      "We are incredibly proud to announce that Bororunners has been named the England Athletics Club Committee of the Year 2024.",
       "This award recognises the incredible work of our entire community — from our founder and head coach Ben Palmer, to every single run leader, committee member, and the 272 members who make this club what it is.",
       "When we started with just 8 runners in Stewart's Park, we never imagined we'd be standing here receiving a national award. But we always knew we were building something special — a club where every runner, at every level, is genuinely welcomed and celebrated.",
       "Our founder Ben Palmer also received the individual Regional Volunteer Award, a well-deserved recognition of the countless hours he has put into coaching, organising, and inspiring our community.",

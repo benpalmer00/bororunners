@@ -20,6 +20,7 @@ const fallbackSessions: Session[] = [
     time: "6:10pm",
     location: "Various locations across Teesside",
     level: "All Abilities",
+    hasWaitingList: true,
     description: "Interval and tempo training with multiple pace groups and dedicated run leaders.",
   },
   {
@@ -27,6 +28,7 @@ const fallbackSessions: Session[] = [
     time: "6:00pm",
     location: "Track sessions",
     level: "All Abilities",
+    hasWaitingList: true,
     description: "Track-based speed work at various venues including Guisborough and LJ Track.",
   },
   {
@@ -42,6 +44,7 @@ const fallbackSessions: Session[] = [
     time: "9:15am",
     location: "Parks and trails",
     level: "All Abilities",
+    hasWaitingList: true,
     description: "Morning trail and road sessions at scenic locations across Teesside.",
   },
 ];
@@ -58,7 +61,7 @@ export default function SessionsTeaser({ sessions }: SessionsTeaserProps) {
       <div className="container-wide mx-auto">
         <SectionHeading
           title="Weekly Sessions"
-          subtitle="Four sessions every week, all abilities welcome. Turn up, introduce yourself, and run at your pace."
+          subtitle="Four sessions every week, all abilities welcome. All sessions operate a waiting list — register first to secure your place."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -77,16 +80,14 @@ export default function SessionsTeaser({ sessions }: SessionsTeaserProps) {
                     {session.level}
                   </span>
                   <p className="text-sm text-brand-gray-600">{session.description}</p>
-                  {session.hasWaitingList && (
-                    <div className="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
-                      <p className="text-xs font-bold text-yellow-800 uppercase">
-                        Waiting List Active
-                      </p>
-                      <p className="text-xs text-yellow-700 mt-1">
-                        This session is at capacity. Join the waiting list to secure your spot.
-                      </p>
-                    </div>
-                  )}
+                  <div className="mt-3 bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+                    <p className="text-xs font-bold text-yellow-800 uppercase">
+                      Waiting List Active
+                    </p>
+                    <p className="text-xs text-yellow-700 mt-1">
+                      This session is at capacity. Join the waiting list to secure your spot.
+                    </p>
+                  </div>
                 </div>
               </Card>
             </AnimatedSection>

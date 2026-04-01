@@ -4,11 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Button from "../ui/Button";
 
-export default function Hero() {
+export default function Hero({ heroImage }: { heroImage?: string }) {
   return (
-    <section className="relative h-[90vh] min-h-[600px] flex items-center overflow-hidden">
+    <section className="relative h-[90vh] min-h-[600px] overflow-hidden">
       <Image
-        src="/images/photos/Hero.jpg"
+        src={heroImage || "/images/photos/Hero.jpg"}
         alt="Bororunners Running Club members running together in Teesside"
         fill
         className="object-cover"
@@ -17,12 +17,12 @@ export default function Hero() {
       />
       <div className="absolute inset-0 bg-gradient-to-r from-brand-black/80 via-brand-black/50 to-transparent" />
 
-      <div className="relative z-10 container-wide mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute inset-0 z-10 flex items-center px-6 sm:pl-40 lg:pl-60">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-2xl"
+          className="max-w-xl w-full"
         >
           <motion.span
             initial={{ opacity: 0, x: -20 }}
@@ -30,7 +30,7 @@ export default function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="inline-block bg-brand-red text-white px-4 py-1 rounded-full text-sm font-display font-bold uppercase tracking-wider mb-4"
           >
-            England Athletics Club of the Year 2024
+            England Athletics Club Committee of the Year 2024
           </motion.span>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase text-white leading-none mb-4">
@@ -43,7 +43,7 @@ export default function Hero() {
             Teesside&apos;s fastest growing running club. 272 members, four weekly sessions, all abilities welcome.
           </p>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-row gap-3">
             <Button href="/join" size="lg">
               Join the Club
             </Button>

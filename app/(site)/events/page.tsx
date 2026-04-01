@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import EventsGrid from "@/components/events/EventsGrid";
 import { sanityFetch } from "@/sanity/lib/client";
+import { getPageImage } from "@/lib/getPageImage";
 import { allEventsWithSignUpQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ const fallbackEvents = [
 ];
 
 export default async function EventsPage() {
+  const eventsHero = await getPageImage("eventsHeroImage", "/images/photos/race-day-2.jpg");
   let events: SanityEvent[] = fallbackEvents;
 
   const sanityEvents = await sanityFetch<SanityEvent[]>(allEventsWithSignUpQuery);
@@ -86,7 +88,7 @@ export default async function EventsPage() {
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
         <Image
-          src="/images/photos/race-day-2.jpg"
+          src={eventsHero}
           alt="Bororunners at a race event"
           fill
           className="object-cover"

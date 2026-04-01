@@ -18,13 +18,13 @@ type SanityBlogPost = any;
 
 const placeholderPosts = [
   {
-    title: "England Athletics Club of the Year 2024",
+    title: "England Athletics Club Committee of the Year 2024",
     slug: "club-of-the-year-2024",
     excerpt:
-      "We're thrilled to announce that Bororunners has been named England Athletics Regional Volunteer Awards Community Project of the Year 2024. A huge milestone for our club and community.",
+      "We're thrilled to announce that Bororunners has been named England Athletics Club Committee of the Year 2024. A huge milestone for our club and community.",
     date: "December 2024",
     image: "/images/photos/celebration-1.jpg",
-    imageAlt: "Bororunners celebrating Club of the Year award",
+    imageAlt: "Bororunners celebrating Club Committee of the Year award",
   },
   {
     title: "From 8 to 272: Our Growth Story",

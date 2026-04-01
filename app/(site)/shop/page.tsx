@@ -24,18 +24,6 @@ type MerchandiseItem = {
 
 const fallbackMerchandise: MerchandiseItem[] = [
   {
-    name: "Boro Runners Boro Drinkers T-Shirt (Unisex)",
-    photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2025/05/20250524_143443-300x300.jpg",
-    price: "£13.00",
-    url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-unisex/",
-  },
-  {
-    name: "Boro Runners Boro Drinkers T-Shirt (Female Fit)",
-    photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2025/05/20250524_143443-300x300.jpg",
-    price: "£13.00",
-    url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-female-fit/",
-  },
-  {
     name: "Boro Runners Snow Star Beanie",
     photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2024/12/BRBEANIE-300x300.png",
     price: "£7.50",
@@ -136,6 +124,18 @@ const fallbackMerchandise: MerchandiseItem[] = [
     photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2022/09/brf-300x300.png",
     price: "£13.00",
     url: "https://www.sprinterssportswear.co.uk/product/boro-runners-unisex-t-shirt/",
+  },
+  {
+    name: "Boro Runners Boro Drinkers T-Shirt (Unisex)",
+    photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2025/05/20250524_143443-300x300.jpg",
+    price: "£13.00",
+    url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-unisex/",
+  },
+  {
+    name: "Boro Runners Boro Drinkers T-Shirt (Female Fit)",
+    photo: "https://www.sprinterssportswear.co.uk/wp-content/uploads/2025/05/20250524_143443-300x300.jpg",
+    price: "£13.00",
+    url: "https://www.sprinterssportswear.co.uk/product/boro-runners-boro-drinkers-t-shirt-female-fit/",
   },
 ];
 

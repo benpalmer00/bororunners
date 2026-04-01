@@ -46,6 +46,8 @@ export const timetableByMonthQuery = groq`*[_type == "timetableEvent" && month =
 
 export const latestTimetableMonthQuery = groq`*[_type == "timetableEvent"] | order(sortDate desc)[0].month`;
 
+export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
+
 export const allEventsWithSignUpQuery = groq`*[_type == "event"] | order(isPast asc, date asc){
   _id,
   title,

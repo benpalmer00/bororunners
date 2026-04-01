@@ -5,12 +5,13 @@ import SectionHeading from "@/components/ui/SectionHeading";
 import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
 import { sanityFetch } from "@/sanity/lib/client";
+import { getPageImage } from "@/lib/getPageImage";
 import { latestTimetableMonthQuery, timetableByMonthQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Sessions",
   description:
-    "Join Bororunners for four weekly running sessions across Middlesbrough and Teesside. Monday, Wednesday, Thursday evenings and Friday mornings. All abilities welcome with dedicated run leaders.",
+    "Bororunners runs four weekly sessions across Middlesbrough and Teesside. All sessions operate a waiting list — join via England Athletics to secure your spot. All abilities welcome.",
 };
 
 const sessions = [
@@ -19,8 +20,9 @@ const sessions = [
     day: "Monday",
     time: "6:10pm",
     location: "Rotating locations across Teesside",
-    meetingPoint: "Varies weekly — check WhatsApp group",
+    meetingPoint: "Varies weekly — shared via WhatsApp group",
     abilityLevel: "All Abilities",
+    hasWaitingList: true,
     description:
       "Interval and tempo training with multiple pace groups. Sessions include 600m-1200m reps, hill sprints, and progressive tempo runs. Every session has dedicated run leaders to guide pace and keep things sociable.",
   },
@@ -31,6 +33,7 @@ const sessions = [
     location: "Track venues (LJ Track, Guisborough, Nunthorpe)",
     meetingPoint: "At the track entrance",
     abilityLevel: "All Abilities",
+    hasWaitingList: true,
     description:
       "Track-based speed work including 400m reps, 800m intervals, and speed endurance sets. Multiple ability groups with tailored distances and recovery times. Great for building speed and confidence.",
   },
@@ -39,11 +42,11 @@ const sessions = [
     day: "Thursday",
     time: "6:10pm",
     location: "Rotating locations (TIE, Coulby Manor Way, Southern Cross)",
-    meetingPoint: "Varies weekly — check WhatsApp group",
+    meetingPoint: "Varies weekly — shared via WhatsApp group",
     abilityLevel: "All Abilities",
     hasWaitingList: true,
     description:
-      "Structured training covering tempo runs, intervals, and endurance work. This session is extremely popular and currently operates a waiting list due to high demand.",
+      "Structured training covering tempo runs, intervals, and endurance work. All sessions operate a waiting list — register via England Athletics to secure your place.",
   },
   {
     title: "Friday Morning Session",
@@ -52,6 +55,7 @@ const sessions = [
     location: "Parks and trails (Stewart Park, Pinchinthorpe, Flatts Lane, Great Ayton)",
     meetingPoint: "Car park at the session location",
     abilityLevel: "All Abilities",
+    hasWaitingList: true,
     description:
       "Morning sessions at scenic locations across Teesside. A mix of tempo runs, hill sprints, and 1k repeats. A brilliant way to start the weekend surrounded by beautiful countryside.",
   },
@@ -67,45 +71,60 @@ type TimetableRow = {
 
 // Hardcoded fallback in case Sanity has no timetable data yet
 const fallbackTimetable: TimetableRow[] = [
-  { date: "Mon 2nd March", location: "Club Meal", time: "6:30pm", workout: "Social — Club Meal" },
-  { date: "Wed 4th March", location: "TIE", time: "6:10pm", workout: "4,4,3,3,2,2, 4 x 1 minute @ progressive 10k" },
-  { date: "Thu 5th March", location: "TIE", time: "6:10pm", workout: "4,4,3,3,2,2, 4 x 1 minute @ progressive 10k" },
-  { date: "Fri 6th March", location: "Flatts Lane", time: "9:15am", workout: "4 x 1k @ 5k effort & 4 x 80m Hill Sprints" },
-  { date: "Mon 9th March", location: "St Mary's Church", time: "6:10pm", workout: "2-5 x 1200's @ 10k pace w/ 3 mins rest" },
-  { date: "Wed 11th March", location: "LJ Track", time: "6:00pm", workout: "6-14 x 400's @ MP w/ 90s recovery" },
-  { date: "Thu 12th March", location: "TIE", time: "6:10pm", workout: "6-14 x 400's @ MP w/ 90s recovery" },
-  { date: "Fri 13th March", location: "Stewart Park", time: "9:15am", workout: "2-5 mile Tempo" },
-  { date: "Mon 16th March", location: "TIE", time: "6:10pm", workout: "4-10 x 600's @ slightly faster than 5k pace w/ floats recovery" },
-  { date: "Wed 18th March", location: "Nunthorpe Academy", time: "6:10pm", workout: "2-5 sets x 400,200,100m Hill Efforts w/ floats" },
-  { date: "Thu 19th March", location: "Coulby Manor Way", time: "6:10pm", workout: "2-6 mile Tempo Run" },
-  { date: "Fri 20th March", location: "Pinchinthorpe", time: "9:15am", workout: "2-5 x 1k's @ 5k effort THEN 2-6 x 60m Hill Sprints" },
-  { date: "Mon 23rd March", location: "Coulby Manor Way", time: "6:10pm", workout: "4-7 x 1k @ 5k pace w/ 2 minutes rest" },
-  { date: "Wed 25th March", location: "LJ Track", time: "6:00pm", workout: "2-3 x 1k @ 5k pace, 2-3 x 600's, 2-4 x 400's" },
-  { date: "Thu 26th March", location: "TIE", time: "6:10pm", workout: "8,8,4,4,2,2,1,1 mins w/ float recoveries" },
-  { date: "Fri 27th March", location: "Great Ayton", time: "9:15am", workout: "2-5 mile Tempo Run" },
-  { date: "Sat 28th March", location: "Superhero Run", time: "TBC", workout: "Superhero Run — Special Event!", isHighlight: true },
+  { date: "Mon 30th March", location: "TBC", time: "6:10pm", workout: "1 x 2.2k, 2 x 1.1k, 2-5 x 650m w/ 2 minutes rest" },
+  { date: "Wed 1st April", location: "TBC", time: "6:00pm", workout: "6-12 x 300/200's w/ 75s rest" },
+  { date: "Thu 2nd April", location: "Great Ayton", time: "6:10pm", workout: "3/4 x 6 minutes Kenyan Hills w/ 2 minutes recovery" },
+  { date: "Fri 3rd April", location: "Good Friday", time: "10:00am", workout: "2-6 mile Tempo Run + Hill Sprints" },
+  { date: "Mon 6th April", location: "Bank Holiday", time: "10:00am", workout: "2-5 x 2k/1200's @ 10k effort w/ 3 minutes rest" },
+  { date: "Wed 8th April", location: "TBC", time: "6:10pm", workout: "6 x 2 minutes @ 5k pace, 6 x 1 minutes @ MP w/ 2 mins → 90s rest" },
+  { date: "Thu 9th April", location: "TIE", time: "6:10pm", workout: "6 x 2 minutes @ 5k pace, 6 x 1 minutes @ MP w/ 2 mins → 90s rest" },
+  { date: "Fri 10th April", location: "TBC", time: "9:15am", workout: "3-4 x 1 mile @ 10k pace OR 1k @ 5k pace THEN 4 x 300m Paired Relays" },
+  { date: "Sun 12th April", location: "Teesside Landmarks", time: "TBC", workout: "Teesside Landmarks with Destination Boro — Details to Follow", isHighlight: true },
+  { date: "Mon 13th April", location: "TBC", time: "6:10pm", workout: "2-6 mile Tempo Run" },
+  { date: "Wed 15th April", location: "TBC", time: "6:00pm", workout: "4-8 x 800's @ >5k pace w/ 2 minutes rest" },
+  { date: "Thu 16th April", location: "Pinchinthorpe", time: "6:10pm", workout: "4-8 x 3 minutes @ >5k pace w/ 2 minutes rest" },
+  { date: "Fri 17th April", location: "TBC", time: "9:15am", workout: "8-14 x 1 minute @ MP w/ 90s rest" },
+  { date: "Mon 20th April", location: "TBC", time: "6:10pm", workout: "2-5 x 1 mile/1k repeats w/ 3 minutes rest" },
+  { date: "Wed 22nd April", location: "Spring Coast 5k", time: "TBC", workout: "Spring Coast 5k — Race Event!", isHighlight: true },
+  { date: "Thu 23rd April", location: "Stewart's Park", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1 mile reps @ HM pace (2 mins float)" },
+  { date: "Fri 24th April", location: "TBC", time: "9:15am", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
+  { date: "Mon 27th April", location: "TBC", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
+  { date: "Wed 29th April", location: "TBC", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
+  { date: "Thu 30th April", location: "TIE", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
+  { date: "Fri 1st May", location: "TBC", time: "9:15am", workout: "TBC" },
 ];
-const fallbackMonth = "March 2026";
+const fallbackMonth = "April 2026";
 
 export default async function SessionsPage() {
   // Fetch timetable from Sanity, fall back to hardcoded data
+  const sessionsHero = await getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg");
   let timetableMonth: string = fallbackMonth;
   let timetable: TimetableRow[] = fallbackTimetable;
 
-  const month = await sanityFetch<string>(latestTimetableMonthQuery);
-  if (month) {
-    const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month });
-    if (rows && rows.length > 0) {
-      timetableMonth = month;
-      timetable = rows;
+  // Try to fetch the current month (April 2026) from Sanity first
+  const currentMonth = fallbackMonth;
+  const currentRows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month: currentMonth });
+  if (currentRows && currentRows.length > 0) {
+    timetableMonth = currentMonth;
+    timetable = currentRows;
+  } else {
+    // If current month not in Sanity, check for latest month
+    const month = await sanityFetch<string>(latestTimetableMonthQuery);
+    if (month && month === currentMonth) {
+      const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month });
+      if (rows && rows.length > 0) {
+        timetableMonth = month;
+        timetable = rows;
+      }
     }
+    // Otherwise use the hardcoded fallback (April 2026)
   }
 
   return (
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
         <Image
-          src="/images/photos/training-1.jpg"
+          src={sessionsHero}
           alt="Bororunners training session"
           fill
           className="object-cover"
@@ -117,7 +136,7 @@ export default async function SessionsPage() {
           <AnimatedSection>
             <h1 className="font-display text-5xl md:text-7xl font-bold uppercase text-white">Sessions</h1>
             <p className="text-xl text-gray-300 mt-4 max-w-xl">
-              We run together, for each other. Every session has dedicated run leaders, ability-matched groups, and a big welcome circle for new faces.
+              All sessions operate a waiting list. Register via England Athletics to secure your place, then run with dedicated run leaders and ability-matched groups.
             </p>
           </AnimatedSection>
         </div>
@@ -127,7 +146,7 @@ export default async function SessionsPage() {
         <div className="container-wide mx-auto">
           <SectionHeading
             title="Weekly Sessions"
-            subtitle="Turn up, introduce yourself, and run at your pace. All abilities welcome."
+            subtitle="All sessions operate a waiting list — register first, then come and run at your pace. All abilities welcome."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -194,9 +213,9 @@ export default async function SessionsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
               <div className="bg-white rounded-xl p-6 shadow-md">
                 <div className="w-10 h-10 bg-brand-red text-white rounded-full flex items-center justify-center font-display font-bold text-lg mb-4">1</div>
-                <h3 className="font-display text-lg font-bold uppercase text-brand-black mb-2">Welcome Circle</h3>
+                <h3 className="font-display text-lg font-bold uppercase text-brand-black mb-2">Register First</h3>
                 <p className="text-brand-gray-600 text-sm">
-                  Every session starts with a welcome circle where members introduce themselves to new runners. You&apos;ll know everyone by name before you start running.
+                  All sessions operate a waiting list. Join via England Athletics to secure your spot — once you&apos;re registered, you&apos;ll be added to the WhatsApp group with all session details.
                 </p>
               </div>
               <div className="bg-white rounded-xl p-6 shadow-md">
@@ -224,9 +243,9 @@ export default async function SessionsPage() {
             Ready to Join a Session?
           </h2>
           <p className="text-red-100 text-lg mb-8 max-w-xl mx-auto">
-            No experience needed. Just turn up, say hello, and run with us.
+            No experience needed. Register via England Athletics, join the waiting list, and we&apos;ll see you at a session.
           </p>
-          <Button href="/join" className="bg-white text-brand-red hover:bg-gray-100">
+          <Button href="/join" variant="white">
             How to Join
           </Button>
         </AnimatedSection>

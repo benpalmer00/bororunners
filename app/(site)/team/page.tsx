@@ -4,6 +4,7 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import TeamCard from "@/components/team/TeamCard";
 import { sanityFetch, urlFor } from "@/sanity/lib/client";
+import { getPageImage } from "@/lib/getPageImage";
 import { teamMembersQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
@@ -41,7 +42,6 @@ const fallbackSupport: TeamMember[] = [
   { name: "Mike McCann", role: "Welfare Officer" },
   { name: "Karen Lavender", role: "Welfare Officer" },
   { name: "David Jukes", role: "Events & Charity" },
-  { name: "Badger", role: "Club Mascot" },
 ];
 
 const fallbackRunLeaders: TeamMember[] = [
@@ -66,6 +66,10 @@ function mapMember(m: SanityTeamMember): TeamMember {
 }
 
 export default async function TeamPage() {
+  const [teamHero, mascotPhoto] = await Promise.all([
+    getPageImage("teamHeroImage", "/images/photos/group-1.jpg"),
+    getPageImage("mascotPhoto", "", 300, 300),
+  ]);
   const sanityMembers = await sanityFetch<SanityTeamMember[]>(teamMembersQuery);
 
   let chairman: TeamMember = fallbackChairman;
@@ -89,7 +93,7 @@ export default async function TeamPage() {
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
         <Image
-          src="/images/photos/group-1.jpg"
+          src={teamHero}
           alt="Bororunners team photo"
           fill
           className="object-cover"
@@ -114,8 +118,8 @@ export default async function TeamPage() {
             subtitle="Our dedicated committee keeps the club running smoothly behind the scenes."
           />
 
-          {/* Tier 1 — Chairman */}
-          <div className="flex justify-center mb-4">
+          {/* Ben Palmer — Chairman */}
+          <div className="flex justify-center mb-8">
             <AnimatedSection>
               <div className="w-56">
                 <TeamCard {...chairman} highlight />
@@ -124,36 +128,13 @@ export default async function TeamPage() {
           </div>
 
           {/* Connector line */}
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-8">
             <div className="w-px h-8 bg-brand-red/30" />
           </div>
 
-          {/* Tier 2 — Key Officers */}
-          <div className="flex justify-center mb-4">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-5 max-w-4xl">
-              {officers.map((member, i) => (
-                <AnimatedSection key={member.name} delay={i * 0.05}>
-                  <TeamCard {...member} />
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-
-          {/* Connector line */}
-          <div className="flex justify-center mb-4">
-            <div className="w-px h-8 bg-brand-red/30" />
-          </div>
-
-          {/* Tier 3 label */}
-          <AnimatedSection>
-            <p className="text-center text-xs font-display uppercase tracking-widest text-brand-gray-400 mb-4">
-              Welfare, Mental Health &amp; Support
-            </p>
-          </AnimatedSection>
-
-          {/* Tier 3 — Welfare, Mental Health & Support */}
+          {/* All committee members */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
-            {support.map((member, i) => (
+            {[...officers, ...support].map((member, i) => (
               <AnimatedSection key={member.name} delay={i * 0.05}>
                 <TeamCard {...member} />
               </AnimatedSection>
@@ -169,13 +150,49 @@ export default async function TeamPage() {
             subtitle="Our run leaders guide every pace group, keeping sessions safe, sociable, and fun."
           />
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="flex flex-wrap justify-center gap-6 max-w-[1000px] mx-auto">
             {runLeaders.map((leader, i) => (
               <AnimatedSection key={leader.name} delay={i * 0.05}>
-                <TeamCard name={leader.name} role={leader.role || "Run Leader"} photo={leader.photo} />
+                <div className="w-44">
+                  <TeamCard name={leader.name} role={leader.role || "Run Leader"} photo={leader.photo} />
+                </div>
               </AnimatedSection>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Badger — Club Mascot spotlight */}
+      <section className="section-padding bg-brand-black">
+        <div className="container-wide mx-auto text-center">
+          <AnimatedSection>
+            <p className="text-brand-red font-display font-bold uppercase tracking-widest text-sm mb-2">
+              Very Important Member
+            </p>
+            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase text-white mb-10">
+              Club Mascot
+            </h2>
+            <div className="inline-block">
+              <div className="relative bg-brand-red/10 border-2 border-brand-red rounded-2xl px-12 py-10 max-w-sm mx-auto">
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-brand-red text-white text-xs font-display font-bold uppercase tracking-wider px-4 py-1 rounded-full">
+                  ⭐ Official Mascot
+                </div>
+                <div className="relative w-28 h-28 rounded-full bg-brand-red flex items-center justify-center mx-auto mb-4 ring-4 ring-brand-red/40 overflow-hidden">
+                  {mascotPhoto ? (
+                    <Image src={mascotPhoto} alt="Badger the club mascot" fill className="object-cover" sizes="112px" />
+                  ) : (
+                    <span className="font-display text-4xl font-bold text-white">B</span>
+                  )}
+                </div>
+                <h3 className="font-display text-3xl font-bold uppercase text-white mb-1">Badger</h3>
+                <p className="text-brand-red font-medium mb-4">Club Mascot</p>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  Bororunners&apos; most beloved member. Never misses a session, never complains about the weather,
+                  and always first to celebrate at the finish line.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </section>
     </>

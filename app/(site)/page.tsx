@@ -9,6 +9,7 @@ import GalleryTeaser from "@/components/home/GalleryTeaser";
 import SponsorsStrip from "@/components/home/SponsorsStrip";
 import JoinCTA from "@/components/home/JoinCTA";
 import { sanityFetch, urlFor } from "@/sanity/lib/client";
+import { getPageImage } from "@/lib/getPageImage";
 import {
   sessionsQuery,
   eventsQuery,
@@ -32,13 +33,15 @@ function formatEventDate(dateStr: string): string {
 }
 
 export default async function HomePage() {
-  const [sanitySessions, sanityEvents, sanityROTM, sanityGallery, sanitySponsors] =
+  const [sanitySessions, sanityEvents, sanityROTM, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
     await Promise.all([
       sanityFetch<SanityDoc[]>(sessionsQuery),
       sanityFetch<SanityDoc[]>(eventsQuery),
       sanityFetch<SanityDoc>(currentRunnerOfTheMonthQuery),
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
+      getPageImage("heroImage", "/images/photos/Hero.jpg"),
+      getPageImage("homeAboutImage", "/images/photos/group-2.jpg", 600, 400),
     ]);
 
   // Transform sessions
@@ -91,11 +94,11 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero />
+      <Hero heroImage={heroImage} />
       <EnglandAthleticsBanner />
       <StatsStrip />
       <SessionsTeaser sessions={sessions} />
-      <AboutTeaser />
+      <AboutTeaser aboutImage={homeAboutImage} />
       <EventsTeaser events={events} />
       <ROTMTeaser rotm={rotm} />
       <GalleryTeaser images={galleryImages} />
