@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import SectionHeading from "@/components/ui/SectionHeading";
 import SponsorCard from "@/components/sponsors/SponsorCard";
 
 export const metadata: Metadata = {
