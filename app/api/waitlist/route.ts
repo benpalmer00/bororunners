@@ -60,14 +60,26 @@ export async function POST(req: NextRequest) {
 
     const submittedAt = new Date().toLocaleString("en-GB", { timeZone: "Europe/London" });
 
+    let emailOk = false;
+    let sheetOk = false;
+
+    // Append to Google Sheet first (so a Resend failure can't block it)
+    try {
+      await appendToSheet({ name, email, phone: phone || "", sessions, ability: ability || "", heardFrom: heardFrom || "", submittedAt });
+      sheetOk = true;
+    } catch (err) {
+      console.error("Waitlist Google Sheet error:", err);
+    }
+
     // Email Ben
-    const resend = getResend();
-    await resend.emails.send({
-      from: "Bororunners Website <contact@seahorseltd.co.uk>",
-      to: "ben.palmer3@hotmail.com",
-      replyTo: email,
-      subject: `[Waitlist] New Request — ${name}`,
-      text: `
+    try {
+      const resend = getResend();
+      await resend.emails.send({
+        from: "Bororunners Website <contact@seahorseltd.co.uk>",
+        to: "ben.palmer3@hotmail.com",
+        replyTo: email,
+        subject: `[Waitlist] New Request — ${name}`,
+        text: `
 New waiting list request from the Bororunners website.
 
 Name:      ${name}
@@ -80,13 +92,18 @@ Submitted: ${submittedAt}
 
 ---
 Sent from bororunners.co.uk
-      `.trim(),
-    });
+        `.trim(),
+      });
+      emailOk = true;
+    } catch (err) {
+      console.error("Waitlist Resend error:", err);
+    }
 
-    // Append to Google Sheet (silently skips if not configured)
-    await appendToSheet({ name, email, phone: phone || "", sessions, ability: ability || "", heardFrom: heardFrom || "", submittedAt });
+    if (!emailOk && !sheetOk) {
+      return NextResponse.json({ error: "Failed to submit. Please try again." }, { status: 500 });
+    }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, emailOk, sheetOk });
   } catch (error) {
     console.error("Waitlist error:", error);
     return NextResponse.json({ error: "Failed to submit. Please try again." }, { status: 500 });
