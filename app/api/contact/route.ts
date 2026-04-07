@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 
     const resend = getResend();
     await resend.emails.send({
-      from: "Bororunners Website <contact@seahorseltd.co.uk>",
+      from: "Bororunners Website <ben.palmer3@hotmail.com>",
       to: "ben.palmer3@hotmail.com",
       subject: `[Bororunners Website] ${subject} from ${name}`,
       replyTo: email,

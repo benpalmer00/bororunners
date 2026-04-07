@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
     try {
       const resend = getResend();
       await resend.emails.send({
-        from: "Bororunners Website <contact@seahorseltd.co.uk>",
+        from: "Bororunners Website <ben.palmer3@hotmail.com>",
         to: "ben.palmer3@hotmail.com",
         replyTo: email,
         subject: `[Waitlist] New Request — ${name}`,
