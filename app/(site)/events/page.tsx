@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "Upcoming races and events for Bororunners Running Club. From local 5ks to the Great North Run — we run them all together across Teesside and beyond.",
 };
 
+export const revalidate = 3600;
+
 type SanityEvent = {
   _id: string;
   title: string;
@@ -69,8 +71,10 @@ export default async function EventsPage() {
 
   const sanityEvents = await sanityFetch<SanityEvent[]>(allEventsWithSignUpQuery);
   if (sanityEvents && sanityEvents.length > 0) {
+    const now = new Date();
     events = sanityEvents.map((e) => ({
       ...e,
+      isPast: e.isPast || (e.date ? new Date(e.date) < now : false),
       date: e.date
         ? new Date(e.date).toLocaleDateString("en-GB", {
             weekday: "long",
