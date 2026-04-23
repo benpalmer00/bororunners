@@ -156,6 +156,7 @@ export default async function ShopPage() {
     <section className="section-padding pt-24 md:pt-32">
       <div className="container-wide mx-auto">
         <AnimatedSection>
+          <h1 className="sr-only">Bororunners Running Club Shop</h1>
           <SectionHeading
             title="Club Shop"
             subtitle="Represent Bororunners in the official club kit. All merchandise is available through our kit supplier, Sprinters Sportswear."

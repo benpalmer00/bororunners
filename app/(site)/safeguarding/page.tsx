@@ -13,6 +13,7 @@ export default function SafeguardingPage() {
     <section className="section-padding pt-24 md:pt-32">
       <div className="container-narrow mx-auto">
         <AnimatedSection>
+          <h1 className="sr-only">Bororunners Safeguarding &amp; Club Policies</h1>
           <SectionHeading
             title="Safeguarding & Policies"
             subtitle="Bororunners is committed to providing a safe, welcoming, and inclusive environment for all members."

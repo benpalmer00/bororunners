@@ -34,9 +34,12 @@ export default function Hero({ heroImage }: { heroImage?: string }) {
           </motion.span>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase text-white leading-none mb-4">
-            Boro
-            <br />
-            <span className="text-brand-red">Runners</span>
+            <span className="sr-only">Bororunners Running Club</span>
+            <span aria-hidden="true">
+              Boro
+              <br />
+              <span className="text-brand-red">Runners</span>
+            </span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-lg">

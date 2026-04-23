@@ -12,6 +12,7 @@ export default function PrivacyPolicyPage() {
     <section className="section-padding pt-24 md:pt-32">
       <div className="container-narrow mx-auto">
         <AnimatedSection>
+          <h1 className="sr-only">Bororunners Running Club Privacy Policy</h1>
           <SectionHeading title="Privacy Policy" />
         </AnimatedSection>
 

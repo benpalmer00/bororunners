@@ -33,6 +33,7 @@ export default async function GalleryPage() {
       <section className="section-padding pt-24 md:pt-32">
         <div className="container-wide mx-auto">
           <AnimatedSection>
+            <h1 className="sr-only">Bororunners Photo Gallery</h1>
             <SectionHeading
               title="Gallery"
               subtitle="From parkruns to race days, club nights to celebrations — we capture it all."

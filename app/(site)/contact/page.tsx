@@ -56,6 +56,7 @@ export default function ContactPage() {
     <section className="section-padding pt-24 md:pt-32">
       <div className="container-wide mx-auto">
         <AnimatedSection>
+          <h1 className="sr-only">Contact Bororunners Running Club</h1>
           <SectionHeading
             title="Get in Touch"
             subtitle="Tap a card below to send us an email — it'll open your email app with a message ready to go."

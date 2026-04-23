@@ -24,6 +24,7 @@ export default async function RunnerOfTheMonthPage() {
       <section className="section-padding pt-24 md:pt-32">
         <div className="container-wide mx-auto">
           <AnimatedSection>
+            <h1 className="sr-only">Bororunners Runner of the Month</h1>
             <SectionHeading
               title="Runner of the Month"
               subtitle="Every month we celebrate a member who embodies the Bororunners spirit."
