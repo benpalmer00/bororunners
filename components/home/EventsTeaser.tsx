@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import AnimatedSection from "../ui/AnimatedSection";
 import SectionHeading from "../ui/SectionHeading";
 import Card from "../ui/Card";
@@ -14,14 +15,14 @@ type EventItem = {
 
 const fallbackEvents: EventItem[] = [
   {
-    title: "London Marathon",
-    date: "Sunday, 26th April 2026",
-    location: "London",
-  },
-  {
     title: "Boro Runners Sports Day",
     date: "May 2026 (EST.)",
     location: "TBC",
+  },
+  {
+    title: "Edinburgh Half Marathon",
+    date: "Sunday, 24th May 2026",
+    location: "Edinburgh",
   },
   {
     title: "Edinburgh Marathon",
@@ -35,8 +36,11 @@ type EventsTeaserProps = {
 };
 
 export default function EventsTeaser({ events }: EventsTeaserProps) {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   const all = events && events.length > 0 ? events : fallbackEvents;
-  const data = all.filter((e) => !isEventPast(e.date));
+  const data = mounted ? all.filter((e) => !isEventPast(e.date)) : all;
 
   return (
     <section className="section-padding">

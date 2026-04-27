@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AnimatedSection from "../ui/AnimatedSection";
 import EventCard from "./EventCard";
 import EventSignUpModal from "./EventSignUpModal";
@@ -23,9 +23,20 @@ type EventsGridProps = {
 
 export default function EventsGrid({ events }: EventsGridProps) {
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
+  const [mounted, setMounted] = useState(false);
 
-  const upcoming = events.filter((e) => !e.isPast && !isEventPast(e.date));
-  const past = events.filter((e) => e.isPast || isEventPast(e.date));
+  useEffect(() => setMounted(true), []);
+
+  const upcoming = events.filter((e) => {
+    if (e.isPast) return false;
+    if (mounted) return !isEventPast(e.date);
+    return true;
+  });
+  const past = events.filter((e) => {
+    if (e.isPast) return true;
+    if (mounted) return isEventPast(e.date);
+    return false;
+  });
 
   return (
     <>
