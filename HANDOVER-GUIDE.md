@@ -11,7 +11,6 @@ The Bororunners website is built with:
 - **Content Management:** Sanity CMS (edit content at bororunners.co.uk/studio)
 - **Code Repository:** GitHub (github.com/benpalmer00/bororunners)
 - **Waitlist & Event Sign-Ups:** Google Sheets (data saved automatically when people sign up)
-- **Email Notifications:** Resend (sends you an email when someone uses the contact form or joins the waitlist)
 
 ---
 
@@ -78,38 +77,10 @@ Here's a summary of the accounts connected to the website:
 | **Sanity** | Content management system | bororunners.co.uk/studio |
 | **Google Sheets** | Stores waitlist + event sign-up data | Check your email for the shared sheet link |
 | **Google Cloud** | Service account that lets the website write to Google Sheets | Managed via console.cloud.google.com (admin account) |
-| **Resend** | Sends email notifications to you | resend.com (needs setting up — see below) |
 
 ---
 
-## Step 5 — Set Up Resend (Email Notifications)
-
-Resend is the service that sends you an email whenever someone:
-- Fills out the **contact form**
-- Joins the **waiting list**
-
-**This still needs to be set up.** Until it is, the contact form won't send emails (but waitlist data still saves to Google Sheets).
-
-### How to set it up:
-1. Go to **resend.com** and create a free account
-2. In the Resend dashboard, go to **API Keys**
-3. Click **Create API Key**
-4. Name it "Bororunners" and set permission to **Sending access**
-5. Copy the key (starts with `re_...`) — you only see it once
-6. Go to **Netlify > your site > Site configuration > Environment variables**
-7. Add a new variable: Key = `RESEND_API_KEY`, Value = the key you just copied
-8. In Netlify, go to **Deploys > Trigger deploy > Deploy site**
-
-### About the sending domain:
-The from address currently needs updating. Once Resend is set up, you'll need to either:
-- **Verify bororunners.co.uk** in Resend (add the DNS records they provide) — then the from address can be changed to `contact@bororunners.co.uk`
-- **Or use Resend's sandbox** (`onboarding@resend.dev`) temporarily for testing
-
-Your web developer can update the from address in the code once you've decided which option to go with.
-
----
-
-## Step 6 — How the Website Updates
+## Step 5 — How the Website Updates
 
 ### Content changes (CMS):
 1. You make a change in the CMS at bororunners.co.uk/studio
@@ -126,7 +97,7 @@ You don't need to worry about code changes — that's only needed if the design 
 
 ---
 
-## Step 7 — How Events Work
+## Step 6 — How Events Work
 
 ### Adding a new event:
 1. Go to **bororunners.co.uk/studio > Events & Races**
@@ -146,27 +117,31 @@ Events automatically move to the "Past Events" section once their date has passe
 
 ---
 
-## Step 8 — How the Waitlist Works
+## Step 7 — How the Waitlist Works
 
 1. Someone visits bororunners.co.uk/join and fills out the form
 2. Their details are saved to the **Waitlist** tab in Google Sheets
-3. You also receive an email notification (once Resend is set up)
 
 The waitlist captures: name, email, phone, preferred sessions, ability level, how they heard about the club, and the submission date/time.
 
----
-
-## Step 9 — How the Contact Form Works
-
-1. Someone visits bororunners.co.uk/contact and sends a message
-2. You receive an email at ben.palmer3@hotmail.com with their name, email, subject, and message
-3. You can reply directly to the sender (the email includes their address in the reply-to field)
-
-**Note:** Contact form submissions are only sent by email — they are NOT saved to Google Sheets. If Resend isn't set up, contact form messages will be lost. Setting up Resend (Step 5) is important for this reason.
+**To check new sign-ups:** Open the Google Sheet and look at the Waitlist tab. New entries appear at the bottom.
 
 ---
 
-## Step 10 — Changing the Event Sign-Up PIN
+## Step 8 — How the Contact Page Works
+
+The contact page at bororunners.co.uk/contact has four clickable cards:
+
+- **Joining the Club** — opens an email to you with a pre-filled subject line
+- **Events & Races** — opens an email to you about events
+- **Sponsorship** — opens an email to you about sponsorship
+- **General Enquiry** — opens a general email to you
+
+When someone clicks a card, it opens their email app (Gmail, Outlook, etc.) with a message pre-addressed to ben.palmer3@hotmail.com and a relevant subject line. They type their message and send it directly to your inbox — no middleman service needed.
+
+---
+
+## Step 9 — Changing the Event Sign-Up PIN
 
 The PIN is a 4-digit code that club members need to enter before signing up for events. It stops random people from signing up.
 
@@ -188,7 +163,6 @@ These are the settings stored in Netlify that connect the website to its service
 | `NEXT_PUBLIC_SANITY_PROJECT_ID` | Your Sanity project |
 | `NEXT_PUBLIC_SANITY_DATASET` | Your Sanity dataset (usually "production") |
 | `SANITY_API_TOKEN` | Allows the website to read from Sanity |
-| `RESEND_API_KEY` | Email sending service |
 | `GOOGLE_SERVICE_ACCOUNT_EMAIL` | The service account that writes to Google Sheets |
 | `GOOGLE_PRIVATE_KEY` | The private key for the service account |
 | `WAITLIST_SPREADSHEET_ID` | The Google Sheet for waitlist data |
@@ -204,11 +178,6 @@ To view or edit these: **Netlify > your site > Site configuration > Environment 
 - Make sure you clicked **Publish** (blue button in the CMS)
 - Go to **Netlify > Deploys > Trigger deploy > Deploy site** to force a rebuild
 - Hard-refresh the page in your browser (Ctrl+Shift+R on Windows, Cmd+Shift+R on Mac)
-
-### "The contact form / waitlist isn't sending emails"
-- Check that `RESEND_API_KEY` is set in Netlify environment variables
-- If it is set, check the from address is valid (needs to be from a verified domain in Resend)
-- The waitlist still saves to Google Sheets even if emails aren't working
 
 ### "Someone signed up for an event but I can't see it in the sheet"
 - Check the tabs at the bottom of the Google Sheet — each event creates its own tab
@@ -233,7 +202,6 @@ If you need help with anything technical (code changes, bug fixes, new features)
 For account-related issues:
 - **Netlify support:** netlify.com/support
 - **Sanity support:** sanity.io/contact
-- **Resend support:** resend.com/support
 
 ---
 
