@@ -4,6 +4,7 @@ import AnimatedSection from "../ui/AnimatedSection";
 import SectionHeading from "../ui/SectionHeading";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
+import { isEventPast } from "@/lib/eventDates";
 
 type EventItem = {
   title: string;
@@ -13,19 +14,19 @@ type EventItem = {
 
 const fallbackEvents: EventItem[] = [
   {
-    title: "Teesside Landmarks",
-    date: "Sunday, 6th April 2025",
-    location: "Teesside",
+    title: "London Marathon",
+    date: "Sunday, 26th April 2026",
+    location: "London",
   },
   {
-    title: "Redcar Coast 5k",
-    date: "Wednesday, 23rd April 2025",
-    location: "Redcar",
+    title: "Boro Runners Sports Day",
+    date: "May 2026 (EST.)",
+    location: "TBC",
   },
   {
-    title: "NYMAC Relays",
-    date: "Thursday, 29th May 2025",
-    location: "North Yorkshire",
+    title: "Edinburgh Marathon",
+    date: "Sunday, 24th May 2026",
+    location: "Edinburgh",
   },
 ];
 
@@ -34,7 +35,8 @@ type EventsTeaserProps = {
 };
 
 export default function EventsTeaser({ events }: EventsTeaserProps) {
-  const data = events && events.length > 0 ? events : fallbackEvents;
+  const all = events && events.length > 0 ? events : fallbackEvents;
+  const data = all.filter((e) => !isEventPast(e.date));
 
   return (
     <section className="section-padding">

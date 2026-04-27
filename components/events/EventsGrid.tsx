@@ -4,6 +4,7 @@ import { useState } from "react";
 import AnimatedSection from "../ui/AnimatedSection";
 import EventCard from "./EventCard";
 import EventSignUpModal from "./EventSignUpModal";
+import { isEventPast } from "@/lib/eventDates";
 
 type EventItem = {
   _id: string;
@@ -23,8 +24,8 @@ type EventsGridProps = {
 export default function EventsGrid({ events }: EventsGridProps) {
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
 
-  const upcoming = events.filter((e) => !e.isPast);
-  const past = events.filter((e) => e.isPast);
+  const upcoming = events.filter((e) => !e.isPast && !isEventPast(e.date));
+  const past = events.filter((e) => e.isPast || isEventPast(e.date));
 
   return (
     <>
