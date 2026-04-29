@@ -7,7 +7,8 @@ type ButtonProps = {
   children: React.ReactNode;
   className?: string;
   external?: boolean;
-} & React.ButtonHTMLAttributes<HTMLButtonElement>;
+  onClick?: () => void;
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick">;
 
 export default function Button({
   href,
@@ -16,6 +17,7 @@ export default function Button({
   children,
   className = "",
   external,
+  onClick,
   ...props
 }: ButtonProps) {
   const base =
@@ -39,20 +41,20 @@ export default function Button({
   if (href) {
     if (external) {
       return (
-        <a href={href} target="_blank" rel="noopener noreferrer" className={classes}>
+        <a href={href} target="_blank" rel="noopener noreferrer" className={classes} onClick={onClick}>
           {children}
         </a>
       );
     }
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} onClick={onClick}>
         {children}
       </Link>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} onClick={onClick} {...props}>
       {children}
     </button>
   );
