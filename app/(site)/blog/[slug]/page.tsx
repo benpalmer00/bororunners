@@ -1,14 +1,23 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Button from "@/components/ui/Button";
+import { sanityFetch, urlFor } from "@/sanity/lib/client";
+import { blogPostBySlugQuery, blogPostsQuery } from "@/sanity/lib/queries";
+
+export const revalidate = 3600;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SanityPost = any;
 
 type Props = {
   params: { slug: string };
 };
 
-const posts: Record<string, { title: string; date: string; author: string; image: string; content: string[] }> = {
+// Legacy hardcoded posts — the blog listing links to these when Sanity has no posts yet
+const legacyPosts: Record<string, { title: string; date: string; author: string; image: string; content: string[] }> = {
   "club-of-the-year-2024": {
     title: "England Athletics Club Committee of the Year 2024",
     date: "December 2024",
@@ -49,24 +58,90 @@ const posts: Record<string, { title: string; date: string; author: string; image
   },
 };
 
+function formatDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+}
+
+const portableTextComponents: PortableTextComponents = {
+  types: {
+    image: ({ value }) =>
+      value?.asset ? (
+        <figure className="my-8">
+          <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
+            <Image
+              src={urlFor(value).width(1200).url()}
+              alt={value.alt || ""}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+          </div>
+          {value.caption && (
+            <figcaption className="text-sm text-brand-gray-400 mt-2 text-center">{value.caption}</figcaption>
+          )}
+        </figure>
+      ) : null,
+  },
+  block: {
+    normal: ({ children }) => <p className="text-brand-gray-600 leading-relaxed mb-4 text-lg">{children}</p>,
+    h2: ({ children }) => (
+      <h2 className="font-display text-3xl font-bold uppercase text-brand-black mt-10 mb-4">{children}</h2>
+    ),
+    h3: ({ children }) => (
+      <h3 className="font-display text-2xl font-bold uppercase text-brand-black mt-8 mb-3">{children}</h3>
+    ),
+    blockquote: ({ children }) => (
+      <blockquote className="border-l-4 border-brand-red pl-4 italic text-brand-gray-600 my-6">{children}</blockquote>
+    ),
+  },
+  list: {
+    bullet: ({ children }) => <ul className="list-disc pl-6 mb-4 text-brand-gray-600 text-lg space-y-2">{children}</ul>,
+    number: ({ children }) => <ol className="list-decimal pl-6 mb-4 text-brand-gray-600 text-lg space-y-2">{children}</ol>,
+  },
+  marks: {
+    link: ({ children, value }) => (
+      <a href={value?.href} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">
+        {children}
+      </a>
+    ),
+  },
+};
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = posts[params.slug];
-  if (!post) return { title: "Post Not Found" };
+  const post = await sanityFetch<SanityPost>(blogPostBySlugQuery, { slug: params.slug });
+  if (post) {
+    return {
+      title: post.title,
+      description: post.excerpt || undefined,
+      openGraph: post.featuredImage
+        ? { images: [urlFor(post.featuredImage).width(1200).height(630).url()] }
+        : undefined,
+    };
+  }
+
+  const legacy = legacyPosts[params.slug];
+  if (!legacy) return { title: "Post Not Found" };
   return {
-    title: post.title,
-    description: post.content[0],
-    openGraph: { images: [post.image] },
+    title: legacy.title,
+    description: legacy.content[0],
+    openGraph: { images: [legacy.image] },
   };
 }
 
-export function generateStaticParams() {
-  return Object.keys(posts).map((slug) => ({ slug }));
+export async function generateStaticParams() {
+  const sanityPosts = await sanityFetch<SanityPost[]>(blogPostsQuery);
+  const sanitySlugs = (sanityPosts || [])
+    .map((p: SanityPost) => p.slug?.current)
+    .filter(Boolean);
+  return Array.from(new Set([...sanitySlugs, ...Object.keys(legacyPosts)])).map((slug) => ({ slug }));
 }
 
-export default function BlogPostPage({ params }: Props) {
-  const post = posts[params.slug];
+export default async function BlogPostPage({ params }: Props) {
+  const sanityPost = await sanityFetch<SanityPost>(blogPostBySlugQuery, { slug: params.slug });
+  const legacy = sanityPost ? null : legacyPosts[params.slug];
 
-  if (!post) {
+  if (!sanityPost && !legacy) {
     return (
       <section className="section-padding pt-24 md:pt-32 text-center">
         <h1 className="font-display text-4xl font-bold uppercase text-brand-black mb-4">Post Not Found</h1>
@@ -74,6 +149,20 @@ export default function BlogPostPage({ params }: Props) {
       </section>
     );
   }
+
+  const title = sanityPost ? sanityPost.title : legacy!.title;
+  const date = sanityPost
+    ? sanityPost.publishedAt
+      ? formatDate(sanityPost.publishedAt)
+      : ""
+    : legacy!.date;
+  const author = sanityPost ? sanityPost.author || "Bororunners" : legacy!.author;
+  const image = sanityPost
+    ? sanityPost.featuredImage
+      ? urlFor(sanityPost.featuredImage).width(1600).height(900).url()
+      : ""
+    : legacy!.image;
+  const imageAlt = sanityPost ? sanityPost.featuredImage?.alt || title : title;
 
   return (
     <article className="section-padding pt-24 md:pt-32">
@@ -87,23 +176,33 @@ export default function BlogPostPage({ params }: Props) {
           </Link>
 
           <h1 className="font-display text-4xl md:text-5xl font-bold uppercase text-brand-black mt-4 mb-4">
-            {post.title}
+            {title}
           </h1>
 
           <div className="flex items-center gap-4 text-sm text-brand-gray-500 mb-8">
-            <span>{post.date}</span>
-            <span>•</span>
-            <span>By {post.author}</span>
+            {date && (
+              <>
+                <span>{date}</span>
+                <span>•</span>
+              </>
+            )}
+            <span>By {author}</span>
           </div>
 
-          <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-10">
-            <Image src={post.image} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
-          </div>
+          {image && (
+            <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-10">
+              <Image src={image} alt={imageAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
+            </div>
+          )}
 
           <div className="prose max-w-none">
-            {post.content.map((para, i) => (
-              <p key={i} className="text-brand-gray-600 leading-relaxed mb-4 text-lg">{para}</p>
-            ))}
+            {sanityPost ? (
+              <PortableText value={sanityPost.body || []} components={portableTextComponents} />
+            ) : (
+              legacy!.content.map((para, i) => (
+                <p key={i} className="text-brand-gray-600 leading-relaxed mb-4 text-lg">{para}</p>
+              ))
+            )}
           </div>
         </AnimatedSection>
       </div>
@@ -114,10 +213,10 @@ export default function BlogPostPage({ params }: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: post.title,
-            datePublished: post.date,
+            headline: title,
+            datePublished: sanityPost ? sanityPost.publishedAt || undefined : legacy!.date,
             author: { "@type": "Organization", name: "Bororunners Running Club" },
-            image: `https://bororunners.co.uk${post.image}`,
+            image: image.startsWith("/") ? `https://bororunners.co.uk${image}` : image || undefined,
           }),
         }}
       />

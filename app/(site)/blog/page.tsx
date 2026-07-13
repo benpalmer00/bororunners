@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "News, race reports, and stories from Bororunners Running Club. Stay up to date with Teesside's fastest growing running community.",
 };
 
+export const revalidate = 3600;
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SanityBlogPost = any;
 

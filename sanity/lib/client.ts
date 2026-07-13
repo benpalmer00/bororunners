@@ -13,15 +13,15 @@ export const client = projectId
     })
   : null;
 
-// Safe fetch wrapper — returns null if Sanity is not configured
+// Safe fetch wrapper — returns null if Sanity is not configured.
+// Revalidates hourly so CMS edits reach every page without a redeploy
+// (Next persists its fetch cache across builds, so uncapped entries go stale).
 export async function sanityFetch<T>(query: string, params?: Record<string, string>): Promise<T | null> {
   if (!client) return null;
   try {
-    if (params) {
-      return await client.fetch<T>(query, params);
-    }
-    return await client.fetch<T>(query);
-  } catch {
+    return await client.fetch<T>(query, params ?? {}, { next: { revalidate: 3600 } });
+  } catch (err) {
+    console.error("[sanityFetch] query failed:", query.slice(0, 60), err instanceof Error ? err.message : err);
     return null;
   }
 }

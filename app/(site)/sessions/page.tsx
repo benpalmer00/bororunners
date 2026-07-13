@@ -6,7 +6,7 @@ import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
 import { sanityFetch } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
-import { latestTimetableMonthQuery, timetableByMonthQuery } from "@/sanity/lib/queries";
+import { latestTimetableMonthQuery, sessionsQuery, timetableByMonthQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Sessions",
@@ -14,7 +14,13 @@ export const metadata: Metadata = {
     "Bororunners runs four weekly sessions across Middlesbrough and Teesside. All sessions operate a waiting list — join via England Athletics to secure your spot. All abilities welcome.",
 };
 
-const sessions = [
+export const revalidate = 3600;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type SanityDoc = any;
+
+// Hardcoded fallback in case Sanity has no session data yet
+const fallbackSessions = [
   {
     title: "Monday Evening Session",
     day: "Monday",
@@ -96,28 +102,37 @@ const fallbackTimetable: TimetableRow[] = [
 const fallbackMonth = "April 2026";
 
 export default async function SessionsPage() {
-  // Fetch timetable from Sanity, fall back to hardcoded data
-  const sessionsHero = await getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg");
+  // Fetch session cards and timetable from Sanity, fall back to hardcoded data
+  const [sessionsHero, sanitySessions, latestMonth] = await Promise.all([
+    getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg"),
+    sanityFetch<SanityDoc[]>(sessionsQuery),
+    sanityFetch<string>(latestTimetableMonthQuery),
+  ]);
+
+  const sessions = sanitySessions && sanitySessions.length > 0
+    ? sanitySessions.map((s: SanityDoc) => ({
+        title: s.title,
+        day: s.day,
+        time: s.time,
+        location: s.location || "",
+        meetingPoint: s.meetingPoint || undefined,
+        abilityLevel: s.abilityLevel || "All Abilities",
+        hasWaitingList: s.hasWaitingList || false,
+        waitingListUrl: s.waitingListUrl || undefined,
+        description: s.description || "",
+      }))
+    : fallbackSessions;
+
+  // Show the most recent month that has timetable entries in Sanity
   let timetableMonth: string = fallbackMonth;
   let timetable: TimetableRow[] = fallbackTimetable;
 
-  // Try to fetch the current month (April 2026) from Sanity first
-  const currentMonth = fallbackMonth;
-  const currentRows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month: currentMonth });
-  if (currentRows && currentRows.length > 0) {
-    timetableMonth = currentMonth;
-    timetable = currentRows;
-  } else {
-    // If current month not in Sanity, check for latest month
-    const month = await sanityFetch<string>(latestTimetableMonthQuery);
-    if (month && month === currentMonth) {
-      const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month });
-      if (rows && rows.length > 0) {
-        timetableMonth = month;
-        timetable = rows;
-      }
+  if (latestMonth) {
+    const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month: latestMonth });
+    if (rows && rows.length > 0) {
+      timetableMonth = latestMonth;
+      timetable = rows;
     }
-    // Otherwise use the hardcoded fallback (April 2026)
   }
 
   return (
@@ -151,7 +166,7 @@ export default async function SessionsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {sessions.map((session, i) => (
-              <AnimatedSection key={session.day} delay={i * 0.1}>
+              <AnimatedSection key={`${session.day}-${session.title}`} delay={i * 0.1}>
                 <SessionCard {...session} />
               </AnimatedSection>
             ))}
