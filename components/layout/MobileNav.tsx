@@ -7,7 +7,7 @@ import Button from "../ui/Button";
 type MobileNavProps = {
   open: boolean;
   onClose: () => void;
-  links: { href: string; label: string }[];
+  links: { href: string; label: string; accent?: boolean }[];
 };
 
 export default function MobileNav({ open, onClose, links }: MobileNavProps) {
@@ -43,7 +43,11 @@ export default function MobileNav({ open, onClose, links }: MobileNavProps) {
                   <Link
                     href={link.href}
                     onClick={onClose}
-                    className="font-display text-2xl font-bold uppercase text-white hover:text-brand-red transition-colors"
+                    className={`font-display text-2xl font-bold uppercase transition-colors ${
+                      link.accent
+                        ? "text-brand-pink hover:text-brand-pink-dark"
+                        : "text-white hover:text-brand-red"
+                    }`}
                   >
                     {link.label}
                   </Link>

@@ -12,6 +12,7 @@ const navLinks = [
   { href: "/sessions", label: "Sessions" },
   { href: "/events", label: "Events" },
   { href: "/gallery", label: "Gallery" },
+  { href: "/optimise", label: "Optimise", accent: true },
   { href: "/blog", label: "Blog" },
   { href: "/team", label: "Team" },
   { href: "/shop", label: "Shop" },
@@ -46,7 +47,11 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="px-3 py-2 text-sm font-medium text-brand-gray-700 hover:text-brand-red transition-colors rounded-md"
+                  className={`px-3 py-2 text-sm font-medium transition-colors rounded-md ${
+                    link.accent
+                      ? "text-brand-pink hover:text-brand-pink-dark"
+                      : "text-brand-gray-700 hover:text-brand-red"
+                  }`}
                 >
                   {link.label}
                 </Link>

@@ -9,6 +9,7 @@ import {
   StarFilledIcon,
   StarIcon,
   ClockIcon,
+  PlayIcon,
 } from "@sanity/icons";
 
 export const structure: StructureResolver = (S) =>
@@ -73,6 +74,11 @@ export const structure: StructureResolver = (S) =>
         .title("Photo Gallery")
         .icon(ImageIcon)
         .child(S.documentTypeList("galleryImage").title("Photo Gallery")),
+
+      S.listItem()
+        .title("Optimise Page")
+        .icon(PlayIcon)
+        .child(S.documentTypeList("optimiseMedia").title("Optimise Page")),
 
       S.divider(),
 

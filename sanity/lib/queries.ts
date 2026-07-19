@@ -23,6 +23,21 @@ export const galleryImagesQuery = groq`*[_type == "galleryImage"] | order(dateTa
 
 export const featuredGalleryImagesQuery = groq`*[_type == "galleryImage" && featured == true] | order(dateTaken desc)[0...6]`;
 
+export const optimiseHeroVideoQuery = groq`*[_type == "optimiseMedia" && mediaType == "Video" && isHeroVideo == true][0]{
+  title,
+  "videoUrl": video.asset->url,
+  poster
+}`;
+
+export const optimiseMediaQuery = groq`*[_type == "optimiseMedia" && isHeroVideo != true] | order(order asc, _createdAt desc){
+  _id,
+  title,
+  mediaType,
+  image,
+  "videoUrl": video.asset->url,
+  poster
+}`;
+
 export const teamMembersQuery = groq`*[_type == "teamMember"] | order(order asc)`;
 
 export const currentRunnerOfTheMonthQuery = groq`*[_type == "runnerOfTheMonth" && isCurrent == true][0]`;
