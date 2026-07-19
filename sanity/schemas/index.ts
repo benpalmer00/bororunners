@@ -3,6 +3,7 @@ import event from "./event";
 import timetableEvent from "./timetableEvent";
 import blogPost from "./blogPost";
 import galleryImage from "./galleryImage";
+import optimiseMedia from "./optimiseMedia";
 import teamMember from "./teamMember";
 import runnerOfTheMonth from "./runnerOfTheMonth";
 import merchandiseItem from "./merchandiseItem";
@@ -15,6 +16,7 @@ export const schemaTypes = [
   timetableEvent,
   blogPost,
   galleryImage,
+  optimiseMedia,
   teamMember,
   runnerOfTheMonth,
   merchandiseItem,

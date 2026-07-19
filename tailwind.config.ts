@@ -13,6 +13,9 @@ const config: Config = {
           red: "#DC2626",
           "red-dark": "#B91C1C",
           "red-light": "#FEE2E2",
+          pink: "#EC4899",
+          "pink-dark": "#DB2777",
+          "pink-light": "#FCE7F3",
           black: "#111111",
           white: "#FFFFFF",
           gray: {
