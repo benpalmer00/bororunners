@@ -29,10 +29,10 @@ const placeholderPosts = [
     imageAlt: "Bororunners celebrating Club Committee of the Year award",
   },
   {
-    title: "From 8 to 272: Our Growth Story",
+    title: "From 8 to 312: Our Growth Story",
     slug: "growth-story",
     excerpt:
-      "In just over two years, Bororunners has grown from 8 founding members to 272 registered runners. Here's how community-first thinking built Teesside's fastest growing running club.",
+      "In just over two years, Bororunners has grown from 8 founding members to 312 registered runners. Here's how community-first thinking built Teesside's fastest growing running club.",
     date: "October 2024",
     image: "/images/photos/group-2.jpg",
     imageAlt: "Bororunners group photo showing club growth",

@@ -25,7 +25,7 @@ const fallbackSessions: Session[] = [
   },
   {
     day: "Wednesday",
-    time: "6:00pm",
+    time: "6:10pm",
     location: "Track sessions",
     level: "All Abilities",
     hasWaitingList: true,

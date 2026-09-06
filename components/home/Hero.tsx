@@ -43,7 +43,7 @@ export default function Hero({ heroImage }: { heroImage?: string }) {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-lg">
-            Teesside&apos;s fastest growing running club. 272 members, four weekly sessions, all abilities welcome.
+            Teesside&apos;s fastest growing running club. 312 members, four weekly sessions, all abilities welcome.
           </p>
 
           <div className="flex flex-row gap-3">
