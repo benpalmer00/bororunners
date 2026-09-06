@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | Bororunners Running Club",
   },
   description:
-    "Bororunners is Teesside's award-winning running club. 272 members, weekly sessions across Middlesbrough and Stockton. England Athletics Club Committee of the Year 2024. All abilities welcome.",
+    "Bororunners is Teesside's award-winning running club. 312 members, weekly sessions across Middlesbrough and Stockton. England Athletics Club Committee of the Year 2024. All abilities welcome.",
   openGraph: {
     type: "website",
     locale: "en_GB",
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     siteName: "Bororunners Running Club",
     title: "Bororunners Running Club | Teesside's Fastest Growing Running Club",
     description:
-      "Bororunners is Teesside's award-winning running club. 272 members, weekly sessions across Middlesbrough and Stockton. England Athletics Club Committee of the Year 2024. All abilities welcome.",
+      "Bororunners is Teesside's award-winning running club. 312 members, weekly sessions across Middlesbrough and Stockton. England Athletics Club Committee of the Year 2024. All abilities welcome.",
     images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Bororunners Running Club | Teesside's Fastest Growing Running Club",
     description:
-      "Teesside's award-winning running club. 272 members, weekly sessions. All abilities welcome.",
+      "Teesside's award-winning running club. 312 members, weekly sessions. All abilities welcome.",
     images: ["/og-image.jpg"],
   },
   robots: { index: true, follow: true },

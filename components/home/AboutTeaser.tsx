@@ -19,7 +19,7 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
                 className="rounded-xl shadow-2xl object-cover w-full"
               />
               <div className="absolute -bottom-4 -right-4 bg-brand-red text-white p-4 rounded-xl shadow-lg hidden md:block">
-                <p className="font-display text-2xl font-bold">272+</p>
+                <p className="font-display text-2xl font-bold">312+</p>
                 <p className="text-sm text-red-100">Members & Growing</p>
               </div>
             </div>
@@ -34,7 +34,7 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
             </h2>
             <p className="text-brand-gray-600 mb-4 leading-relaxed">
               Bororunners started with eight people and a simple idea — that running should be for everyone.
-              Founded in 2022 by Ben Palmer, the club has grown to over 272 members and won England Athletics
+              Founded in 2022 by Ben Palmer, the club has grown to over 312 members and won England Athletics
               Club Committee of the Year, all by putting community first.
             </p>
             <p className="text-brand-gray-600 mb-6 leading-relaxed">

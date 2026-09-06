@@ -40,7 +40,7 @@ export default function Footer() {
               <span className="font-display text-2xl font-bold uppercase">Bororunners</span>
             </Link>
             <p className="text-gray-400 max-w-sm mb-6">
-              Teesside&apos;s award-winning running club. 272 members, four weekly sessions, all abilities welcome.
+              Teesside&apos;s award-winning running club. 312 members, four weekly sessions, all abilities welcome.
               England Athletics Club Committee of the Year 2024.
             </p>
             <div className="flex gap-4">

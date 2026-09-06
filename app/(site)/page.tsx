@@ -114,7 +114,7 @@ export default async function HomePage() {
             name: "Bororunners Running Club",
             url: "https://bororunners.co.uk",
             description:
-              "Teesside's award-winning running club. 272 members, weekly sessions across Middlesbrough and Stockton. All abilities welcome.",
+              "Teesside's award-winning running club. 312 members, weekly sessions across Middlesbrough and Stockton. All abilities welcome.",
             foundingDate: "2022-03",
             address: {
               "@type": "PostalAddress",
