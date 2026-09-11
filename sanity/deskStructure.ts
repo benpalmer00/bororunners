@@ -6,7 +6,6 @@ import {
   DocumentTextIcon,
   CogIcon,
   TagIcon,
-  StarFilledIcon,
   StarIcon,
   ClockIcon,
 } from "@sanity/icons";
@@ -27,10 +26,6 @@ export const structure: StructureResolver = (S) =>
                 .title("Weekly Sessions")
                 .icon(ClockIcon)
                 .child(S.documentTypeList("session").title("Weekly Sessions")),
-              S.listItem()
-                .title("Timetable")
-                .icon(CalendarIcon)
-                .child(S.documentTypeList("timetableEvent").title("Timetable")),
             ])
         ),
 
@@ -54,10 +49,6 @@ export const structure: StructureResolver = (S) =>
                 .title("Committee & Team")
                 .icon(UsersIcon)
                 .child(S.documentTypeList("teamMember").title("Committee & Team")),
-              S.listItem()
-                .title("Runner of the Month")
-                .icon(StarFilledIcon)
-                .child(S.documentTypeList("runnerOfTheMonth").title("Runner of the Month")),
             ])
         ),
 

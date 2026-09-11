@@ -15,6 +15,13 @@ export default defineType({
       options: { hotspot: true },
       fields: [defineField({ name: "alt", title: "Alt Text", type: "string" })],
     }),
+    defineField({
+      name: "darkBg",
+      title: "Show on dark background",
+      type: "boolean",
+      description: "Turn on for white or light-coloured logos so they sit on a dark tile instead of a light one.",
+      initialValue: false,
+    }),
     defineField({ name: "description", title: "Description", type: "text" }),
     defineField({ name: "memberDiscount", title: "Member Discount", type: "text" }),
     defineField({ name: "websiteUrl", title: "Website URL", type: "url" }),

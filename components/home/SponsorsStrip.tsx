@@ -10,7 +10,7 @@ type Sponsor = {
   darkBg?: boolean;
 };
 
-const fallbackSponsors: Sponsor[] = [
+export const fallbackSponsors: Sponsor[] = [
   { name: "Sprinters Sportswear", logo: "/images/sponsors/sprinters-sportswear.png", url: "https://www.sprinterssportswear.co.uk", darkBg: false },
   { name: "Let's Run", logo: "/images/sponsors/lets-run.jpeg", url: "#", darkBg: false },
   { name: "HIGH5 Sports Nutrition", logo: "/images/sponsors/high5.webp", url: "https://highfive.co.uk", darkBg: false },

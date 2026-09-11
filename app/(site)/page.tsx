@@ -6,14 +6,14 @@ import AboutTeaser from "@/components/home/AboutTeaser";
 import EventsTeaser from "@/components/home/EventsTeaser";
 import ROTMTeaser from "@/components/home/ROTMTeaser";
 import GalleryTeaser from "@/components/home/GalleryTeaser";
-import SponsorsStrip from "@/components/home/SponsorsStrip";
+import SponsorsStrip, { fallbackSponsors } from "@/components/home/SponsorsStrip";
 import JoinCTA from "@/components/home/JoinCTA";
 import { sanityFetch, urlFor } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
+import { getHomeROTMTeaser } from "@/lib/rotm";
 import {
   sessionsQuery,
   eventsQuery,
-  currentRunnerOfTheMonthQuery,
   featuredGalleryImagesQuery,
   sponsorsQuery,
 } from "@/sanity/lib/queries";
@@ -33,16 +33,16 @@ function formatEventDate(dateStr: string): string {
 }
 
 export default async function HomePage() {
-  const [sanitySessions, sanityEvents, sanityROTM, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
+  const [sanitySessions, sanityEvents, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
     await Promise.all([
       sanityFetch<SanityDoc[]>(sessionsQuery),
       sanityFetch<SanityDoc[]>(eventsQuery),
-      sanityFetch<SanityDoc>(currentRunnerOfTheMonthQuery),
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
       getPageImage("heroImage", "/images/photos/Hero.jpg"),
       getPageImage("homeAboutImage", "/images/photos/group-2.jpg", 600, 400),
     ]);
+  const rotm = getHomeROTMTeaser();
 
   // Transform sessions
   const sessions = sanitySessions && sanitySessions.length > 0
@@ -65,16 +65,6 @@ export default async function HomePage() {
       }))
     : undefined;
 
-  // Transform ROTM
-  const rotm = sanityROTM
-    ? {
-        name: sanityROTM.name,
-        month: sanityROTM.month,
-        photo: sanityROTM.photo ? urlFor(sanityROTM.photo).width(800).height(600).url() : "/images/photos/social-2.jpg",
-        writeUp: sanityROTM.writeUp || "",
-      }
-    : null;
-
   // Transform gallery
   const galleryImages = sanityGallery && sanityGallery.length > 0
     ? sanityGallery.map((img: SanityDoc) => ({
@@ -83,13 +73,23 @@ export default async function HomePage() {
       }))
     : undefined;
 
-  // Transform sponsors
+  // Transform sponsors. A Sanity sponsor without an uploaded logo borrows the
+  // matching local fallback logo; sponsors with no logo at all are dropped so
+  // empty tiles never render.
   const sponsors = sanitySponsors && sanitySponsors.length > 0
-    ? sanitySponsors.map((s: SanityDoc) => ({
-        name: s.name,
-        logo: s.logo ? urlFor(s.logo).width(320).height(160).url() : "",
-        url: s.websiteUrl || "#",
-      }))
+    ? sanitySponsors
+        .map((s: SanityDoc) => {
+          const fallback = fallbackSponsors.find(
+            (f) => f.name.toLowerCase() === (s.name || "").toLowerCase()
+          );
+          return {
+            name: s.name,
+            logo: s.logo ? urlFor(s.logo).width(320).fit("max").url() : fallback?.logo || "",
+            url: s.websiteUrl || fallback?.url || "#",
+            darkBg: s.darkBg ?? fallback?.darkBg ?? false,
+          };
+        })
+        .filter((s: { logo: string }) => s.logo)
     : undefined;
 
   return (

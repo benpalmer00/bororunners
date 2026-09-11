@@ -6,7 +6,8 @@ import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
 import { sanityFetch } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
-import { latestTimetableMonthQuery, sessionsQuery, timetableByMonthQuery } from "@/sanity/lib/queries";
+import { getTimetable } from "@/lib/timetable";
+import { sessionsQuery } from "@/sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Sessions",
@@ -67,46 +68,12 @@ const fallbackSessions = [
   },
 ];
 
-type TimetableRow = {
-  date: string;
-  location: string;
-  time: string;
-  workout: string;
-  isHighlight?: boolean;
-};
-
-// Hardcoded fallback in case Sanity has no timetable data yet
-const fallbackTimetable: TimetableRow[] = [
-  { date: "Mon 30th March", location: "TBC", time: "6:10pm", workout: "1 x 2.2k, 2 x 1.1k, 2-5 x 650m w/ 2 minutes rest" },
-  { date: "Wed 1st April", location: "TBC", time: "6:00pm", workout: "6-12 x 300/200's w/ 75s rest" },
-  { date: "Thu 2nd April", location: "Great Ayton", time: "6:10pm", workout: "3/4 x 6 minutes Kenyan Hills w/ 2 minutes recovery" },
-  { date: "Fri 3rd April", location: "Good Friday", time: "10:00am", workout: "2-6 mile Tempo Run + Hill Sprints" },
-  { date: "Mon 6th April", location: "Bank Holiday", time: "10:00am", workout: "2-5 x 2k/1200's @ 10k effort w/ 3 minutes rest" },
-  { date: "Wed 8th April", location: "TBC", time: "6:10pm", workout: "6 x 2 minutes @ 5k pace, 6 x 1 minutes @ MP w/ 2 mins → 90s rest" },
-  { date: "Thu 9th April", location: "TIE", time: "6:10pm", workout: "6 x 2 minutes @ 5k pace, 6 x 1 minutes @ MP w/ 2 mins → 90s rest" },
-  { date: "Fri 10th April", location: "TBC", time: "9:15am", workout: "3-4 x 1 mile @ 10k pace OR 1k @ 5k pace THEN 4 x 300m Paired Relays" },
-  { date: "Sun 12th April", location: "Teesside Landmarks", time: "TBC", workout: "Teesside Landmarks with Destination Boro — Details to Follow", isHighlight: true },
-  { date: "Mon 13th April", location: "TBC", time: "6:10pm", workout: "2-6 mile Tempo Run" },
-  { date: "Wed 15th April", location: "TBC", time: "6:00pm", workout: "4-8 x 800's @ >5k pace w/ 2 minutes rest" },
-  { date: "Thu 16th April", location: "Pinchinthorpe", time: "6:10pm", workout: "4-8 x 3 minutes @ >5k pace w/ 2 minutes rest" },
-  { date: "Fri 17th April", location: "TBC", time: "9:15am", workout: "8-14 x 1 minute @ MP w/ 90s rest" },
-  { date: "Mon 20th April", location: "TBC", time: "6:10pm", workout: "2-5 x 1 mile/1k repeats w/ 3 minutes rest" },
-  { date: "Wed 22nd April", location: "Spring Coast 5k", time: "TBC", workout: "Spring Coast 5k — Race Event!", isHighlight: true },
-  { date: "Thu 23rd April", location: "Stewart's Park", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1 mile reps @ HM pace (2 mins float)" },
-  { date: "Fri 24th April", location: "TBC", time: "9:15am", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
-  { date: "Mon 27th April", location: "TBC", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
-  { date: "Wed 29th April", location: "TBC", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
-  { date: "Thu 30th April", location: "TIE", time: "6:10pm", workout: "Tempo Run OR 3-4 x 1k @ HM pace (2 mins float)" },
-  { date: "Fri 1st May", location: "TBC", time: "9:15am", workout: "TBC" },
-];
-const fallbackMonth = "April 2026";
-
 export default async function SessionsPage() {
-  // Fetch session cards and timetable from Sanity, fall back to hardcoded data
-  const [sessionsHero, sanitySessions, latestMonth] = await Promise.all([
+  const { month: timetableMonth, sessions: timetable } = getTimetable();
+
+  const [sessionsHero, sanitySessions] = await Promise.all([
     getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg"),
     sanityFetch<SanityDoc[]>(sessionsQuery),
-    sanityFetch<string>(latestTimetableMonthQuery),
   ]);
 
   const sessions = sanitySessions && sanitySessions.length > 0
@@ -122,18 +89,6 @@ export default async function SessionsPage() {
         description: s.description || "",
       }))
     : fallbackSessions;
-
-  // Show the most recent month that has timetable entries in Sanity
-  let timetableMonth: string = fallbackMonth;
-  let timetable: TimetableRow[] = fallbackTimetable;
-
-  if (latestMonth) {
-    const rows = await sanityFetch<TimetableRow[]>(timetableByMonthQuery, { month: latestMonth });
-    if (rows && rows.length > 0) {
-      timetableMonth = latestMonth;
-      timetable = rows;
-    }
-  }
 
   return (
     <>
