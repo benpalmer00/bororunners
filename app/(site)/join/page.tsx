@@ -135,7 +135,7 @@ export default async function JoinPage() {
                 <div className="space-y-2">
                   {[
                     { day: "Monday", time: "6:10pm" },
-                    { day: "Wednesday", time: "6:00pm" },
+                    { day: "Wednesday", time: "6:10pm" },
                     { day: "Thursday", time: "6:10pm" },
                     { day: "Friday", time: "9:15am" },
                   ].map((s) => (

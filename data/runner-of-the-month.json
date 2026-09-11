@@ -1,0 +1,90 @@
+{
+  "months": [
+    {
+      "id": "2026-08",
+      "month": "August",
+      "year": 2026,
+      "slides": [
+        {
+          "id": "cover",
+          "person": "",
+          "src": "/images/rotm/2026-08/cover.jpg",
+          "alt": "August Club Runner of the Month Nominations"
+        },
+        {
+          "id": "bethany-corner",
+          "person": "Bethany Corner",
+          "src": "/images/rotm/2026-08/bethany-corner.jpg",
+          "alt": "Bethany Corner — August nomination",
+          "isWinner": true
+        },
+        {
+          "id": "lucy-whittingham",
+          "person": "Lucy Whittingham",
+          "src": "/images/rotm/2026-08/lucy-whittingham.jpg",
+          "alt": "Lucy Whittingham — August nomination",
+          "isWinner": false
+        },
+        {
+          "id": "amy-taylor",
+          "person": "Amy Taylor",
+          "src": "/images/rotm/2026-08/amy-taylor.jpg",
+          "alt": "Amy Taylor — August nomination",
+          "isWinner": false
+        },
+        {
+          "id": "maisey-cunningham",
+          "person": "Maisey Cunningham",
+          "src": "/images/rotm/2026-08/maisey-cunningham.jpg",
+          "alt": "Maisey Cunningham — August nomination",
+          "isWinner": false
+        },
+        {
+          "id": "hannah-taylor",
+          "person": "Hannah Taylor",
+          "src": "/images/rotm/2026-08/hannah-taylor.jpg",
+          "alt": "Hannah Taylor — August nomination",
+          "isWinner": false
+        },
+        {
+          "id": "daniel-glover",
+          "person": "Daniel Glover",
+          "src": "/images/rotm/2026-08/daniel-glover.jpg",
+          "alt": "Daniel Glover — August nomination",
+          "isWinner": false
+        },
+        {
+          "id": "sharon-waters",
+          "person": "Sharon Waters",
+          "src": "/images/rotm/2026-08/sharon-waters.jpg",
+          "alt": "Sharon Waters — August nomination",
+          "isWinner": false
+        }
+      ]
+    },
+    {
+      "id": "2026-09",
+      "month": "September",
+      "year": 2026,
+      "slides": []
+    },
+    {
+      "id": "2026-10",
+      "month": "October",
+      "year": 2026,
+      "slides": []
+    },
+    {
+      "id": "2026-11",
+      "month": "November",
+      "year": 2026,
+      "slides": []
+    },
+    {
+      "id": "2026-12",
+      "month": "December",
+      "year": 2026,
+      "slides": []
+    }
+  ]
+}

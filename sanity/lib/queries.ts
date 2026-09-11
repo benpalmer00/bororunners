@@ -25,10 +25,6 @@ export const featuredGalleryImagesQuery = groq`*[_type == "galleryImage" && feat
 
 export const teamMembersQuery = groq`*[_type == "teamMember"] | order(order asc)`;
 
-export const currentRunnerOfTheMonthQuery = groq`*[_type == "runnerOfTheMonth" && isCurrent == true][0]`;
-
-export const allRunnersOfTheMonthQuery = groq`*[_type == "runnerOfTheMonth"] | order(_createdAt desc)`;
-
 export const merchandiseQuery = groq`*[_type == "merchandiseItem" && isAvailable == true]{
   _id,
   name,
@@ -41,10 +37,6 @@ export const merchandiseQuery = groq`*[_type == "merchandiseItem" && isAvailable
 }`;
 
 export const sponsorsQuery = groq`*[_type == "sponsor"] | order(order asc)`;
-
-export const timetableByMonthQuery = groq`*[_type == "timetableEvent" && month == $month] | order(sortDate asc)`;
-
-export const latestTimetableMonthQuery = groq`*[_type == "timetableEvent"] | order(sortDate desc)[0].month`;
 
 export const siteSettingsQuery = groq`*[_type == "siteSettings"][0]`;
 

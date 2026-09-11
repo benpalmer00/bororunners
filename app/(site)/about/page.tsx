@@ -71,8 +71,8 @@ const values = [
 
 export default async function AboutPage() {
   const [aboutHero, aboutStory] = await Promise.all([
-    getPageImage("aboutHeroImage", "/images/photos/hero-3.jpg"),
-    getPageImage("aboutStoryImage", "/images/photos/club-night-1.jpg", 800, 1000),
+    getPageImage("aboutHeroImage", "/images/photos/our-story.jpg"),
+    getPageImage("aboutStoryImage", "/images/photos/built-on-community.jpg", 1000, 800),
   ]);
 
   return (
@@ -81,9 +81,9 @@ export default async function AboutPage() {
       <section className="relative h-[50vh] min-h-[400px] flex items-center">
         <Image
           src={aboutHero}
-          alt="Bororunners Running Club group photo"
+          alt="Bororunners in club kit at a race"
           fill
-          className="object-cover"
+          className="object-cover object-[center_40%]"
           priority
           sizes="100vw"
         />
@@ -129,12 +129,12 @@ export default async function AboutPage() {
                   <span className="block mt-2 text-brand-red font-bold not-italic text-sm">— Ben Palmer, Founder</span>
                 </blockquote>
               </div>
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-[5/4] rounded-xl overflow-hidden shadow-2xl">
                 <Image
                   src={aboutStory}
-                  alt="Ben Palmer coaching at a Bororunners session"
+                  alt="Bororunners in costume supporting Zoe's Place Baby Hospice"
                   fill
-                  className="object-cover"
+                  className="object-cover object-[center_58%]"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
