@@ -8,7 +8,7 @@ import { getPageImage } from "@/lib/getPageImage";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Bororunners Running Club — from 8 founding members in 2022 to 312 registered runners and England Athletics Club Committee of the Year 2024. Teesside's most inclusive running club.",
+    "Learn about Bororunners Running Club — from 8 founding members in 2022 to 312 registered runners and England Athletics Club Community of the Year 2024. Teesside's most inclusive running club.",
 };
 
 const milestones = [
@@ -29,8 +29,8 @@ const milestones = [
   },
   {
     date: "2024",
-    title: "Club Committee of the Year",
-    description: "Bororunners won the England Athletics Club Committee of the Year 2024. Ben Palmer received the individual volunteer award.",
+    title: "Club Community of the Year",
+    description: "Bororunners won the England Athletics Club Community of the Year 2024. Ben Palmer received the individual volunteer award.",
   },
   {
     date: "2025",
@@ -94,7 +94,7 @@ export default async function AboutPage() {
               Our Story
             </h1>
             <p className="text-xl text-gray-300 mt-4 max-w-xl">
-              From 8 runners in Stewart&apos;s Park to 312 members and England Athletics Club Committee of the Year.
+              From 8 runners in Stewart&apos;s Park to 312 members and England Athletics Club Community of the Year.
             </p>
           </AnimatedSection>
         </div>

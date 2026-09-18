@@ -211,9 +211,7 @@ These are the large banner images at the top of each page. You can change any of
 | **Sessions Page Hero Image** | Banner on the Sessions page |
 | **Join Page Hero Image** | Banner on the Join the Club page |
 | **Join Page Membership Image** | Photo next to the membership perks on the Join page |
-| **Team Page Hero Image** | Banner on the Meet the Team page |
 | **Events Page Hero Image** | Banner on the Events page |
-| **Home About Teaser Image** | Photo in the "From 8 Runners to Award-Winning Club" section on the home page |
 | **Club Mascot Photo** | Photo of Badger shown on the Meet the Team page |
 
 **Recommended image sizes:** Use landscape photos that are at least 1920 pixels wide for hero images. The wider and higher quality, the better.

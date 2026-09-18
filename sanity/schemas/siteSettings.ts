@@ -58,24 +58,10 @@ export default defineType({
       options: { hotspot: true },
     }),
     defineField({
-      name: "teamHeroImage",
-      title: "Team Page Hero Image",
-      type: "image",
-      description: "Hero image on the Meet the Team page.",
-      options: { hotspot: true },
-    }),
-    defineField({
       name: "eventsHeroImage",
       title: "Events Page Hero Image",
       type: "image",
       description: "Hero image on the Events page.",
-      options: { hotspot: true },
-    }),
-    defineField({
-      name: "homeAboutImage",
-      title: "Home About Teaser Image",
-      type: "image",
-      description: "Photo in the 'From 8 Runners to Award-Winning Club' section on the home page.",
       options: { hotspot: true },
     }),
     defineField({
