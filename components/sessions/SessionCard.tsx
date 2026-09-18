@@ -53,7 +53,7 @@ export default function SessionCard({
           )}
         </div>
 
-        <p className="text-sm text-brand-gray-600 mb-4">{description}</p>
+        <p className="text-sm text-brand-gray-600 mb-4 whitespace-pre-line">{description}</p>
 
         {hasWaitingList && (
           <div className="bg-yellow-50 border-2 border-yellow-300 rounded-lg p-4">

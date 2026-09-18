@@ -13,8 +13,8 @@ import { sanityFetch, urlFor } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
 import { getHomeROTMTeaser } from "@/lib/rotm";
 import { getUpcomingEvents } from "@/lib/events";
+import { getWeekLabel, getWeeklySessions } from "@/lib/sessions";
 import {
-  sessionsQuery,
   featuredGalleryImagesQuery,
   sponsorsQuery,
 } from "@/sanity/lib/queries";
@@ -23,9 +23,8 @@ import {
 type SanityDoc = any;
 
 export default async function HomePage() {
-  const [sanitySessions, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
+  const [sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
     await Promise.all([
-      sanityFetch<SanityDoc[]>(sessionsQuery),
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
       getPageImage("heroImage", "/images/photos/Hero.jpg"),
@@ -33,18 +32,8 @@ export default async function HomePage() {
     ]);
   const rotm = getHomeROTMTeaser();
   const upcomingEvents = getUpcomingEvents().slice(0, 3);
-
-  // Transform sessions
-  const sessions = sanitySessions && sanitySessions.length > 0
-    ? sanitySessions.map((s: SanityDoc) => ({
-        day: s.day,
-        time: s.time,
-        location: s.location || "",
-        level: s.abilityLevel || "All Abilities",
-        description: s.description || "",
-        hasWaitingList: s.hasWaitingList || false,
-      }))
-    : undefined;
+  const weeklySessions = getWeeklySessions();
+  const weekLabel = getWeekLabel();
 
   // Transform gallery
   const galleryImages = sanityGallery && sanityGallery.length > 0
@@ -78,7 +67,7 @@ export default async function HomePage() {
       <Hero heroImage={heroImage} />
       <EnglandAthleticsBanner />
       <StatsStrip />
-      <SessionsTeaser sessions={sessions} />
+      <SessionsTeaser sessions={weeklySessions} weekLabel={weekLabel} />
       <AboutTeaser aboutImage={homeAboutImage} />
       <EventsTeaser events={upcomingEvents} />
       <ROTMTeaser rotm={rotm} />

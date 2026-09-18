@@ -1,0 +1,65 @@
+{
+  "week": "7 – 18 September 2026",
+  "sessions": [
+    {
+      "day": "Monday",
+      "date": "Mon 7th September",
+      "title": "Monday 7 September @ 6:10pm",
+      "time": "6:10pm",
+      "location": "St. Mary's Church",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "2-5 mile tempo / easy run\n\n10 minutes @ EASY pace\nDrills + Strides\n2-5 mile tempo / easy run\n10 minutes @ EASY pace\nCool Down\nStretches",
+      "workout": "2-5 mile tempo / easy run"
+    },
+    {
+      "day": "Tuesday",
+      "date": "Tue 15th September",
+      "title": "Tuesday 15 September @ 6:10pm",
+      "time": "6:10pm",
+      "location": "Majuba Car Park, Redcar",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "Social Easy Run OR Tempo Run\n\n10 minutes @ EASY pace\nSocial Easy Run OR Tempo Run\n10 minutes @ EASY pace\nCool Down\nStretches",
+      "workout": "Social Easy Run OR Tempo Run"
+    },
+    {
+      "day": "Wednesday",
+      "date": "Wed 16th September",
+      "title": "Wednesday 16 September @ 6.10pm",
+      "time": "6.10pm",
+      "location": "Flatts Lane",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "4-7 x 1k @ 5k effort\n\n10 minutes @ EASY pace\n4-7 x 1k @ 5k effort\n10 minutes @ EASY pace\nCool Down\nStretches",
+      "workout": "4-7 x 1k @ 5k effort"
+    },
+    {
+      "day": "Thursday",
+      "date": "Thu 17th September",
+      "title": "Thursday 17 September @ 6:10pm",
+      "time": "6:10pm",
+      "location": "Stewart Park",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "4-10 x 600s @ 5k pace\n\n10 minutes @ EASY pace\n4-10 x 600s @ 5k pace\n10 minutes @ EASY pace\nCool Down\nStretches",
+      "workout": "4-10 x 600s @ 5k pace"
+    },
+    {
+      "day": "Saturday",
+      "date": "Sat 18th September",
+      "title": "Saturday 18 September @ 10.00am",
+      "time": "10.00am",
+      "location": "Stewart Park",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "OUTDOOR S&C SESSION (weather dependant)",
+      "workout": "OUTDOOR S&C SESSION (weather dependant)"
+    }
+  ]
+}

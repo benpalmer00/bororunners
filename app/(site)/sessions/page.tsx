@@ -4,91 +4,19 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
-import { sanityFetch } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
-import { getTimetable } from "@/lib/timetable";
-import { sessionsQuery } from "@/sanity/lib/queries";
+import { getWeekLabel, getWeeklySessions } from "@/lib/sessions";
 
 export const metadata: Metadata = {
   title: "Sessions",
   description:
-    "Bororunners runs four weekly sessions across Middlesbrough and Teesside. All sessions operate a waiting list — join via England Athletics to secure your spot. All abilities welcome.",
+    "Bororunners runs weekly sessions across Middlesbrough and Teesside. All sessions operate a waiting list — join via England Athletics to secure your spot. All abilities welcome.",
 };
 
-export const revalidate = 3600;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type SanityDoc = any;
-
-// Hardcoded fallback in case Sanity has no session data yet
-const fallbackSessions = [
-  {
-    title: "Monday Evening Session",
-    day: "Monday",
-    time: "6:10pm",
-    location: "Rotating locations across Teesside",
-    meetingPoint: "Varies weekly — shared via WhatsApp group",
-    abilityLevel: "All Abilities",
-    hasWaitingList: true,
-    description:
-      "Interval and tempo training with multiple pace groups. Sessions include 600m-1200m reps, hill sprints, and progressive tempo runs. Every session has dedicated run leaders to guide pace and keep things sociable.",
-  },
-  {
-    title: "Wednesday Track Session",
-    day: "Wednesday",
-    time: "6:00pm",
-    location: "Track venues (LJ Track, Guisborough, Nunthorpe)",
-    meetingPoint: "At the track entrance",
-    abilityLevel: "All Abilities",
-    hasWaitingList: true,
-    description:
-      "Track-based speed work including 400m reps, 800m intervals, and speed endurance sets. Multiple ability groups with tailored distances and recovery times. Great for building speed and confidence.",
-  },
-  {
-    title: "Thursday Evening Session",
-    day: "Thursday",
-    time: "6:10pm",
-    location: "Rotating locations (TIE, Coulby Manor Way, Southern Cross)",
-    meetingPoint: "Varies weekly — shared via WhatsApp group",
-    abilityLevel: "All Abilities",
-    hasWaitingList: true,
-    description:
-      "Structured training covering tempo runs, intervals, and endurance work. All sessions operate a waiting list — register via England Athletics to secure your place.",
-  },
-  {
-    title: "Friday Morning Session",
-    day: "Friday",
-    time: "9:15am",
-    location: "Parks and trails (Stewart Park, Pinchinthorpe, Flatts Lane, Great Ayton)",
-    meetingPoint: "Car park at the session location",
-    abilityLevel: "All Abilities",
-    hasWaitingList: true,
-    description:
-      "Morning sessions at scenic locations across Teesside. A mix of tempo runs, hill sprints, and 1k repeats. A brilliant way to start the weekend surrounded by beautiful countryside.",
-  },
-];
-
 export default async function SessionsPage() {
-  const { month: timetableMonth, sessions: timetable } = getTimetable();
-
-  const [sessionsHero, sanitySessions] = await Promise.all([
-    getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg"),
-    sanityFetch<SanityDoc[]>(sessionsQuery),
-  ]);
-
-  const sessions = sanitySessions && sanitySessions.length > 0
-    ? sanitySessions.map((s: SanityDoc) => ({
-        title: s.title,
-        day: s.day,
-        time: s.time,
-        location: s.location || "",
-        meetingPoint: s.meetingPoint || undefined,
-        abilityLevel: s.abilityLevel || "All Abilities",
-        hasWaitingList: s.hasWaitingList || false,
-        waitingListUrl: s.waitingListUrl || undefined,
-        description: s.description || "",
-      }))
-    : fallbackSessions;
+  const sessionsHero = await getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg");
+  const sessions = getWeeklySessions();
+  const weekLabel = getWeekLabel();
 
   return (
     <>
@@ -116,62 +44,80 @@ export default async function SessionsPage() {
         <div className="container-wide mx-auto">
           <SectionHeading
             title="Weekly Sessions"
-            subtitle="All sessions operate a waiting list — register first, then come and run at your pace. All abilities welcome."
+            subtitle={`${weekLabel}. Days without a session are left off the list.`}
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {sessions.map((session, i) => (
-              <AnimatedSection key={`${session.day}-${session.title}`} delay={i * 0.1}>
-                <SessionCard {...session} />
-              </AnimatedSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding bg-brand-black">
-        <div className="container-wide mx-auto">
-          <SectionHeading
-            title={`${timetableMonth} Timetable`}
-            subtitle="This month's full session schedule with locations and workouts."
-            light
-          />
-
-          <AnimatedSection>
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b border-brand-gray-700">
-                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Date</th>
-                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Location</th>
-                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Time</th>
-                    <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Workout</th>
-                  </tr>
-                </thead>
-                <tbody className="text-gray-300">
-                  {timetable.map((row, i) => (
-                    <tr
-                      key={i}
-                      className={`border-b border-brand-gray-800 ${
-                        row.isHighlight
-                          ? "bg-brand-red/20 text-white font-bold"
-                          : i % 2 === 0
-                          ? "bg-brand-gray-900/30"
-                          : ""
-                      }`}
-                    >
-                      <td className="py-3 px-4 font-semibold text-white whitespace-nowrap">{row.date}</td>
-                      <td className="py-3 px-4">{row.location}</td>
-                      <td className="py-3 px-4">{row.time}</td>
-                      <td className="py-3 px-4">{row.workout}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          {sessions.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {sessions.map((session, i) => (
+                <AnimatedSection key={`${session.day}-${session.title}-${session.date || i}`} delay={i * 0.1}>
+                  <SessionCard
+                    title={session.title}
+                    day={session.day}
+                    time={session.time}
+                    location={session.location}
+                    meetingPoint={session.meetingPoint}
+                    abilityLevel={session.abilityLevel || "All Abilities"}
+                    description={session.description || session.workout || ""}
+                    hasWaitingList={session.hasWaitingList}
+                    waitingListUrl={session.waitingListUrl}
+                  />
+                </AnimatedSection>
+              ))}
             </div>
-          </AnimatedSection>
+          ) : (
+            <p className="text-brand-gray-500">No sessions listed for this week yet.</p>
+          )}
         </div>
       </section>
+
+      {sessions.length > 0 && (
+        <section className="section-padding bg-brand-black">
+          <div className="container-wide mx-auto">
+            <SectionHeading
+              title={`${weekLabel} Timetable`}
+              subtitle="This week's session schedule with locations and workouts."
+              light
+            />
+
+            <AnimatedSection>
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm">
+                  <thead>
+                    <tr className="border-b border-brand-gray-700">
+                      <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Date</th>
+                      <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Location</th>
+                      <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Time</th>
+                      <th className="py-3 px-4 font-display uppercase text-brand-red text-xs tracking-wider">Workout</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-300">
+                    {sessions.map((row, i) => (
+                      <tr
+                        key={`${row.day}-${row.date || i}`}
+                        className={`border-b border-brand-gray-800 ${
+                          row.isHighlight
+                            ? "bg-brand-red/20 text-white font-bold"
+                            : i % 2 === 0
+                            ? "bg-brand-gray-900/30"
+                            : ""
+                        }`}
+                      >
+                        <td className="py-3 px-4 font-semibold text-white whitespace-nowrap">
+                          {row.date || row.day}
+                        </td>
+                        <td className="py-3 px-4">{row.location}</td>
+                        <td className="py-3 px-4">{row.time}</td>
+                        <td className="py-3 px-4">{row.workout || row.description || row.title}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+      )}
 
       <section className="section-padding bg-brand-gray-50">
         <div className="container-narrow mx-auto text-center">
