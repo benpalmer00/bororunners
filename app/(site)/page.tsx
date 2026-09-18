@@ -12,9 +12,9 @@ import JoinCTA from "@/components/home/JoinCTA";
 import { sanityFetch, urlFor } from "@/sanity/lib/client";
 import { getPageImage } from "@/lib/getPageImage";
 import { getHomeROTMTeaser } from "@/lib/rotm";
+import { getUpcomingEvents } from "@/lib/events";
 import {
   sessionsQuery,
-  eventsQuery,
   featuredGalleryImagesQuery,
   sponsorsQuery,
 } from "@/sanity/lib/queries";
@@ -22,28 +22,17 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type SanityDoc = any;
 
-function formatEventDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  };
-  return d.toLocaleDateString("en-GB", options);
-}
-
 export default async function HomePage() {
-  const [sanitySessions, sanityEvents, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
+  const [sanitySessions, sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
     await Promise.all([
       sanityFetch<SanityDoc[]>(sessionsQuery),
-      sanityFetch<SanityDoc[]>(eventsQuery),
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
       getPageImage("heroImage", "/images/photos/Hero.jpg"),
       getPageImage("homeAboutImage", "/images/photos/group-2.jpg", 600, 400),
     ]);
   const rotm = getHomeROTMTeaser();
+  const upcomingEvents = getUpcomingEvents().slice(0, 3);
 
   // Transform sessions
   const sessions = sanitySessions && sanitySessions.length > 0
@@ -54,15 +43,6 @@ export default async function HomePage() {
         level: s.abilityLevel || "All Abilities",
         description: s.description || "",
         hasWaitingList: s.hasWaitingList || false,
-      }))
-    : undefined;
-
-  // Transform events (next 3)
-  const events = sanityEvents && sanityEvents.length > 0
-    ? sanityEvents.slice(0, 3).map((e: SanityDoc) => ({
-        title: e.title,
-        date: e.date ? formatEventDate(e.date) : "",
-        location: e.location || "",
       }))
     : undefined;
 
@@ -100,7 +80,7 @@ export default async function HomePage() {
       <StatsStrip />
       <SessionsTeaser sessions={sessions} />
       <AboutTeaser aboutImage={homeAboutImage} />
-      <EventsTeaser events={events} />
+      <EventsTeaser events={upcomingEvents} />
       <ROTMTeaser rotm={rotm} />
       <GalleryTeaser images={galleryImages} />
       <SponsorsStrip sponsors={sponsors} />

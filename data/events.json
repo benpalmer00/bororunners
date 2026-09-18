@@ -1,0 +1,430 @@
+{
+  "events": [
+    {
+      "id": "nightmare-on-6-66-street-2025",
+      "title": "Nightmare on 6.66 Street",
+      "date": "2025-11-02",
+      "dateLabel": "Sunday, 2nd November 2025",
+      "location": "TBC",
+      "signUpEnabled": false
+    },
+    {
+      "id": "marton-willy-relays-2025",
+      "title": "Marton Willy Relays",
+      "date": "2025-11-09",
+      "dateLabel": "Sunday, 9th November 2025",
+      "location": "Marton",
+      "signUpEnabled": false
+    },
+    {
+      "id": "leeds-abbey-dash-2025",
+      "title": "Leeds Abbey Dash",
+      "date": "2025-11-30",
+      "dateLabel": "Sunday, 30th November 2025",
+      "location": "Leeds",
+      "signUpEnabled": false
+    },
+    {
+      "id": "aintree-half-marathon-2025",
+      "title": "Aintree Half Marathon",
+      "date": "2025-12-14",
+      "dateLabel": "Sunday, 14th December 2025",
+      "location": "Aintree",
+      "signUpEnabled": false
+    },
+    {
+      "id": "hmp-kirklevington-5k-2025",
+      "title": "HMP Kirklevington 5k",
+      "date": "2025-12-14",
+      "dateLabel": "Sunday, 14th December 2025",
+      "location": "Kirklevington",
+      "signUpEnabled": false
+    },
+    {
+      "id": "hardmoors-15-30-2026",
+      "title": "Hardmoors 15/30",
+      "date": "2026-01-03",
+      "dateLabel": "Saturday, 3rd January 2026",
+      "location": "North York Moors",
+      "signUpEnabled": false
+    },
+    {
+      "id": "boro-brassic-half-marathon-2026",
+      "title": "Boro Brassic Half Marathon",
+      "date": "2026-01-18",
+      "dateLabel": "Sunday, 18th January 2026",
+      "location": "Middlesbrough",
+      "signUpEnabled": false
+    },
+    {
+      "id": "brass-monkey-half-marathon-2026",
+      "title": "Brass Monkey Half Marathon",
+      "date": "2026-01-18",
+      "dateLabel": "Sunday, 18th January 2026",
+      "location": "York",
+      "signUpEnabled": false
+    },
+    {
+      "id": "hardmoors-26-2-saltburn-10k-2026",
+      "title": "Hardmoors 26.2 / Saltburn 10K",
+      "date": "2026-02-01",
+      "dateLabel": "Sunday, 1st February 2026",
+      "location": "Saltburn",
+      "signUpEnabled": false
+    },
+    {
+      "id": "db-foodbank-run-2026",
+      "title": "DB Foodbank Run",
+      "date": "2026-02-07",
+      "dateLabel": "Saturday, 7th February 2026",
+      "location": "TBC",
+      "signUpEnabled": false
+    },
+    {
+      "id": "boro-half-marathon-2026",
+      "title": "Boro Half Marathon",
+      "date": "2026-03-01",
+      "dateLabel": "Sunday, 1st March 2026",
+      "location": "Middlesbrough",
+      "signUpEnabled": false
+    },
+    {
+      "id": "superhero-run-2026",
+      "title": "Superhero Run",
+      "date": "2026-03-28",
+      "dateLabel": "Saturday, 28th March 2026",
+      "location": "Middlesbrough",
+      "signUpEnabled": true
+    },
+    {
+      "id": "london-landmarks-2026",
+      "title": "London Landmarks",
+      "date": "2026-04-12",
+      "dateLabel": "Sunday, 12th April 2026",
+      "location": "London",
+      "signUpEnabled": true
+    },
+    {
+      "id": "teesside-landmarks-2026",
+      "title": "Teesside Landmarks",
+      "date": "2026-04-12",
+      "dateLabel": "Sunday, 12th April 2026",
+      "location": "Teesside",
+      "signUpEnabled": true
+    },
+    {
+      "id": "manchester-marathon-2026",
+      "title": "Manchester Marathon",
+      "date": "2026-04-19",
+      "dateLabel": "Sunday, 19th April 2026",
+      "location": "Manchester",
+      "signUpEnabled": true
+    },
+    {
+      "id": "spring-coast-5k-2026",
+      "title": "Spring Coast 5k",
+      "date": "2026-04-22",
+      "dateLabel": "Wednesday, 22nd April 2026",
+      "location": "TBC",
+      "signUpEnabled": true
+    },
+    {
+      "id": "london-marathon-2026",
+      "title": "London Marathon",
+      "date": "2026-04-26",
+      "dateLabel": "Sunday, 26th April 2026",
+      "location": "London",
+      "signUpEnabled": true
+    },
+    {
+      "id": "boro-runners-sports-day-2026",
+      "title": "Boro Runners Sports Day",
+      "date": "2026-05-15",
+      "dateLabel": "Friday, 15th May 2026",
+      "location": "TBC",
+      "signUpEnabled": true
+    },
+    {
+      "id": "edinburgh-half-marathon-2026",
+      "title": "Edinburgh Half Marathon",
+      "date": "2026-05-24",
+      "dateLabel": "Sunday, 24th May 2026",
+      "location": "Edinburgh",
+      "signUpEnabled": true
+    },
+    {
+      "id": "edinburgh-marathon-2026",
+      "title": "Edinburgh Marathon",
+      "date": "2026-05-24",
+      "dateLabel": "Sunday, 24th May 2026",
+      "location": "Edinburgh",
+      "signUpEnabled": true
+    },
+    {
+      "id": "nymac-relays-2026",
+      "title": "NYMAC Relays",
+      "date": "2026-05-28",
+      "dateLabel": "Thursday, 28th May 2026",
+      "location": "North Yorkshire",
+      "signUpEnabled": true
+    },
+    {
+      "id": "parkrunathon-2026",
+      "title": "Parkrunathon",
+      "date": "2026-06-15",
+      "dateLabel": "Monday, 15th June 2026",
+      "location": "Various Parkruns",
+      "signUpEnabled": true
+    },
+    {
+      "id": "durham-coastal-half-2026",
+      "title": "Durham Coastal Half",
+      "date": "2026-06-28",
+      "dateLabel": "Sunday, 28th June 2026",
+      "location": "Biddick Academy, NE38 8AL",
+      "description": "The Trail Outlaws Urban Trail Series (UTS) events are aimed at giving runners of all abilities the chance to have fun or race on local trails. All our races are fully marked and marshalled to help you on your way.",
+      "entryUrl": "https://trailoutlaws.eventrac.co.uk/e/urban-trail-series-8010",
+      "signUpEnabled": false
+    },
+    {
+      "id": "mulgrave-castle-10k-2026",
+      "title": "Mulgrave Castle 10k",
+      "date": "2026-06-28",
+      "dateLabel": "Sunday, 28th June 2026",
+      "location": "Lythe Sports Centre Lythe Whitby North Yorkshire YO21 3RT",
+      "description": "Mulgrave Castle 10k 2026 This race starts at 11:00 UKA Licence No: TBC A unique opportunity to run through the private Mulgrave Estate near Sandsend Beach, Whitby.",
+      "entryUrl": "https://www.entrycentral.com/Mulgrave-Castle-10k",
+      "signUpEnabled": false
+    },
+    {
+      "id": "the-sting-backyard-ultra-4-167-miles-loop-2026",
+      "title": "The Sting Backyard Ultra 4.167 Miles Loop",
+      "date": "2026-07-11",
+      "dateLabel": "Saturday, 11th July 2026",
+      "location": "Brompton Caravan Park, Brompton-on-Swale, Richmond, North Yorkshire, DL10 7EZ",
+      "signUpEnabled": false
+    },
+    {
+      "id": "eight-stations-ultra-2026",
+      "title": "Eight Stations Ultra",
+      "date": "2026-07-12",
+      "dateLabel": "Sunday, 12th July 2026",
+      "location": "Whitby Leisure Centre, W Cliff Ave, Whitby YO21 3HT",
+      "entryUrl": "https://www.sientries.co.uk/event.php?event_id=15673",
+      "signUpEnabled": false
+    },
+    {
+      "id": "summer-coast-5k-2026",
+      "title": "Summer Coast 5k",
+      "date": "2026-07-15",
+      "dateLabel": "Wednesday, 15th July 2026",
+      "location": "TBC",
+      "signUpEnabled": false
+    },
+    {
+      "id": "planned-club-event-2026",
+      "title": "Planned Club Event",
+      "date": "2026-07-20",
+      "dateLabel": "Monday, 20th July 2026",
+      "location": "TBC",
+      "signUpEnabled": false
+    },
+    {
+      "id": "newcastle-frontrunners-lgbtq-5k-2026",
+      "title": "Newcastle Frontrunners LGBTQ 5k",
+      "date": "2026-07-25",
+      "dateLabel": "Saturday, 25th July 2026",
+      "location": "Newcastle",
+      "signUpEnabled": false
+    },
+    {
+      "id": "yorkshire-day-run-2026",
+      "title": "Yorkshire Day Run",
+      "date": "2026-08-01",
+      "dateLabel": "Saturday, 1st August 2026",
+      "location": "Roundhay Park, Leeds",
+      "description": "5k, 10k, Half",
+      "entryUrl": "https://www.letsdothis.com/gb/e/yorkshire-day-run-2026-268208",
+      "signUpEnabled": true
+    },
+    {
+      "id": "york-10k-2026",
+      "title": "York 10K",
+      "date": "2026-08-02",
+      "dateLabel": "Sunday, 2nd August 2026",
+      "location": "York",
+      "signUpEnabled": false
+    },
+    {
+      "id": "summer-night-series-5k-2026",
+      "title": "Summer Night Series 5k",
+      "date": "2026-08-04",
+      "dateLabel": "Tuesday, 4th August 2026",
+      "location": "Ormesby Hall",
+      "description": "Summer Night Series 5k Ormesby Hall, Ladgate Lane, Middlesbrough, North Yorkshire, TS3 0SR",
+      "entryUrl": "https://www.morethanarun.co.uk/events/event-one-meff6-me79k-gj4n8-x3h45-h3ea4-2jbba-4w9ej-zalnx-8wffm-m24ge-l4c8g-grrf5-6azh5-d8xwe-3da3c-x5rhm-y3xhd",
+      "signUpEnabled": true
+    },
+    {
+      "id": "quayside-5k-and-10k-2026",
+      "title": "Quayside 5k and 10K",
+      "date": "2026-08-05",
+      "dateLabel": "Wednesday, 5th August 2026",
+      "location": "Quayside, Newcastle NE1 3DE",
+      "entryUrl": "https://www.runthrough.co.uk/event/quayside-5k-10k-august-2026",
+      "signUpEnabled": true
+    },
+    {
+      "id": "inflatable-5k-2026",
+      "title": "Inflatable 5k",
+      "date": "2026-08-22",
+      "dateLabel": "Saturday, 22nd August 2026",
+      "location": "Newcastle Racecourse, High Gosforth Park, Newcastle upon Tyne. NE3 5HP",
+      "entryUrl": "https://www.ukrunningevents.co.uk/events/inflatable-5k/newcastle-northumberland-2026",
+      "signUpEnabled": true
+    },
+    {
+      "id": "nymac-relays-august-2026",
+      "title": "NYMAC Relays (August)",
+      "date": "2026-08-27",
+      "dateLabel": "Thursday, 27th August 2026",
+      "location": "North Yorkshire",
+      "signUpEnabled": false
+    },
+    {
+      "id": "ali-brownlee-5k-2026",
+      "title": "Ali Brownlee 5K",
+      "date": "2026-08-30",
+      "dateLabel": "Sunday, 30th August 2026",
+      "location": "Centre Square, Middlesbrough TS1 2BF",
+      "entryUrl": "https://in.njuko.com/middlesbrough-runs?currentPage=select-competition",
+      "signUpEnabled": false
+    },
+    {
+      "id": "boro-10k-2026",
+      "title": "Boro 10k",
+      "date": "2026-08-30",
+      "dateLabel": "Sunday, 30th August 2026",
+      "location": "Middlesbrough",
+      "signUpEnabled": false
+    },
+    {
+      "id": "boro-5k-2026",
+      "title": "Boro 5k",
+      "date": "2026-08-30",
+      "dateLabel": "Sunday, 30th August 2026",
+      "location": "Middlesbrough",
+      "signUpEnabled": false
+    },
+    {
+      "id": "leeds-running-festival-2026",
+      "title": "Leeds Running Festival",
+      "date": "2026-08-30",
+      "dateLabel": "Sunday, 30th August 2026",
+      "location": "Mansion Ln, Roundhay, Leeds LS8 2HH",
+      "description": "5, 10, Half, Junior",
+      "entryUrl": "https://www.runthrough.co.uk/event/leeds-running-festival-august-2026",
+      "signUpEnabled": true
+    },
+    {
+      "id": "redcar-autumn-coast-5km-2026",
+      "title": "Redcar Autumn Coast 5km",
+      "date": "2026-09-09",
+      "dateLabel": "Wednesday, 9th September 2026",
+      "location": "Redcar Rugby Club Green Lane Redcar TS10 3RW",
+      "entryUrl": "https://www.entrycentral.com/autumn_coast_road_5km",
+      "signUpEnabled": false
+    },
+    {
+      "id": "great-north-run-2026",
+      "title": "Great North Run",
+      "date": "2026-09-13",
+      "dateLabel": "Sunday, 13th September 2026",
+      "location": "Newcastle to South Shields",
+      "signUpEnabled": false
+    },
+    {
+      "id": "hardmoors-60-2026",
+      "title": "Hardmoors 60",
+      "date": "2026-09-19",
+      "dateLabel": "Saturday, 19th September 2026",
+      "location": "Guisborough Rugby Club, Belmangate, Guisborough TS14 7BB",
+      "description": "63-mile coastal ultra from Guisborough to Filey. Starts 08:00. No dogs; bring your own cup.",
+      "entryUrl": "https://www.hardmoors110.org.uk/hardmoors-60/",
+      "signUpEnabled": false
+    },
+    {
+      "id": "berlin-marathon-2026",
+      "title": "Berlin Marathon",
+      "date": "2026-09-27",
+      "dateLabel": "Sunday, 27th September 2026",
+      "location": "Berlin",
+      "signUpEnabled": false
+    },
+    {
+      "id": "manchester-half-marathon-2026",
+      "title": "Manchester Half Marathon",
+      "date": "2026-10-04",
+      "dateLabel": "Sunday, 4th October 2026",
+      "location": "Manchester",
+      "signUpEnabled": false
+    },
+    {
+      "id": "yorkshire-coast-10k-2026",
+      "title": "Yorkshire Coast 10k",
+      "date": "2026-10-11",
+      "dateLabel": "Sunday, 11th October 2026",
+      "location": "The SPA, Scarborough YO11 2HD",
+      "description": "McCain Yorkshire Coast 10K, organised by Run For All. Coastal loop from Scarborough SPA. Entrants must be 15 or older.",
+      "entryUrl": "https://www.runforall.com/events/10k/yorkshire-coast-10k/",
+      "signUpEnabled": false
+    },
+    {
+      "id": "york-10-mile-2026",
+      "title": "York 10 Mile",
+      "date": "2026-10-18",
+      "dateLabel": "Sunday, 18th October 2026",
+      "location": "York",
+      "signUpEnabled": false
+    },
+    {
+      "id": "yorkshire-10-mile-2026",
+      "title": "Yorkshire 10 Mile",
+      "date": "2026-10-18",
+      "dateLabel": "Sunday, 18th October 2026",
+      "location": "University of York, Heslington, York YO10 5DD",
+      "description": "Part of York's festival of running. Entrants must be 18 or over.",
+      "entryUrl": "https://www.runforall.com/events/10-mile/yorkshire-10-mile/",
+      "signUpEnabled": false
+    },
+    {
+      "id": "yorkshire-marathon-2026",
+      "title": "Yorkshire Marathon",
+      "date": "2026-10-18",
+      "dateLabel": "Sunday, 18th October 2026",
+      "location": "University of York, Heslington, York YO10 5DD",
+      "description": "Fancy taking on a 26.2 mile challenge in the beautiful city of York? The Altra Yorkshire Marathon's scenic route and unreal support makes it a standout event worth entering. Be part of this incredible festival of running loved by many.",
+      "entryUrl": "https://www.runforall.com/events/marathon/yorkshire-marathon/",
+      "signUpEnabled": false
+    },
+    {
+      "id": "london-landmarks-half-2027",
+      "title": "London Landmarks Half",
+      "date": "2027-04-04",
+      "dateLabel": "Sunday, 4th April 2027",
+      "location": "Whitehall, London",
+      "entryUrl": "https://llhm.co.uk/",
+      "signUpEnabled": false
+    },
+    {
+      "id": "the-wall-the-uks-biggest-ultramarathon-2027",
+      "title": "The Wall - The UK's biggest ultramarathon",
+      "date": "2027-06-12",
+      "dateLabel": "Saturday, 12th June 2027",
+      "location": "Hadrian's Wall",
+      "description": "Our fully supported 70-mile endurance challenge through historic Hadrian's Wall country in England.",
+      "entryUrl": "https://www.ratrace.com/events/the-wall/",
+      "signUpEnabled": false
+    }
+  ]
+}

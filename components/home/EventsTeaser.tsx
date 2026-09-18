@@ -1,46 +1,15 @@
-"use client";
-
-import { useState, useEffect } from "react";
 import AnimatedSection from "../ui/AnimatedSection";
 import SectionHeading from "../ui/SectionHeading";
 import Card from "../ui/Card";
 import Button from "../ui/Button";
-import { isEventPast } from "@/lib/eventDates";
-
-type EventItem = {
-  title: string;
-  date: string;
-  location: string;
-};
-
-const fallbackEvents: EventItem[] = [
-  {
-    title: "Boro Runners Sports Day",
-    date: "May 2026 (EST.)",
-    location: "TBC",
-  },
-  {
-    title: "Edinburgh Half Marathon",
-    date: "Sunday, 24th May 2026",
-    location: "Edinburgh",
-  },
-  {
-    title: "Edinburgh Marathon",
-    date: "Sunday, 24th May 2026",
-    location: "Edinburgh",
-  },
-];
+import type { ClubEvent } from "@/lib/events";
 
 type EventsTeaserProps = {
-  events?: EventItem[];
+  events: ClubEvent[];
 };
 
 export default function EventsTeaser({ events }: EventsTeaserProps) {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
-
-  const all = events && events.length > 0 ? events : fallbackEvents;
-  const data = mounted ? all.filter((e) => !isEventPast(e.date)) : all;
+  if (events.length === 0) return null;
 
   return (
     <section className="section-padding">
@@ -51,19 +20,19 @@ export default function EventsTeaser({ events }: EventsTeaserProps) {
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {data.slice(0, 3).map((event, i) => (
-            <AnimatedSection key={event.title} delay={i * 0.1}>
+          {events.slice(0, 3).map((event, i) => (
+            <AnimatedSection key={event.id} delay={i * 0.1}>
               <Card className="h-full">
                 <div className="p-6">
                   <div className="w-12 h-12 bg-brand-red rounded-lg flex items-center justify-center mb-4">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <h3 className="font-display text-xl font-bold uppercase text-brand-black mb-2">
                     {event.title}
                   </h3>
-                  <p className="text-brand-red font-medium text-sm mb-1">{event.date}</p>
+                  <p className="text-brand-red font-medium text-sm mb-1">{event.dateLabel}</p>
                   <p className="text-brand-gray-500 text-sm">{event.location}</p>
                 </div>
               </Card>
