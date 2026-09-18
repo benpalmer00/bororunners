@@ -65,7 +65,7 @@ export function getMonthGroups(): BlogMonthGroup[] {
     }
   }
 
-  return [...groups.values()].sort((a, b) => b.id.localeCompare(a.id));
+  return Array.from(groups.values()).sort((a, b) => b.id.localeCompare(a.id));
 }
 
 export function getRecentMonthGroups(count = 2): {
