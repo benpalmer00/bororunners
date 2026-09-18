@@ -12,11 +12,11 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
           <AnimatedSection>
             <div className="relative">
               <Image
-                src={aboutImage || "/images/photos/group-2.jpg"}
-                alt="Bororunners members celebrating together after a run"
-                width={600}
-                height={400}
-                className="rounded-xl shadow-2xl object-cover w-full"
+                src={aboutImage || "/images/photos/teesside-stadium.jpg"}
+                alt="Bororunners members together at a race in the stadium"
+                width={800}
+                height={533}
+                className="rounded-xl shadow-2xl object-cover object-top w-full"
               />
               <div className="absolute -bottom-4 -right-4 bg-brand-red text-white p-4 rounded-xl shadow-lg hidden md:block">
                 <p className="font-display text-2xl font-bold">312+</p>

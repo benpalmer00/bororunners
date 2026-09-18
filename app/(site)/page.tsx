@@ -28,7 +28,7 @@ export default async function HomePage() {
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
       getPageImage("heroImage", "/images/photos/Hero.jpg"),
-      getPageImage("homeAboutImage", "/images/photos/group-2.jpg", 600, 400),
+      getPageImage("homeAboutImage", "/images/photos/teesside-stadium.jpg", 800, 533),
     ]);
   const rotm = getHomeROTMTeaser();
   const upcomingEvents = getUpcomingEvents().slice(0, 3);
