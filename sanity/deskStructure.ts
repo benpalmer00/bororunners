@@ -3,7 +3,6 @@ import {
   CalendarIcon,
   UsersIcon,
   ImageIcon,
-  DocumentTextIcon,
   CogIcon,
   TagIcon,
   StarIcon,
@@ -55,11 +54,6 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
 
       // ── Content ──────────────────────────────────────
-      S.listItem()
-        .title("Blog & News")
-        .icon(DocumentTextIcon)
-        .child(S.documentTypeList("blogPost").title("Blog & News")),
-
       S.listItem()
         .title("Photo Gallery")
         .icon(ImageIcon)

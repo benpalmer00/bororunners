@@ -6,19 +6,6 @@ export const eventsQuery = groq`*[_type == "event" && !isPast] | order(date asc)
 
 export const pastEventsQuery = groq`*[_type == "event" && isPast] | order(date desc)`;
 
-export const blogPostsQuery = groq`*[_type == "blogPost"] | order(publishedAt desc)`;
-
-export const blogPostBySlugQuery = groq`*[_type == "blogPost" && slug.current == $slug][0]{
-  ...,
-  "relatedPosts": *[_type == "blogPost" && slug.current != $slug] | order(publishedAt desc)[0...3]{
-    title,
-    slug,
-    featuredImage,
-    excerpt,
-    publishedAt
-  }
-}`;
-
 export const galleryImagesQuery = groq`*[_type == "galleryImage"] | order(dateTaken desc)`;
 
 export const featuredGalleryImagesQuery = groq`*[_type == "galleryImage" && featured == true] | order(dateTaken desc)[0...6]`;

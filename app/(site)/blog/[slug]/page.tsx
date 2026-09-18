@@ -1,147 +1,33 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { PortableText, type PortableTextComponents } from "@portabletext/react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Button from "@/components/ui/Button";
-import { sanityFetch, urlFor } from "@/sanity/lib/client";
-import { blogPostBySlugQuery, blogPostsQuery } from "@/sanity/lib/queries";
-
-export const revalidate = 3600;
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type SanityPost = any;
+import { formatPostDate, getBlogPost, getBlogSlugs } from "@/lib/blog";
 
 type Props = {
   params: { slug: string };
 };
 
-// Legacy hardcoded posts — the blog listing links to these when Sanity has no posts yet
-const legacyPosts: Record<string, { title: string; date: string; author: string; image: string; content: string[] }> = {
-  "club-of-the-year-2024": {
-    title: "England Athletics Club Committee of the Year 2024",
-    date: "December 2024",
-    author: "Bororunners",
-    image: "/images/photos/celebration-1.jpg",
-    content: [
-      "We are incredibly proud to announce that Bororunners has been named the England Athletics Club Committee of the Year 2024.",
-      "This award recognises the incredible work of our entire community — from our founder and head coach Ben Palmer, to every single run leader, committee member, and the 312 members who make this club what it is.",
-      "When we started with just 8 runners in Stewart's Park, we never imagined we'd be standing here receiving a national award. But we always knew we were building something special — a club where every runner, at every level, is genuinely welcomed and celebrated.",
-      "Our founder Ben Palmer also received the individual Regional Volunteer Award, a well-deserved recognition of the countless hours he has put into coaching, organising, and inspiring our community.",
-      "This award belongs to every Bororunner. Thank you for making this club what it is. Here's to the next chapter.",
-    ],
-  },
-  "growth-story": {
-    title: "From 8 to 312: Our Growth Story",
-    date: "October 2024",
-    author: "Bororunners",
-    image: "/images/photos/group-2.jpg",
-    content: [
-      "In March 2022, Ben Palmer gathered 8 runners who shared a vision: a running club that put community before competition.",
-      "Two and a half years later, Bororunners has grown to 312 registered members — making us one of the fastest growing running clubs in the North East.",
-      "So how did we get here? The answer is simple: we built a club where people actually want to be. A club where new runners are welcomed by name in a circle before every session. Where run leaders guide every pace group. Where everyone stays at every race to cheer the last runner home.",
-      "Our growth has been entirely organic — word of mouth, social media, and most importantly, the friendships our members have built. When people feel genuinely welcome, they bring their friends. And their friends bring theirs.",
-      "We're not slowing down. Four weekly sessions, regular social events, and a community that keeps growing. If you haven't tried running with us yet, there's never been a better time.",
-    ],
-  },
-  "great-north-run-roundup": {
-    title: "Race Day Roundup: Great North Run",
-    date: "September 2024",
-    author: "Bororunners",
-    image: "/images/photos/race-day-1.jpg",
-    content: [
-      "What. A. Day. Over 30 Bororunners members took on the iconic Great North Run — the world's biggest half marathon, from Newcastle to South Shields.",
-      "From first-timers to seasoned half-marathon runners, every single Bororunner gave it their all. And true to form, the rest of the club was there to cheer every single one of them home.",
-      "That's what makes race day with Boro special. We don't just enter races — we experience them together. Before, during, and especially at the finish line.",
-      "Congratulations to every Bororunner who ran, cheered, supported, and celebrated. You are what makes this club incredible.",
-    ],
-  },
-};
-
-function formatDate(dateStr: string): string {
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+export function generateStaticParams() {
+  return getBlogSlugs().map((slug) => ({ slug }));
 }
 
-const portableTextComponents: PortableTextComponents = {
-  types: {
-    image: ({ value }) =>
-      value?.asset ? (
-        <figure className="my-8">
-          <div className="relative aspect-[16/9] rounded-xl overflow-hidden">
-            <Image
-              src={urlFor(value).width(1200).url()}
-              alt={value.alt || ""}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 800px"
-            />
-          </div>
-          {value.caption && (
-            <figcaption className="text-sm text-brand-gray-400 mt-2 text-center">{value.caption}</figcaption>
-          )}
-        </figure>
-      ) : null,
-  },
-  block: {
-    normal: ({ children }) => <p className="text-brand-gray-600 leading-relaxed mb-4 text-lg">{children}</p>,
-    h2: ({ children }) => (
-      <h2 className="font-display text-3xl font-bold uppercase text-brand-black mt-10 mb-4">{children}</h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="font-display text-2xl font-bold uppercase text-brand-black mt-8 mb-3">{children}</h3>
-    ),
-    blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-brand-red pl-4 italic text-brand-gray-600 my-6">{children}</blockquote>
-    ),
-  },
-  list: {
-    bullet: ({ children }) => <ul className="list-disc pl-6 mb-4 text-brand-gray-600 text-lg space-y-2">{children}</ul>,
-    number: ({ children }) => <ol className="list-decimal pl-6 mb-4 text-brand-gray-600 text-lg space-y-2">{children}</ol>,
-  },
-  marks: {
-    link: ({ children, value }) => (
-      <a href={value?.href} target="_blank" rel="noopener noreferrer" className="text-brand-red hover:underline">
-        {children}
-      </a>
-    ),
-  },
-};
+export function generateMetadata({ params }: Props): Metadata {
+  const post = getBlogPost(params.slug);
+  if (!post) return { title: "Post Not Found" };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const post = await sanityFetch<SanityPost>(blogPostBySlugQuery, { slug: params.slug });
-  if (post) {
-    return {
-      title: post.title,
-      description: post.excerpt || undefined,
-      openGraph: post.featuredImage
-        ? { images: [urlFor(post.featuredImage).width(1200).height(630).url()] }
-        : undefined,
-    };
-  }
-
-  const legacy = legacyPosts[params.slug];
-  if (!legacy) return { title: "Post Not Found" };
   return {
-    title: legacy.title,
-    description: legacy.content[0],
-    openGraph: { images: [legacy.image] },
+    title: post.title,
+    description: post.excerpt || post.body[0],
+    openGraph: post.image ? { images: [post.image] } : undefined,
   };
 }
 
-export async function generateStaticParams() {
-  const sanityPosts = await sanityFetch<SanityPost[]>(blogPostsQuery);
-  const sanitySlugs = (sanityPosts || [])
-    .map((p: SanityPost) => p.slug?.current)
-    .filter(Boolean);
-  return Array.from(new Set([...sanitySlugs, ...Object.keys(legacyPosts)])).map((slug) => ({ slug }));
-}
+export default function BlogPostPage({ params }: Props) {
+  const post = getBlogPost(params.slug);
 
-export default async function BlogPostPage({ params }: Props) {
-  const sanityPost = await sanityFetch<SanityPost>(blogPostBySlugQuery, { slug: params.slug });
-  const legacy = sanityPost ? null : legacyPosts[params.slug];
-
-  if (!sanityPost && !legacy) {
+  if (!post) {
     return (
       <section className="section-padding pt-24 md:pt-32 text-center">
         <h1 className="font-display text-4xl font-bold uppercase text-brand-black mb-4">Post Not Found</h1>
@@ -150,19 +36,7 @@ export default async function BlogPostPage({ params }: Props) {
     );
   }
 
-  const title = sanityPost ? sanityPost.title : legacy!.title;
-  const date = sanityPost
-    ? sanityPost.publishedAt
-      ? formatDate(sanityPost.publishedAt)
-      : ""
-    : legacy!.date;
-  const author = sanityPost ? sanityPost.author || "Bororunners" : legacy!.author;
-  const image = sanityPost
-    ? sanityPost.featuredImage
-      ? urlFor(sanityPost.featuredImage).width(1600).height(900).url()
-      : ""
-    : legacy!.image;
-  const imageAlt = sanityPost ? sanityPost.featuredImage?.alt || title : title;
+  const date = formatPostDate(post.publishedAt, true);
 
   return (
     <article className="section-padding pt-24 md:pt-32">
@@ -176,33 +50,34 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
 
           <h1 className="font-display text-4xl md:text-5xl font-bold uppercase text-brand-black mt-4 mb-4">
-            {title}
+            {post.title}
           </h1>
 
           <div className="flex items-center gap-4 text-sm text-brand-gray-500 mb-8">
-            {date && (
-              <>
-                <span>{date}</span>
-                <span>•</span>
-              </>
-            )}
-            <span>By {author}</span>
+            <span>{date}</span>
+            <span>•</span>
+            <span>By {post.author}</span>
           </div>
 
-          {image && (
+          {post.image && (
             <div className="relative aspect-[16/9] rounded-xl overflow-hidden mb-10">
-              <Image src={image} alt={imageAlt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 800px" priority />
+              <Image
+                src={post.image}
+                alt={post.imageAlt || post.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 800px"
+                priority
+              />
             </div>
           )}
 
           <div className="prose max-w-none">
-            {sanityPost ? (
-              <PortableText value={sanityPost.body || []} components={portableTextComponents} />
-            ) : (
-              legacy!.content.map((para, i) => (
-                <p key={i} className="text-brand-gray-600 leading-relaxed mb-4 text-lg">{para}</p>
-              ))
-            )}
+            {post.body.map((paragraph, i) => (
+              <p key={i} className="text-brand-gray-600 leading-relaxed mb-4 text-lg whitespace-pre-line">
+                {paragraph}
+              </p>
+            ))}
           </div>
         </AnimatedSection>
       </div>
@@ -213,10 +88,10 @@ export default async function BlogPostPage({ params }: Props) {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            headline: title,
-            datePublished: sanityPost ? sanityPost.publishedAt || undefined : legacy!.date,
+            headline: post.title,
+            datePublished: post.publishedAt,
             author: { "@type": "Organization", name: "Bororunners Running Club" },
-            image: image.startsWith("/") ? `https://bororunners.co.uk${image}` : image || undefined,
+            image: post.image.startsWith("/") ? `https://bororunners.co.uk${post.image}` : post.image || undefined,
           }),
         }}
       />
