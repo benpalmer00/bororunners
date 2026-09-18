@@ -4,7 +4,7 @@ import Image from "next/image";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
 
-export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
+export default function AboutTeaser() {
   return (
     <section className="section-padding">
       <div className="container-wide mx-auto">
@@ -12,7 +12,7 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
           <AnimatedSection>
             <div className="relative">
               <Image
-                src={aboutImage || "/images/photos/teesside-stadium.jpg"}
+                src="/images/photos/teesside-stadium.jpg"
                 alt="Bororunners members together at a race in the stadium"
                 width={800}
                 height={533}
