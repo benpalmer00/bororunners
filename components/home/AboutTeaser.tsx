@@ -35,7 +35,7 @@ export default function AboutTeaser() {
             <p className="text-brand-gray-600 mb-4 leading-relaxed">
               Bororunners started with eight people and a simple idea — that running should be for everyone.
               Founded in 2022 by Ben Palmer, the club has grown to over 312 members and won England Athletics
-              Club Committee of the Year, all by putting community first.
+              Club Community of the Year, all by putting community first.
             </p>
             <p className="text-brand-gray-600 mb-6 leading-relaxed">
               We welcome runners of all abilities. Every session has dedicated run leaders, and at every race,

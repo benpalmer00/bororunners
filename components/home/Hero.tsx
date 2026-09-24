@@ -30,7 +30,7 @@ export default function Hero({ heroImage }: { heroImage?: string }) {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="inline-block bg-brand-red text-white px-4 py-1 rounded-full text-sm font-display font-bold uppercase tracking-wider mb-4"
           >
-            England Athletics Club Committee of the Year 2024
+            England Athletics Club Community of the Year 2024
           </motion.span>
 
           <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-bold uppercase text-white leading-none mb-4">

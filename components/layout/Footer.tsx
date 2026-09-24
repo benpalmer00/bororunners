@@ -41,7 +41,7 @@ export default function Footer() {
             </Link>
             <p className="text-gray-400 max-w-sm mb-6">
               Teesside&apos;s award-winning running club. 312 members, four weekly sessions, all abilities welcome.
-              England Athletics Club Committee of the Year 2024.
+              England Athletics Club Community of the Year 2024.
             </p>
             <div className="flex gap-4">
               <a
