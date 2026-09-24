@@ -66,10 +66,7 @@ function mapMember(m: SanityTeamMember): TeamMember {
 }
 
 export default async function TeamPage() {
-  const [teamHero, mascotPhoto] = await Promise.all([
-    getPageImage("teamHeroImage", "/images/photos/group-1.jpg"),
-    getPageImage("mascotPhoto", "", 300, 300),
-  ]);
+  const mascotPhoto = await getPageImage("mascotPhoto", "", 300, 300);
   const sanityMembers = await sanityFetch<SanityTeamMember[]>(teamMembersQuery);
 
   let chairman: TeamMember = fallbackChairman;
@@ -93,10 +90,10 @@ export default async function TeamPage() {
     <>
       <section className="relative h-[40vh] min-h-[300px] flex items-center">
         <Image
-          src={teamHero}
-          alt="Bororunners team photo"
+          src="/images/photos/team-hero.jpg"
+          alt="Bororunners members together at a race in Middlesbrough"
           fill
-          className="object-cover"
+          className="object-cover object-[center_30%]"
           priority
           sizes="100vw"
         />

@@ -4,7 +4,7 @@ import Image from "next/image";
 import AnimatedSection from "../ui/AnimatedSection";
 import Button from "../ui/Button";
 
-export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
+export default function AboutTeaser() {
   return (
     <section className="section-padding">
       <div className="container-wide mx-auto">
@@ -12,11 +12,11 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
           <AnimatedSection>
             <div className="relative">
               <Image
-                src={aboutImage || "/images/photos/group-2.jpg"}
-                alt="Bororunners members celebrating together after a run"
-                width={600}
-                height={400}
-                className="rounded-xl shadow-2xl object-cover w-full"
+                src="/images/photos/teesside-stadium.jpg"
+                alt="Bororunners members together at a race in the stadium"
+                width={800}
+                height={533}
+                className="rounded-xl shadow-2xl object-cover object-top w-full"
               />
               <div className="absolute -bottom-4 -right-4 bg-brand-red text-white p-4 rounded-xl shadow-lg hidden md:block">
                 <p className="font-display text-2xl font-bold">312+</p>
@@ -35,7 +35,7 @@ export default function AboutTeaser({ aboutImage }: { aboutImage?: string }) {
             <p className="text-brand-gray-600 mb-4 leading-relaxed">
               Bororunners started with eight people and a simple idea — that running should be for everyone.
               Founded in 2022 by Ben Palmer, the club has grown to over 312 members and won England Athletics
-              Club Committee of the Year, all by putting community first.
+              Club Community of the Year, all by putting community first.
             </p>
             <p className="text-brand-gray-600 mb-6 leading-relaxed">
               We welcome runners of all abilities. Every session has dedicated run leaders, and at every race,

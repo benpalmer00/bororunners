@@ -23,12 +23,11 @@ import {
 type SanityDoc = any;
 
 export default async function HomePage() {
-  const [sanityGallery, sanitySponsors, heroImage, homeAboutImage] =
+  const [sanityGallery, sanitySponsors, heroImage] =
     await Promise.all([
       sanityFetch<SanityDoc[]>(featuredGalleryImagesQuery),
       sanityFetch<SanityDoc[]>(sponsorsQuery),
       getPageImage("heroImage", "/images/photos/Hero.jpg"),
-      getPageImage("homeAboutImage", "/images/photos/group-2.jpg", 600, 400),
     ]);
   const rotm = getHomeROTMTeaser();
   const upcomingEvents = getUpcomingEvents().slice(0, 3);
@@ -68,7 +67,7 @@ export default async function HomePage() {
       <EnglandAthleticsBanner />
       <StatsStrip />
       <SessionsTeaser sessions={weeklySessions} weekLabel={weekLabel} />
-      <AboutTeaser aboutImage={homeAboutImage} />
+      <AboutTeaser />
       <EventsTeaser events={upcomingEvents} />
       <ROTMTeaser rotm={rotm} />
       <GalleryTeaser images={galleryImages} />

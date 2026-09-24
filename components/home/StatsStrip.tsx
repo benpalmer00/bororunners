@@ -5,7 +5,7 @@ import AnimatedSection from "../ui/AnimatedSection";
 const stats = [
   { number: "312", label: "Members" },
   { number: "2022", label: "Established" },
-  { number: "2024", label: "EA Committee of the Year" },
+  { number: "2024", label: "EA Community of the Year" },
   { number: "4", label: "Weekly Sessions" },
 ];
 
