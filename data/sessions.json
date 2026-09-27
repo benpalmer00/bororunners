@@ -1,65 +1,53 @@
 {
-  "week": "21 – 27 September 2026",
+  "week": "28 September – 4 October 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 21st September",
-      "title": "Monday 21 September @ 6:10pm",
-      "time": "6:10pm",
+      "date": "Mon 28th September",
+      "title": "Monday 28 September @ 6:00pm",
+      "time": "6:00pm",
       "location": "Stewart Park",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "5,5,3,3,1,1,1,1 mins w/ 90s rest\n\n10 minutes @ EASY pace\n5,5,3,3,1,1,1,1 mins w/ 90s rest\n10 minutes @ EASY pace\nCool Down\nStretches",
-      "workout": "5,5,3,3,1,1,1,1 mins w/ 90s rest"
-    },
-    {
-      "day": "Tuesday",
-      "date": "Tue 22nd September",
-      "title": "Tuesday 22 September @ 6:10pm",
-      "time": "6:10pm",
-      "location": "Nunthorpe School",
-      "meetingPoint": "Shared via Whatsapp",
-      "abilityLevel": "All Abilities",
-      "hasWaitingList": false,
-      "description": "Paired Relay Session\n\n10 minutes @ EASY pace\nPaired Relay Session\n10 minutes @ EASY pace\nCool Down\nStretches",
-      "workout": "Paired Relay Session"
+      "description": "2-6 mile Tempo/Easy Run",
+      "workout": "2-6 mile Tempo/Easy Run"
     },
     {
       "day": "Wednesday",
-      "date": "Wed 23rd September",
-      "title": "Wednesday 23 September @ 6:10pm",
+      "date": "Wed 30th September",
+      "title": "Wednesday 30 September @ 6:10pm",
       "time": "6:10pm",
-      "location": "Pinchinthorpe",
+      "location": "Tees Barrage",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "4-10 x 600's @ 5k pace\n\n10 minutes @ EASY pace\n4-10 x 600's @ 5k pace\n10 minutes @ EASY pace\nCool Down\nStretches",
-      "workout": "4-10 x 600's @ 5k pace"
+      "description": "1.4k, 700m, 300m regressions",
+      "workout": "1.4k, 700m, 300m regressions"
     },
     {
       "day": "Thursday",
-      "date": "Thu 24th September",
-      "title": "Thursday 24 September @ 6:10pm",
+      "date": "Thu 1st October",
+      "title": "Thursday 1 October @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "2-6 x 1k @ 5k pace\n\n10 minutes @ EASY pace\n2-6 x 1k @ 5k pace\n10 minutes @ EASY pace\nCool Down\nStretches",
-      "workout": "2-6 x 1k @ 5k pace"
+      "description": "6, 6, 3, 3, 90s, 90s, 2-6 x 45s, with 90s recovery",
+      "workout": "6, 6, 3, 3, 90s, 90s, 2-6 x 45s, with 90s recovery"
     },
     {
-      "day": "Friday",
-      "date": "Fri 25th September",
-      "title": "Friday 25 September @ 9:15am",
-      "time": "9:15am",
-      "location": "Kirkleatham Museum",
+      "day": "Sunday",
+      "date": "Sun 4th October",
+      "title": "Sunday 4 October @ 10:10am",
+      "time": "10:10am",
+      "location": "FunctionHUB",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run",
-      "workout": "Social Run"
+      "description": "Strength and Conditioning",
+      "workout": "Strength and Conditioning"
     }
   ]
 }
