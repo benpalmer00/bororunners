@@ -1,53 +1,65 @@
 {
-  "week": "28 September – 4 October 2026",
+  "week": "5 – 11 October 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 28th September",
-      "title": "Monday 28 September @ 6:00pm",
-      "time": "6:00pm",
-      "location": "Stewart Park",
+      "date": "Mon 5th October",
+      "title": "Monday 5 October @ 6:10pm",
+      "time": "6:10pm",
+      "location": "Lingfield Play Park",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "2-6 mile Tempo/Easy Run",
-      "workout": "2-6 mile Tempo/Easy Run"
+      "description": "700s @ faster than 5k effort",
+      "workout": "700s @ faster than 5k effort"
     },
     {
       "day": "Wednesday",
-      "date": "Wed 30th September",
-      "title": "Wednesday 30 September @ 6:10pm",
+      "date": "Wed 7th October",
+      "title": "Wednesday 7 October @ 6:10pm",
       "time": "6:10pm",
-      "location": "Tees Barrage",
+      "location": "Southern Cross",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "1.4k, 700m, 300m regressions",
-      "workout": "1.4k, 700m, 300m regressions"
+      "description": "1.2k's @ 10k effort",
+      "workout": "1.2k's @ 10k effort"
     },
     {
       "day": "Thursday",
-      "date": "Thu 1st October",
-      "title": "Thursday 1 October @ 6:10pm",
+      "date": "Thu 8th October",
+      "title": "Thursday 8 October @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "6, 6, 3, 3, 90s, 90s, 2-6 x 45s, with 90s recovery",
-      "workout": "6, 6, 3, 3, 90s, 90s, 2-6 x 45s, with 90s recovery"
+      "description": "400/300 repeats",
+      "workout": "400/300 repeats"
+    },
+    {
+      "day": "Friday",
+      "date": "Fri 9th October",
+      "title": "Friday 9 October @ 9:15am",
+      "time": "9:15am",
+      "location": "Stewart Park",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "Social Run and Coffee",
+      "workout": "Social Run and Coffee"
     },
     {
       "day": "Sunday",
-      "date": "Sun 4th October",
-      "title": "Sunday 4 October @ 10:10am",
+      "date": "Sun 11th October",
+      "title": "Sunday 11 October @ 10:10am",
       "time": "10:10am",
       "location": "FunctionHUB",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Strength and Conditioning",
-      "workout": "Strength and Conditioning"
+      "description": "Strength and Conditioning (min 14.)",
+      "workout": "Strength and Conditioning (min 14.)"
     }
   ]
 }
