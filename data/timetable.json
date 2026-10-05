@@ -1,0 +1,47 @@
+{
+  "month": "October 2026",
+  "sessions": [
+    {
+      "date": "Thu 1st October",
+      "location": "TIE",
+      "time": "6:10pm",
+      "workout": "6, 6, 3, 3, 90s, 90s, 2-6 x 45s, with 90s recovery"
+    },
+    {
+      "date": "Sun 4th October",
+      "location": "FunctionHUB",
+      "time": "10:10am",
+      "workout": "Strength and Conditioning"
+    },
+    {
+      "date": "Mon 5th October",
+      "location": "Lingfield Play Park",
+      "time": "6:10pm",
+      "workout": "700s @ faster than 5k effort"
+    },
+    {
+      "date": "Wed 7th October",
+      "location": "Southern Cross",
+      "time": "6:10pm",
+      "workout": "1.2k's @ 10k effort"
+    },
+    {
+      "date": "Thu 8th October",
+      "location": "TIE",
+      "time": "6:10pm",
+      "workout": "400/300 repeats"
+    },
+    {
+      "date": "Fri 9th October",
+      "location": "Stewart Park",
+      "time": "9:15am",
+      "workout": "Social Run and Coffee"
+    },
+    {
+      "date": "Sun 11th October",
+      "location": "FunctionHUB",
+      "time": "10:10am",
+      "workout": "Strength and Conditioning (min 14.)"
+    }
+  ]
+}
