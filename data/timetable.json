@@ -1,0 +1,108 @@
+{
+  "month": "October 2026",
+  "sessions": [
+    {
+      "date": "Mon 5th October",
+      "location": "Lingfield",
+      "time": "6:10pm",
+      "workout": "6-10 x 700s @ faster than 5k effort w/ 2 mins rest"
+    },
+    {
+      "date": "Wed 7th October",
+      "location": "Southern Cross",
+      "time": "6:10pm",
+      "workout": "1.2k's @ 10k effort w/ 2 minutes rest"
+    },
+    {
+      "date": "Thu 8th October",
+      "location": "TIE",
+      "time": "6:10pm",
+      "workout": "400s and 300s repeats @ Mile Pace"
+    },
+    {
+      "date": "Fri 9th October",
+      "location": "Stewart Park",
+      "time": "9:15am",
+      "workout": "Social Run"
+    },
+    {
+      "date": "Mon 12th October",
+      "location": "Nunthorpe Academy",
+      "time": "6:10pm",
+      "workout": "Hill Fartlek"
+    },
+    {
+      "date": "Tue 13th October",
+      "location": "Riverside Dock",
+      "time": "6:10pm",
+      "workout": "'On the Whistle' special"
+    },
+    {
+      "date": "Thu 15th October",
+      "location": "TIE",
+      "time": "6:10pm",
+      "workout": "Coned Fartlek session"
+    },
+    {
+      "date": "Fri 16th October",
+      "location": "Kirkleatham Museum",
+      "time": "9:15am",
+      "workout": "Social run and coffee"
+    },
+    {
+      "date": "Mon 19th October",
+      "location": "St Mary's Church",
+      "time": "6:10pm",
+      "workout": "4-7 x 1k's @ 5k effort w/ 2 minutes rest"
+    },
+    {
+      "date": "Tue 20th October",
+      "location": "Riverside Dock",
+      "time": "6:10pm",
+      "workout": "2-6 x 1km @5k pace, 2-4 up and overs"
+    },
+    {
+      "date": "Thu 22nd October",
+      "location": "Nunthorpe School",
+      "time": "6:10pm",
+      "workout": "2-3 x 6 minute Kenyan Hills, 3 mins rest"
+    },
+    {
+      "date": "Fri 23rd October",
+      "location": "Kirkleatham Museum",
+      "time": "9:15am",
+      "workout": "Social run and coffee"
+    },
+    {
+      "date": "Mon 26th October",
+      "location": "Southern Cross",
+      "time": "6:10pm",
+      "workout": "300, 200, 100 Hill VO2Max efforts"
+    },
+    {
+      "date": "Tue 27th October",
+      "location": "Tees Barrage",
+      "time": "6:10pm",
+      "workout": "2-5 mile Tempo Run"
+    },
+    {
+      "date": "Thu 29th October",
+      "location": "TIE",
+      "time": "6:10pm",
+      "workout": "12-20 x 1 minute on, 1 minute float"
+    },
+    {
+      "date": "Fri 30th October",
+      "location": "Pinchinthorpe",
+      "time": "9:15am",
+      "workout": "Social run and coffee"
+    },
+    {
+      "date": "Sun 1st November",
+      "location": "Stewart Park",
+      "time": "TBC",
+      "workout": "Nightmare on 6.66 Street",
+      "isHighlight": true
+    }
+  ]
+}

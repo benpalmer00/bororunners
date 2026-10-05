@@ -6,6 +6,7 @@ import SessionCard from "@/components/sessions/SessionCard";
 import Button from "@/components/ui/Button";
 import { getPageImage } from "@/lib/getPageImage";
 import { getWeekLabel, getWeeklySessions } from "@/lib/sessions";
+import { getTimetable } from "@/lib/timetable";
 
 export const metadata: Metadata = {
   title: "Sessions",
@@ -17,6 +18,7 @@ export default async function SessionsPage() {
   const sessionsHero = await getPageImage("sessionsHeroImage", "/images/photos/training-1.jpg");
   const sessions = getWeeklySessions();
   const weekLabel = getWeekLabel();
+  const { month: timetableMonth, sessions: timetable } = getTimetable();
 
   return (
     <>
@@ -71,17 +73,36 @@ export default async function SessionsPage() {
         </div>
       </section>
 
-      {sessions.length > 0 && (
+      {timetable.length > 0 && (
         <section className="section-padding bg-brand-black">
           <div className="container-wide mx-auto">
             <SectionHeading
-              title={`${weekLabel} Timetable`}
-              subtitle="This week's session schedule with locations and workouts."
+              title={`${timetableMonth} Timetable`}
+              subtitle="This month's full session schedule with locations and workouts."
               light
             />
 
             <AnimatedSection>
-              <div className="overflow-x-auto">
+              <div className="md:hidden space-y-3">
+                {timetable.map((row, i) => (
+                  <div
+                    key={`${row.date}-${row.workout}-${i}`}
+                    className={`rounded-lg border border-brand-gray-800 px-4 py-3 ${
+                      row.isHighlight ? "bg-brand-red/20 text-white font-bold" : "bg-brand-gray-900/40"
+                    }`}
+                  >
+                    <p className="font-semibold text-white">{row.date}</p>
+                    <p className="mt-1 text-sm text-gray-300">
+                      {row.location}
+                      <span className="text-brand-gray-500"> · </span>
+                      {row.time}
+                    </p>
+                    <p className="mt-2 text-sm text-gray-300">{row.workout}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="hidden md:block overflow-x-auto">
                 <table className="w-full text-left text-sm">
                   <thead>
                     <tr className="border-b border-brand-gray-700">
@@ -92,9 +113,9 @@ export default async function SessionsPage() {
                     </tr>
                   </thead>
                   <tbody className="text-gray-300">
-                    {sessions.map((row, i) => (
+                    {timetable.map((row, i) => (
                       <tr
-                        key={`${row.day}-${row.date || i}`}
+                        key={`${row.date}-${row.workout}-${i}`}
                         className={`border-b border-brand-gray-800 ${
                           row.isHighlight
                             ? "bg-brand-red/20 text-white font-bold"
@@ -103,12 +124,10 @@ export default async function SessionsPage() {
                             : ""
                         }`}
                       >
-                        <td className="py-3 px-4 font-semibold text-white whitespace-nowrap">
-                          {row.date || row.day}
-                        </td>
+                        <td className="py-3 px-4 font-semibold text-white whitespace-nowrap">{row.date}</td>
                         <td className="py-3 px-4">{row.location}</td>
-                        <td className="py-3 px-4">{row.time}</td>
-                        <td className="py-3 px-4">{row.workout || row.description || row.title}</td>
+                        <td className="py-3 px-4 whitespace-nowrap">{row.time}</td>
+                        <td className="py-3 px-4">{row.workout}</td>
                       </tr>
                     ))}
                   </tbody>
