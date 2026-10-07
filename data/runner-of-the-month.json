@@ -66,7 +66,56 @@
       "id": "2026-09",
       "month": "September",
       "year": 2026,
-      "slides": []
+      "slides": [
+        {
+          "id": "cover",
+          "person": "",
+          "src": "/images/rotm/2026-09/september-nominations.jpeg",
+          "alt": "September Club Runner of the Month Nominations"
+        },
+        {
+          "id": "samantha-rundle",
+          "person": "Samantha Rundle",
+          "src": "/images/rotm/2026-09/sam-rundle.jpeg",
+          "alt": "Samantha Rundle — September Runner of the Month",
+          "isWinner": true
+        },
+        {
+          "id": "emma-armstrong",
+          "person": "Emma Armstrong",
+          "src": "/images/rotm/2026-09/emma-armstrong.jpeg",
+          "alt": "Emma Armstrong — September nomination",
+          "isWinner": false
+        },
+        {
+          "id": "laura-whitfield",
+          "person": "Laura Whitfield",
+          "src": "/images/rotm/2026-09/laura-whitfield.jpeg",
+          "alt": "Laura Whitfield — September nomination",
+          "isWinner": false
+        },
+        {
+          "id": "leigh-taylor",
+          "person": "Leigh Taylor",
+          "src": "/images/rotm/2026-09/leigh-taylor.jpeg",
+          "alt": "Leigh Taylor — September nomination",
+          "isWinner": false
+        },
+        {
+          "id": "ross-pearson",
+          "person": "Ross Pearson",
+          "src": "/images/rotm/2026-09/ross-pearson.jpeg",
+          "alt": "Ross Pearson — September nomination",
+          "isWinner": false
+        },
+        {
+          "id": "suzanne-backhouse",
+          "person": "Suzanne Backhouse",
+          "src": "/images/rotm/2026-09/suzanne-backhouse.jpeg",
+          "alt": "Suzanne Backhouse — September nomination",
+          "isWinner": false
+        }
+      ]
     },
     {
       "id": "2026-10",
