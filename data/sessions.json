@@ -1,48 +1,48 @@
 {
-  "week": "5 – 11 October 2026",
+  "week": "12 – 18 October 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 5th October",
-      "title": "Monday 5 October @ 6:10pm",
+      "date": "Mon 12th October",
+      "title": "Monday 12 October @ 6:10pm",
       "time": "6:10pm",
-      "location": "Lingfield Play Park",
+      "location": "Nunthorpe Academy",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "700s @ faster than 5k effort",
-      "workout": "700s @ faster than 5k effort"
+      "description": "Hill Fartlek",
+      "workout": "Hill Fartlek"
     },
     {
-      "day": "Wednesday",
-      "date": "Wed 7th October",
-      "title": "Wednesday 7 October @ 6:10pm",
+      "day": "Tuesday",
+      "date": "Tue 13th October",
+      "title": "Tuesday 13 October @ 6:10pm",
       "time": "6:10pm",
-      "location": "Southern Cross",
+      "location": "Riverside Dock",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "1.2k's @ 10k effort",
-      "workout": "1.2k's @ 10k effort"
+      "description": "'On the whistle' special",
+      "workout": "'On the whistle' special"
     },
     {
       "day": "Thursday",
-      "date": "Thu 8th October",
-      "title": "Thursday 8 October @ 6:10pm",
+      "date": "Thu 15th October",
+      "title": "Thursday 15 October @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "400/300 repeats",
-      "workout": "400/300 repeats"
+      "description": "Coned Fartlek Session",
+      "workout": "Coned Fartlek Session"
     },
     {
       "day": "Friday",
-      "date": "Fri 9th October",
-      "title": "Friday 9 October @ 9:15am",
+      "date": "Fri 16th October",
+      "title": "Friday 16 October @ 9:15am",
       "time": "9:15am",
-      "location": "Stewart Park",
+      "location": "Kirkleatham Museum",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
@@ -51,15 +51,15 @@
     },
     {
       "day": "Sunday",
-      "date": "Sun 11th October",
-      "title": "Sunday 11 October @ 10:10am",
+      "date": "Sun 18th October",
+      "title": "Sunday 18 October @ 10:10am",
       "time": "10:10am",
       "location": "FunctionHUB",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Strength and Conditioning (min 14.)",
-      "workout": "Strength and Conditioning (min 14.)"
+      "description": "Strength and Conditioning (Power & Lifting)",
+      "workout": "Strength and Conditioning (Power & Lifting)"
     }
   ]
 }

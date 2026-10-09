@@ -94,8 +94,12 @@ export default async function SessionsPage() {
                     <p className="font-semibold text-white">{row.date}</p>
                     <p className="mt-1 text-sm text-gray-300">
                       {row.location}
-                      <span className="text-brand-gray-500"> · </span>
-                      {row.time}
+                      {row.time ? (
+                        <>
+                          <span className="text-brand-gray-500"> · </span>
+                          {row.time}
+                        </>
+                      ) : null}
                     </p>
                     <p className="mt-2 text-sm text-gray-300">{row.workout}</p>
                   </div>
