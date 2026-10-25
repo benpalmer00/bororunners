@@ -1,65 +1,66 @@
 {
-  "week": "12 – 18 October 2026",
+  "week": "26 October – 1 November 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 12th October",
-      "title": "Monday 12 October @ 6:10pm",
+      "date": "Mon 26th October",
+      "title": "Monday 26 October @ 6:10pm",
       "time": "6:10pm",
-      "location": "Nunthorpe Academy",
+      "location": "Southern Cross",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Hill Fartlek",
-      "workout": "Hill Fartlek"
+      "description": "200,100,60m V02Max efforts (ALL abilities)\nLed by Ben",
+      "workout": "200,100,60m V02Max efforts (ALL abilities)"
     },
     {
       "day": "Tuesday",
-      "date": "Tue 13th October",
-      "title": "Tuesday 13 October @ 6:10pm",
+      "date": "Tue 27th October",
+      "title": "Tuesday 27 October @ 6:10pm",
       "time": "6:10pm",
-      "location": "Riverside Dock",
+      "location": "Tees Barrage",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "'On the whistle' special",
-      "workout": "'On the whistle' special"
+      "description": "2-5 mile Tempo Run\nLed by Jack",
+      "workout": "2-5 mile Tempo Run"
     },
     {
       "day": "Thursday",
-      "date": "Thu 15th October",
-      "title": "Thursday 15 October @ 6:10pm",
+      "date": "Thu 29th October",
+      "title": "Thursday 29 October @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Coned Fartlek Session",
-      "workout": "Coned Fartlek Session"
+      "description": "12-20 x 1 minute ON/OFF\nLed by Jack",
+      "workout": "12-20 x 1 minute ON/OFF"
     },
     {
       "day": "Friday",
-      "date": "Fri 16th October",
-      "title": "Friday 16 October @ 9:15am",
+      "date": "Fri 30th October",
+      "title": "Friday 30 October @ 9:15am",
       "time": "9:15am",
-      "location": "Kirkleatham Museum",
+      "location": "Pinchinthorpe",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run and Coffee",
-      "workout": "Social Run and Coffee"
+      "description": "Social Run & Coffee\nLed by Paul",
+      "workout": "Social Run & Coffee"
     },
     {
       "day": "Sunday",
-      "date": "Sun 18th October",
-      "title": "Sunday 18 October @ 10:10am",
-      "time": "10:10am",
-      "location": "FunctionHUB",
+      "date": "Sun 1st November",
+      "title": "Nightmare on 6.66 Street",
+      "time": "TBC",
+      "location": "Stewart Park",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Strength and Conditioning (Power & Lifting)",
-      "workout": "Strength and Conditioning (Power & Lifting)"
+      "isHighlight": true,
+      "description": "Nightmare on 6.66 Street",
+      "workout": "Nightmare on 6.66 Street"
     }
   ]
 }
