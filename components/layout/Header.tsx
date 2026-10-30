@@ -37,7 +37,7 @@ export default function Header() {
                 priority
               />
               <span className="font-display text-xl font-bold uppercase tracking-tight text-brand-black hidden sm:block">
-                Bororunners
+                Bororunners (test)
               </span>
             </Link>
 
