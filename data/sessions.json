@@ -1,66 +1,65 @@
 {
-  "week": "26 October – 1 November 2026",
+  "week": "2 – 8 November 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 26th October",
-      "title": "Monday 26 October @ 6:10pm",
+      "date": "Mon 2nd November",
+      "title": "Monday 2 November @ 6:10pm",
       "time": "6:10pm",
       "location": "Southern Cross",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "200,100,60m V02Max efforts (ALL abilities)\nLed by Ben",
-      "workout": "200,100,60m V02Max efforts (ALL abilities)"
+      "description": "4-10 x 600's @ 3k pace w/ 2 mins rest\nLed by Ben",
+      "workout": "4-10 x 600's @ 3k pace w/ 2 mins rest"
     },
     {
-      "day": "Tuesday",
-      "date": "Tue 27th October",
-      "title": "Tuesday 27 October @ 6:10pm",
+      "day": "Wednesday",
+      "date": "Wed 4th November",
+      "title": "Wednesday 4 November @ 6:10pm",
       "time": "6:10pm",
-      "location": "Tees Barrage",
+      "location": "Coulby Newham Way",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "2-5 mile Tempo Run\nLed by Jack",
-      "workout": "2-5 mile Tempo Run"
+      "description": "2-6 mile Tempo/Easy run\nLed by Ben",
+      "workout": "2-6 mile Tempo/Easy run"
     },
     {
       "day": "Thursday",
-      "date": "Thu 29th October",
-      "title": "Thursday 29 October @ 6:10pm",
+      "date": "Thu 5th November",
+      "title": "Thursday 5 November @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "12-20 x 1 minute ON/OFF\nLed by Jack",
-      "workout": "12-20 x 1 minute ON/OFF"
+      "description": "3-6 x 1k repeats @ HM pace w/ floats\nLed by Jack",
+      "workout": "3-6 x 1k repeats @ HM pace w/ floats"
     },
     {
       "day": "Friday",
-      "date": "Fri 30th October",
-      "title": "Friday 30 October @ 9:15am",
+      "date": "Fri 6th November",
+      "title": "Friday 6 November @ 9:15am",
       "time": "9:15am",
       "location": "Pinchinthorpe",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run & Coffee\nLed by Paul",
-      "workout": "Social Run & Coffee"
+      "description": "Social Run + Coffee\nLed by Paul",
+      "workout": "Social Run + Coffee"
     },
     {
       "day": "Sunday",
-      "date": "Sun 1st November",
-      "title": "Nightmare on 6.66 Street",
-      "time": "TBC",
-      "location": "Stewart Park",
+      "date": "Sun 8th November",
+      "title": "Sunday 8 November @ 10:15am",
+      "time": "10:15am",
+      "location": "FunctionHUB",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "isHighlight": true,
-      "description": "Nightmare on 6.66 Street",
-      "workout": "Nightmare on 6.66 Street"
+      "description": "Single Leg Stability, Balance and Agility\nLed by Ben",
+      "workout": "Single Leg Stability, Balance and Agility"
     }
   ]
 }
