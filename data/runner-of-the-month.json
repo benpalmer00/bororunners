@@ -121,7 +121,56 @@
       "id": "2026-10",
       "month": "October",
       "year": 2026,
-      "slides": []
+      "slides": [
+        {
+          "id": "cover",
+          "person": "",
+          "src": "/images/rotm/2026-10/october-nominations.jpeg",
+          "alt": "October Club Runner of the Month Nominations"
+        },
+        {
+          "id": "paul-bowman",
+          "person": "Paul Bowman",
+          "src": "/images/rotm/2026-10/paul-bowman.jpeg",
+          "alt": "Paul Bowman — October Runner of the Month",
+          "isWinner": true
+        },
+        {
+          "id": "nikki-metcalfe",
+          "person": "Nikki Metcalfe",
+          "src": "/images/rotm/2026-10/nikki-metcalfe.jpeg",
+          "alt": "Nikki Metcalfe — October nomination",
+          "isWinner": false
+        },
+        {
+          "id": "mark-waters",
+          "person": "Mark Waters",
+          "src": "/images/rotm/2026-10/mark-waters.jpeg",
+          "alt": "Mark Waters — October nomination",
+          "isWinner": false
+        },
+        {
+          "id": "glenis-wright",
+          "person": "Glenis Wright",
+          "src": "/images/rotm/2026-10/glenis-wright.jpeg",
+          "alt": "Glenis Wright — October nomination",
+          "isWinner": false
+        },
+        {
+          "id": "megan-coakley",
+          "person": "Megan Coakley",
+          "src": "/images/rotm/2026-10/megan-coakley.jpeg",
+          "alt": "Megan Coakley — October nomination",
+          "isWinner": false
+        },
+        {
+          "id": "alan-mcgarrity",
+          "person": "Alan McGarrity",
+          "src": "/images/rotm/2026-10/alan-mcgarrity.jpeg",
+          "alt": "Alan McGarrity — October nomination",
+          "isWinner": false
+        }
+      ]
     },
     {
       "id": "2026-11",
