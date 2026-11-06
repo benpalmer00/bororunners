@@ -1,65 +1,65 @@
 {
-  "week": "2 – 8 November 2026",
+  "week": "9 – 15 November 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 2nd November",
-      "title": "Monday 2 November @ 6:10pm",
+      "date": "Mon 9th November",
+      "title": "Monday 9 November @ 6:10pm",
       "time": "6:10pm",
-      "location": "Southern Cross",
+      "location": "Nunthorpe Academy",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "4-10 x 600's @ 3k pace w/ 2 mins rest\nLed by Ben",
-      "workout": "4-10 x 600's @ 3k pace w/ 2 mins rest"
+      "description": "Hill Fartlek\nLed by Ben",
+      "workout": "Hill Fartlek"
     },
     {
-      "day": "Wednesday",
-      "date": "Wed 4th November",
-      "title": "Wednesday 4 November @ 6:10pm",
+      "day": "Tuesday",
+      "date": "Tue 10th November",
+      "title": "Tuesday 10 November @ 6:10pm",
       "time": "6:10pm",
-      "location": "Coulby Newham Way",
+      "location": "Riverside Dock",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "2-6 mile Tempo/Easy run\nLed by Ben",
-      "workout": "2-6 mile Tempo/Easy run"
+      "description": "2-5 x 90,60,30s w/ float recoveries\nLed by Jack",
+      "workout": "2-5 x 90,60,30s w/ float recoveries"
     },
     {
       "day": "Thursday",
-      "date": "Thu 5th November",
-      "title": "Thursday 5 November @ 6:10pm",
+      "date": "Thu 12th November",
+      "title": "Thursday 12 November @ 6:10pm",
       "time": "6:10pm",
       "location": "TIE",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "3-6 x 1k repeats @ HM pace w/ floats\nLed by Jack",
-      "workout": "3-6 x 1k repeats @ HM pace w/ floats"
+      "description": "3-6 x 700,400m regressions w/ float recoveries\nLed by Jack",
+      "workout": "3-6 x 700,400m regressions w/ float recoveries"
     },
     {
       "day": "Friday",
-      "date": "Fri 6th November",
-      "title": "Friday 6 November @ 9:15am",
+      "date": "Fri 13th November",
+      "title": "Friday 13 November @ 9:15am",
       "time": "9:15am",
-      "location": "Pinchinthorpe",
+      "location": "Kirkleatham Museum",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run + Coffee\nLed by Paul",
-      "workout": "Social Run + Coffee"
+      "description": "Social Run and Coffee\nLed by Paul",
+      "workout": "Social Run and Coffee"
     },
     {
       "day": "Sunday",
-      "date": "Sun 8th November",
-      "title": "Sunday 8 November @ 10:15am",
+      "date": "Sun 15th November",
+      "title": "Sunday 15 November @ 10:15am",
       "time": "10:15am",
       "location": "FunctionHUB",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Single Leg Stability, Balance and Agility\nLed by Ben",
-      "workout": "Single Leg Stability, Balance and Agility"
+      "description": "Core, Stability and Single Leg Function\nLed by Ben",
+      "workout": "Core, Stability and Single Leg Function"
     }
   ]
 }
