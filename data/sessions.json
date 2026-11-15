@@ -1,65 +1,66 @@
 {
-  "week": "9 – 15 November 2026",
+  "week": "16 – 22 November 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 9th November",
-      "title": "Monday 9 November @ 6:10pm",
+      "date": "Mon 16th November",
+      "title": "Monday 16 November @ 6:10pm",
       "time": "6:10pm",
-      "location": "Nunthorpe Academy",
+      "location": "St Mary's Church",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Hill Fartlek\nLed by Ben",
-      "workout": "Hill Fartlek"
+      "description": "4-7 x 1k's @ 5k pace",
+      "workout": "4-7 x 1k's @ 5k pace"
     },
     {
       "day": "Tuesday",
-      "date": "Tue 10th November",
-      "title": "Tuesday 10 November @ 6:10pm",
+      "date": "Tue 17th November",
+      "title": "Tuesday 17 November @ 6:10pm",
       "time": "6:10pm",
       "location": "Riverside Dock",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "2-5 x 90,60,30s w/ float recoveries\nLed by Jack",
-      "workout": "2-5 x 90,60,30s w/ float recoveries"
+      "description": "3-6 x 1200's w/ 200m pick ups",
+      "workout": "3-6 x 1200's w/ 200m pick ups"
     },
     {
       "day": "Thursday",
-      "date": "Thu 12th November",
-      "title": "Thursday 12 November @ 6:10pm",
+      "date": "Thu 19th November",
+      "title": "Thursday 19 November @ 6:10pm",
       "time": "6:10pm",
-      "location": "TIE",
+      "location": "Southern Cross",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "3-6 x 700,400m regressions w/ float recoveries\nLed by Jack",
-      "workout": "3-6 x 700,400m regressions w/ float recoveries"
+      "description": "200m Relays",
+      "workout": "200m Relays"
     },
     {
       "day": "Friday",
-      "date": "Fri 13th November",
-      "title": "Friday 13 November @ 9:15am",
+      "date": "Fri 20th November",
+      "title": "Friday 20 November @ 9:15am",
       "time": "9:15am",
-      "location": "Kirkleatham Museum",
+      "location": "Stewart Park",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run and Coffee\nLed by Paul",
+      "description": "Social Run and Coffee",
       "workout": "Social Run and Coffee"
     },
     {
-      "day": "Sunday",
-      "date": "Sun 15th November",
-      "title": "Sunday 15 November @ 10:15am",
-      "time": "10:15am",
-      "location": "FunctionHUB",
+      "day": "Saturday",
+      "date": "Sat 21st November",
+      "title": "Benidorm 10K & Half",
+      "time": "TBC",
+      "location": "Benidorm",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Core, Stability and Single Leg Function\nLed by Ben",
-      "workout": "Core, Stability and Single Leg Function"
+      "isHighlight": true,
+      "description": "BENIDORM 10K & HALF",
+      "workout": "BENIDORM 10K & HALF"
     }
   ]
 }
