@@ -1,66 +1,91 @@
 {
-  "week": "16 – 22 November 2026",
+  "week": "23 – 29 November 2026",
   "sessions": [
     {
       "day": "Monday",
-      "date": "Mon 16th November",
-      "title": "Monday 16 November @ 6:10pm",
-      "time": "6:10pm",
-      "location": "St Mary's Church",
-      "meetingPoint": "Shared via Whatsapp",
-      "abilityLevel": "All Abilities",
-      "hasWaitingList": false,
-      "description": "4-7 x 1k's @ 5k pace",
-      "workout": "4-7 x 1k's @ 5k pace"
-    },
-    {
-      "day": "Tuesday",
-      "date": "Tue 17th November",
-      "title": "Tuesday 17 November @ 6:10pm",
-      "time": "6:10pm",
-      "location": "Riverside Dock",
-      "meetingPoint": "Shared via Whatsapp",
-      "abilityLevel": "All Abilities",
-      "hasWaitingList": false,
-      "description": "3-6 x 1200's w/ 200m pick ups",
-      "workout": "3-6 x 1200's w/ 200m pick ups"
-    },
-    {
-      "day": "Thursday",
-      "date": "Thu 19th November",
-      "title": "Thursday 19 November @ 6:10pm",
+      "date": "Mon 23rd November",
+      "title": "Monday 23 November @ 6:10pm",
       "time": "6:10pm",
       "location": "Southern Cross",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "200m Relays",
-      "workout": "200m Relays"
+      "description": "300,200,100m VO2MAX Hill Intervals\nLed by Ben",
+      "workout": "300,200,100m VO2MAX Hill Intervals"
     },
     {
-      "day": "Friday",
-      "date": "Fri 20th November",
-      "title": "Friday 20 November @ 9:15am",
-      "time": "9:15am",
-      "location": "Stewart Park",
+      "day": "Tuesday",
+      "date": "Tue 24th November",
+      "title": "Tuesday 24 November @ 6:10pm",
+      "time": "6:10pm",
+      "location": "Riverside",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
-      "description": "Social Run and Coffee",
-      "workout": "Social Run and Coffee"
+      "description": "8,6,4,2,2,1,1 mins intervals (Broken Tempo)\nLed by Jack",
+      "workout": "8,6,4,2,2,1,1 mins intervals (Broken Tempo)"
     },
     {
-      "day": "Saturday",
-      "date": "Sat 21st November",
-      "title": "Benidorm 10K & Half",
+      "day": "Thursday",
+      "date": "Thu 26th November",
+      "title": "Thursday 26 November @ 6:10pm",
+      "time": "6:10pm",
+      "location": "TIE",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "4-8 x (2 minutes, 1 minute) intervals\nLed by Jack",
+      "workout": "4-8 x (2 minutes, 1 minute) intervals"
+    },
+    {
+      "day": "Friday",
+      "date": "Fri 27th November",
+      "title": "Friday 27 November @ 9:15am",
+      "time": "9:15am",
+      "location": "Pinchinthorpe",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "Social Run + Coffee\nLed by Paul",
+      "workout": "Social Run + Coffee"
+    },
+    {
+      "day": "Sunday",
+      "date": "Sun 29th November",
+      "title": "Sunderland 10K",
       "time": "TBC",
-      "location": "Benidorm",
+      "location": "Sunderland",
       "meetingPoint": "Shared via Whatsapp",
       "abilityLevel": "All Abilities",
       "hasWaitingList": false,
       "isHighlight": true,
-      "description": "BENIDORM 10K & HALF",
-      "workout": "BENIDORM 10K & HALF"
+      "description": "SUNDERLAND 10K",
+      "workout": "SUNDERLAND 10K"
+    },
+    {
+      "day": "Sunday",
+      "date": "Sun 29th November",
+      "title": "Leeds Abbey Dash",
+      "time": "TBC",
+      "location": "Leeds",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "isHighlight": true,
+      "description": "LEEDS ABBEY DASH",
+      "workout": "LEEDS ABBEY DASH"
+    },
+    {
+      "day": "Sunday",
+      "date": "Sun 29th November",
+      "title": "Sunday 29 November @ 10:15am",
+      "time": "10:15am",
+      "location": "FunctionHUB",
+      "meetingPoint": "Shared via Whatsapp",
+      "abilityLevel": "All Abilities",
+      "hasWaitingList": false,
+      "description": "Strength and Conditioning (minimum 12 people)",
+      "workout": "Strength and Conditioning (minimum 12 people)"
     }
   ]
 }
